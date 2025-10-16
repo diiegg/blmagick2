@@ -1,0 +1,37 @@
+[build]
+  # Build command
+  command = "npm run build"
+  # Directory to publish (Next.js static export)
+  publish = "out"
+
+[build.environment]
+  # Node version
+  NODE_VERSION = "18"
+  # Skip npm install if lock file is present
+  NPM_FLAGS = "--prefer-offline --no-audit"
+
+# Redirect all requests for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Optional: Set custom headers for better performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

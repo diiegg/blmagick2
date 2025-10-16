@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production builds
+.next/
+out/
+build/
+dist/
+
+# Environment files
+.env*
+
+# IDE
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+*.log
+
+# Netlify
+.netlify/
+
+# Config files
+*.config.js
+*.config.ts
+*.config.mjs
+
+# Public assets
+public/
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
