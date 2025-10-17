@@ -81,6 +81,11 @@ export default function Home() {
         )}
       </header>
 
+      {/* Energy Grid Background - Subtle animated grid */}
+      <div className="fixed inset-0 pointer-events-none z-0 opacity-10">
+        <EnergyGrid />
+      </div>
+
       {/* Hero */}
       <section className="relative min-h-screen pt-16 overflow-hidden">
         {/* Background Mystical Pattern - Subtle */}
@@ -125,12 +130,20 @@ export default function Home() {
 
               {/* Primary CTAs */}
               <div className="flex flex-wrap gap-4 lg:justify-start justify-center">
-                <a href="#contact" className="btn btn-primary px-8 py-4 text-lg">
+                <FloatingCTA
+                  href="#contact"
+                  className="px-8 py-4 text-lg"
+                  variant="primary"
+                >
                   Begin the Ritual
-                </a>
-                <a href="#disciplines" className="btn btn-ghost px-8 py-4 text-lg">
+                </FloatingCTA>
+                <FloatingCTA
+                  href="#disciplines"
+                  className="px-8 py-4 text-lg"
+                  variant="ghost"
+                >
                   Explore Capabilities
-                </a>
+                </FloatingCTA>
               </div>
             </motion.div>
 
@@ -272,27 +285,20 @@ export default function Home() {
                 ],
               },
             ].map((discipline, i) => (
-              <motion.article
+              <MysticalCard
                 key={discipline.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8, delay: 0.2 + i * 0.15 }}
-                className="glass p-8 hover:border-[--color-brand]/40 transition-all group"
+                delay={0.2 + i * 0.15}
+                className="group"
               >
                 <div className="mb-4 text-5xl">{discipline.icon}</div>
                 <h3 className="text-2xl font-semibold mb-3">{discipline.title}</h3>
                 <p className="text-[--color-muted] mb-6">{discipline.desc}</p>
                 <div className="h-px w-full bg-gradient-to-r from-[--color-brand]/20 via-[--color-accent]/20 to-transparent mb-4" />
-                <ul className="space-y-2 text-sm text-[--color-muted]">
-                  {discipline.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2">
-                      <span className="text-[--color-accent] mt-1">·</span>
-                      <span>{bullet}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.article>
+                <CascadingList
+                  items={discipline.bullets}
+                  delay={0.5 + i * 0.15}
+                />
+              </MysticalCard>
             ))}
           </div>
         </div>
@@ -334,60 +340,32 @@ export default function Home() {
 
       {/* Contact */}
       <section id="contact" className="py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 1.1 }}
-          className="section max-w-4xl mx-auto"
-        >
-          <div className="glass p-10 md:p-14">
-            <h2 className="text-center text-4xl font-semibold mb-6">Initiate Contact</h2>
-            <p className="mx-auto max-w-md text-center text-[--color-muted] mb-10">
-              Describe your objective — we'll respond with a precision plan and a path to measurable wins.
-            </p>
+        <ScrollReveal direction="bottom" className="section max-w-4xl mx-auto">
+          <MysticalCard className="p-10 md:p-14">
+            <div className="text-center mb-10">
+              <TypewriterText
+                text="Initiate Contact"
+                delay={500}
+              />
+              <motion.h2
+                className="text-4xl font-semibold mb-6"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 2, duration: 0.8 }}
+              />
+              <ScrollReveal direction="top" delay={0.3}>
+                <p className="mx-auto max-w-md text-[--color-muted]">
+                  Describe your objective — we'll respond with a precision plan and a path to measurable wins.
+                </p>
+              </ScrollReveal>
+            </div>
 
-            <form className="mx-auto max-w-2xl space-y-6">
-              <div className="grid gap-6 md:grid-cols-2">
-                <label className="block text-sm">
-                  <span className="text-[--color-muted] mb-2 block">Name</span>
-                  <input
-                    className="w-full rounded-xl border border-[--color-border] bg-[--color-surface]/50 px-4 py-3"
-                    placeholder="Ada Lovelace"
-                  />
-                </label>
-                <label className="block text-sm">
-                  <span className="text-[--color-muted] mb-2 block">Work Email</span>
-                  <input
-                    type="email"
-                    className="w-full rounded-xl border border-[--color-border] bg-[--color-surface]/50 px-4 py-3"
-                    placeholder="you@company.com"
-                  />
-                </label>
-              </div>
-
-              <label className="block text-sm">
-                <span className="text-[--color-muted] mb-2 block">Message</span>
-                <textarea
-                  className="w-full rounded-xl border border-[--color-border] bg-[--color-surface]/50 px-4 py-3"
-                  rows={5}
-                  placeholder="Tell us about your platform, constraints, and desired outcomes…"
-                />
-              </label>
-
-              <div className="flex justify-center pt-4">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.99 }}
-                  type="button"
-                  className="btn btn-primary px-10 py-4 text-lg"
-                >
-                  Request Consultation
-                </motion.button>
-              </div>
-            </form>
-          </div>
-        </motion.div>
+            <div className="mx-auto max-w-2xl">
+              <MysticalContactForm />
+            </div>
+          </MysticalCard>
+        </ScrollReveal>
       </section>
 
       {/* Invocation CTA */}
@@ -410,6 +388,9 @@ export default function Home() {
           <p className="text-xs text-[--color-muted]/60">© {new Date().getFullYear()} BlackMagickOps. All rights reserved.</p>
         </motion.div>
       </footer>
+
+      {/* Performance Monitor (Development only) */}
+      <PerformanceMonitor />
     </main>
   );
 }
@@ -1193,6 +1174,956 @@ function CountUpMetric({ end, prefix = "", suffix = "" }: { end: number; prefix?
   return (
     <div ref={ref} className="text-3xl md:text-4xl font-bold text-[--color-brand]">
       {prefix}{displayValue}{suffix}
+    </div>
+  );
+}
+
+/* ---------- Energy Grid Background ---------- */
+function EnergyGrid() {
+  // Create grid dimensions
+  const gridSize = 40; // Size of each grid cell in pixels
+  const cols = Math.ceil(window?.innerWidth / gridSize) || 30;
+  const rows = Math.ceil(window?.innerHeight / gridSize) || 20;
+
+  // Generate grid lines with random data flow pulses
+  const [pulses, setPulses] = useState<Array<{
+    id: number;
+    type: 'horizontal' | 'vertical';
+    position: number;
+    delay: number;
+    duration: number;
+    intensity: number;
+  }>>([]);
+
+  useEffect(() => {
+    // Generate random data flow pulses
+    const generatePulses = () => {
+      const newPulses = Array.from({ length: 8 }, (_, i) => ({
+        id: i,
+        type: Math.random() > 0.5 ? 'horizontal' : 'vertical' as 'horizontal' | 'vertical',
+        position: Math.floor(Math.random() * (Math.random() > 0.5 ? rows : cols)),
+        delay: Math.random() * 5,
+        duration: 3 + Math.random() * 4, // 3-7 seconds
+        intensity: 0.3 + Math.random() * 0.4, // 0.3-0.7 intensity
+      }));
+      setPulses(newPulses);
+    };
+
+    generatePulses();
+
+    // Regenerate pulses periodically
+    const interval = setInterval(generatePulses, 8000);
+    return () => clearInterval(interval);
+  }, [cols, rows]);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Vertical Grid Lines */}
+      <div className="absolute inset-0">
+        {Array.from({ length: cols }, (_, i) => (
+          <motion.div
+            key={`v-${i}`}
+            className="absolute top-0 h-full w-px bg-gradient-to-b from-transparent via-[--color-brand] to-transparent"
+            style={{
+              left: `${(i * gridSize)}px`,
+              opacity: 0.1,
+            }}
+            animate={{
+              opacity: [0.05, 0.2, 0.05],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.1,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Horizontal Grid Lines */}
+      <div className="absolute inset-0">
+        {Array.from({ length: rows }, (_, i) => (
+          <motion.div
+            key={`h-${i}`}
+            className="absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-[--color-accent] to-transparent"
+            style={{
+              top: `${(i * gridSize)}px`,
+              opacity: 0.1,
+            }}
+            animate={{
+              opacity: [0.05, 0.15, 0.05],
+            }}
+            transition={{
+              duration: 5 + Math.random() * 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+              delay: i * 0.05,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Data Flow Pulses */}
+      {pulses.map((pulse) => (
+        <motion.div
+          key={pulse.id}
+          className={`absolute ${
+            pulse.type === 'horizontal'
+              ? 'left-0 w-full h-px bg-gradient-to-r from-transparent via-[--color-brand] to-transparent'
+              : 'top-0 h-full w-px bg-gradient-to-b from-transparent via-[--color-accent] to-transparent'
+          }`}
+          style={{
+            [pulse.type === 'horizontal' ? 'top' : 'left']: `${pulse.position * gridSize}px`,
+            filter: 'blur(0.5px)',
+          }}
+          animate={{
+            opacity: [0, pulse.intensity, pulse.intensity * 0.5, 0],
+            scale: pulse.type === 'horizontal'
+              ? [1, 1, 1, 1]
+              : [1, 1, 1, 1],
+          }}
+          transition={{
+            duration: pulse.duration,
+            repeat: Number.POSITIVE_INFINITY,
+            ease: "easeInOut",
+            delay: pulse.delay,
+          }}
+        />
+      ))}
+
+      {/* Grid Intersection Points - Data Nodes */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 12 }, (_, i) => {
+          const x = Math.random() * 100;
+          const y = Math.random() * 100;
+          return (
+            <motion.div
+              key={`node-${i}`}
+              className="absolute w-1 h-1 rounded-full bg-[--color-brand]"
+              style={{
+                left: `${x}%`,
+                top: `${y}%`,
+              }}
+              animate={{
+                opacity: [0, 0.8, 0],
+                scale: [0.5, 1.5, 0.5],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Number.POSITIVE_INFINITY,
+                ease: "easeInOut",
+                delay: i * 0.3 + Math.random() * 2,
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Energy Flow Particles */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 6 }, (_, i) => (
+          <motion.div
+            key={`particle-${i}`}
+            className="absolute w-2 h-2 rounded-full bg-[--color-accent]"
+            style={{
+              filter: 'blur(1px)',
+            }}
+            animate={{
+              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
+              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+              opacity: [0, 0.6, 0],
+              scale: [0.3, 1, 0.3],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+              delay: i * 1.5,
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Mystical Interactive Components ---------- */
+
+// Typewriter Text Effect
+function TypewriterText({ text, delay = 0 }: { text: string; delay?: number }) {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (currentIndex < text.length) {
+        setDisplayText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      } else {
+        setIsComplete(true);
+      }
+    }, delay + 50 + Math.random() * 100);
+
+    return () => clearTimeout(timeout);
+  }, [currentIndex, text, delay]);
+
+  return (
+    <span className={`${!isComplete ? 'typewriter' : ''}`}>
+      {displayText}
+    </span>
+  );
+}
+
+// Mystical Card with Shimmer Effect
+function MysticalCard({
+  children,
+  className = "",
+  delay = 0
+}: {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+      transition={{
+        duration: 0.8,
+        delay: delay,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      className={`mystical-card mystical-hover p-6 rounded-xl ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// Floating CTA Button
+function FloatingCTA({
+  children,
+  href,
+  className = "",
+  variant = "primary"
+}: {
+  children: React.ReactNode;
+  href: string;
+  className?: string;
+  variant?: "primary" | "ghost";
+}) {
+  return (
+    <motion.a
+      href={href}
+      className={`floating-cta btn btn-${variant} ${className}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    >
+      {children}
+    </motion.a>
+  );
+}
+
+// Mystical Input Field
+function MysticalInput({
+  type = "text",
+  placeholder,
+  value,
+  onChange,
+  required = false
+}: {
+  type?: string;
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+  required?: boolean;
+}) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <div className={`mystical-input relative ${isFocused ? 'focused' : ''}`}>
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        required={required}
+        className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300"
+      />
+      {isFocused && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="absolute inset-0 bg-gradient-to-r from-[--color-brand]/20 to-[--color-accent]/20 rounded-lg -z-10 blur-sm"
+        />
+      )}
+    </div>
+  );
+}
+
+// Mystical Textarea
+function MysticalTextarea({
+  placeholder,
+  value,
+  onChange,
+  rows = 4,
+  required = false
+}: {
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+  rows?: number;
+  required?: boolean;
+}) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  return (
+    <div className={`mystical-input relative ${isFocused ? 'focused' : ''}`}>
+      <textarea
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+        required={required}
+        rows={rows}
+        className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300 resize-none"
+      />
+      {isFocused && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="absolute inset-0 bg-gradient-to-r from-[--color-brand]/20 to-[--color-accent]/20 rounded-lg -z-10 blur-sm"
+        />
+      )}
+    </div>
+  );
+}
+
+// Portal Image Reveal
+function PortalImage({
+  src,
+  alt,
+  className = "",
+  delay = 0
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ scale: 0, borderRadius: "50%" }}
+      animate={isInView ? { scale: 1, borderRadius: "0.75rem" } : {}}
+      transition={{
+        duration: 1.2,
+        delay: delay,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      className={`mystical-portal overflow-hidden ${className}`}
+    >
+      <img src={src} alt={alt} className="w-full h-full object-cover" />
+    </motion.div>
+  );
+}
+
+// Cascading List Items
+function CascadingList({
+  items,
+  delay = 0
+}: {
+  items: string[];
+  delay?: number;
+}) {
+  const ref = useRef<HTMLUListElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <ul ref={ref} className="space-y-3">
+      {items.map((item, index) => (
+        <motion.li
+          key={index}
+          initial={{ opacity: 0, x: -20 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{
+            duration: 0.6,
+            delay: delay + index * 0.1,
+            ease: [0.25, 0.46, 0.45, 0.94]
+          }}
+          className="mystical-list-item pl-6 relative"
+        >
+          <div className="w-2 h-2 rounded-full bg-[--color-accent] absolute left-0 top-2" />
+          {item}
+        </motion.li>
+      ))}
+    </ul>
+  );
+}
+
+// Floating Quote
+function FloatingQuote({
+  quote,
+  author,
+  delay = 0
+}: {
+  quote: string;
+  author: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLQuoteElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  return (
+    <motion.blockquote
+      ref={ref}
+      initial={{ opacity: 0, y: 40, rotateY: -15 }}
+      animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
+      transition={{
+        duration: 1,
+        delay: delay,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      className="mystical-quote p-6 rounded-lg italic text-lg"
+    >
+      <p className="mb-4">"{quote}"</p>
+      <footer className="text-[--color-muted] text-sm">— {author}</footer>
+    </motion.blockquote>
+  );
+}
+
+// Scroll Reveal Wrapper
+function ScrollReveal({
+  children,
+  direction = "bottom",
+  delay = 0,
+  className = ""
+}: {
+  children: React.ReactNode;
+  direction?: "left" | "right" | "top" | "bottom";
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const getInitialTransform = () => {
+    switch (direction) {
+      case "left": return { x: -60, y: 0 };
+      case "right": return { x: 60, y: 0 };
+      case "top": return { x: 0, y: -60 };
+      case "bottom": return { x: 0, y: 60 };
+      default: return { x: 0, y: 60 };
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, ...getInitialTransform() }}
+      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
+      transition={{
+        duration: 0.8,
+        delay: delay,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+// Floating Social Icons
+function FloatingSocialIcon({
+  href,
+  icon,
+  label
+}: {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+}) {
+  return (
+    <motion.a
+      href={href}
+      aria-label={label}
+      className="floating-social w-12 h-12 rounded-full bg-[--color-surface] border border-[--color-border] flex items-center justify-center text-[--color-muted] hover:text-[--color-text] hover:border-[--color-brand]"
+      whileHover={{ y: -4, scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    >
+      {icon}
+    </motion.a>
+  );
+}
+
+// Success Animation
+function SuccessAnimation({ show }: { show: boolean }) {
+  if (!show) return null;
+
+  return (
+    <motion.div
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      exit={{ scale: 0, opacity: 0 }}
+      className="fixed inset-0 flex items-center justify-center z-50 pointer-events-none"
+    >
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1.2, 1] }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="bg-[--color-surface] border border-[--color-brand] rounded-xl p-8 text-center success-celebration"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.4 }}
+        >
+          <div className="text-4xl mb-4">✨</div>
+          <h3 className="text-xl font-semibold text-[--color-text] mb-2">
+            Ritual Complete!
+          </h3>
+          <p className="text-[--color-muted]">
+            Your magical message has been sent
+          </p>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+// Enhanced Contact Form
+function MysticalContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    project: '',
+    message: ''
+  });
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    setShowSuccess(true);
+    setIsSubmitting(false);
+    setFormData({ name: '', email: '', project: '', message: '' });
+
+    setTimeout(() => setShowSuccess(false), 3000);
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid md:grid-cols-2 gap-6">
+          <MysticalInput
+            placeholder="Your Name"
+            value={formData.name}
+            onChange={(value) => setFormData(prev => ({ ...prev, name: value }))}
+            required
+          />
+          <MysticalInput
+            type="email"
+            placeholder="Email Address"
+            value={formData.email}
+            onChange={(value) => setFormData(prev => ({ ...prev, email: value }))}
+            required
+          />
+        </div>
+
+        <MysticalInput
+          placeholder="Project Type"
+          value={formData.project}
+          onChange={(value) => setFormData(prev => ({ ...prev, project: value }))}
+        />
+
+        <MysticalTextarea
+          placeholder="Tell us about your mystical project..."
+          value={formData.message}
+          onChange={(value) => setFormData(prev => ({ ...prev, message: value }))}
+          rows={5}
+          required
+        />
+
+        <FloatingCTA
+          href="#"
+          className="w-full justify-center"
+          variant="primary"
+        >
+          {isSubmitting ? (
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+              className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
+            />
+          ) : null}
+          {isSubmitting ? 'Casting Spell...' : 'Begin the Ritual →'}
+        </FloatingCTA>
+      </form>
+
+      <SuccessAnimation show={showSuccess} />
+    </>
+  );
+}
+
+/* ---------- Enhanced Technical Components ---------- */
+
+// Lazy Loading Image Component
+function LazyImage({
+  src,
+  alt,
+  className = "",
+  width,
+  height,
+  priority = false
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+  width?: number;
+  height?: number;
+  priority?: boolean;
+}) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      {!isLoaded && (
+        <div className="lazy-placeholder absolute inset-0 rounded-lg" />
+      )}
+      {(isInView || priority) && (
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={priority ? "eager" : "lazy"}
+          onLoad={() => setIsLoaded(true)}
+          className={`transition-opacity duration-500 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      )}
+    </div>
+  );
+}
+
+// Accessible Modal Component
+function AccessibleModal({
+  isOpen,
+  onClose,
+  title,
+  children
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children: React.ReactNode;
+}) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      modalRef.current?.focus();
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div
+        ref={modalRef}
+        className="glass-enhanced max-w-2xl w-full mx-4 p-6 rounded-xl"
+        onClick={(e) => e.stopPropagation()}
+        tabIndex={-1}
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h2 id="modal-title" className="text-xl font-semibold">
+            {title}
+          </h2>
+          <button
+            onClick={onClose}
+            className="btn-touch p-2 rounded-lg hover:bg-[--color-surface] transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+// Responsive Navigation Component
+function ResponsiveNav({
+  items
+}: {
+  items: Array<{ href: string; label: string; }>
+}) {
+  const [activeSection, setActiveSection] = useState('');
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    items.forEach(({ href }) => {
+      const element = document.querySelector(href);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, [items]);
+
+  return (
+    <nav className="sticky-nav hidden lg:block" aria-label="Page navigation">
+      <ul className="space-y-2">
+        {items.map(({ href, label }) => (
+          <li key={href}>
+            <a
+              href={href}
+              className={`block px-4 py-2 rounded-lg transition-all ${
+                activeSection === href.slice(1)
+                  ? 'bg-[--color-brand] text-white'
+                  : 'text-[--color-muted] hover:text-[--color-text] hover:bg-[--color-surface]'
+              }`}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
+
+// Enhanced Card Component with Neumorphism
+function NeomorphicCard({
+  children,
+  className = "",
+  variant = "default"
+}: {
+  children: React.ReactNode;
+  className?: string;
+  variant?: "default" | "glass" | "neomorphic";
+}) {
+  const baseClasses = "p-6 rounded-xl transition-all duration-300";
+  const variantClasses = {
+    default: "bg-[--color-surface] border border-[--color-border]",
+    glass: "glass-enhanced",
+    neomorphic: "neomorphic"
+  };
+
+  return (
+    <div className={`${baseClasses} ${variantClasses[variant]} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+// Touch-Optimized Carousel
+function TouchCarousel({
+  items,
+  className = ""
+}: {
+  items: React.ReactNode[];
+  className?: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTouch, setIsTouch] = useState(false);
+
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % items.length);
+  };
+
+  const previous = () => {
+    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
+  };
+
+  useEffect(() => {
+    const handleTouchStart = () => setIsTouch(true);
+    const handleMouseDown = () => setIsTouch(false);
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('mousedown', handleMouseDown);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, []);
+
+  return (
+    <div className={`relative overflow-hidden ${className}`}>
+      <div
+        className="flex transition-transform duration-300 ease-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {items.map((item, index) => (
+          <div key={index} className="w-full flex-shrink-0">
+            {item}
+          </div>
+        ))}
+      </div>
+
+      {/* Navigation */}
+      <div className="flex justify-center mt-4 space-x-2">
+        {items.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`btn-touch w-3 h-3 rounded-full transition-colors ${
+              index === currentIndex
+                ? 'bg-[--color-brand]'
+                : 'bg-[--color-muted]'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+
+      {/* Touch indicators */}
+      {isTouch && (
+        <div className="swipe-indicator absolute bottom-0 left-1/2 transform -translate-x-1/2" />
+      )}
+    </div>
+  );
+}
+
+// Masonry Layout Component
+function MasonryLayout({
+  items,
+  className = ""
+}: {
+  items: React.ReactNode[];
+  className?: string;
+}) {
+  return (
+    <div className={`masonry-grid ${className}`}>
+      {items.map((item, index) => (
+        <div key={index} className="masonry-item">
+          {item}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// Performance Monitor Component (Development only)
+function PerformanceMonitor() {
+  const [metrics, setMetrics] = useState<{
+    fcp?: number;
+    lcp?: number;
+    cls?: number;
+    fid?: number;
+  }>({});
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
+      // First Contentful Paint
+      const fcpObserver = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+          if (entry.name === 'first-contentful-paint') {
+            setMetrics(prev => ({ ...prev, fcp: entry.startTime }));
+          }
+        }
+      });
+      fcpObserver.observe({ entryTypes: ['paint'] });
+
+      // Largest Contentful Paint
+      const lcpObserver = new PerformanceObserver((list) => {
+        const entries = list.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        setMetrics(prev => ({ ...prev, lcp: lastEntry.startTime }));
+      });
+      lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+
+      return () => {
+        fcpObserver.disconnect();
+        lcpObserver.disconnect();
+      };
+    }
+  }, []);
+
+  // Only show in development
+  if (process.env.NODE_ENV !== 'development') return null;
+
+  return (
+    <div className="fixed bottom-4 right-4 bg-[--color-surface] border border-[--color-border] rounded-lg p-4 text-xs z-50">
+      <h4 className="font-semibold mb-2">Performance Metrics</h4>
+      <div className="space-y-1">
+        {metrics.fcp && <div>FCP: {Math.round(metrics.fcp)}ms</div>}
+        {metrics.lcp && <div>LCP: {Math.round(metrics.lcp)}ms</div>}
+      </div>
     </div>
   );
 }
