@@ -14,7 +14,8 @@ export default function Home() {
   return (
     <main
       ref={pageRef}
-      className="relative min-h-screen overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
+      className="relative z-20 min-h-screen overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
+      style={{ paddingTop: '150px' }}
     >
       {/* Ambient halos */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -848,9 +849,9 @@ export default function Home() {
       </footer>
 
       {/* Mystical Brand Section */}
-      <section className="relative overflow-hidden bg-[--color-brand] py-32">
+      <section className="relative z-10 overflow-hidden bg-[--color-brand] py-32">
         {/* Content */}
-        <div className="relative z-10 section text-center">
+        <div className="relative section text-center">
           <div className="text-4xl md:text-6xl lg:text-8xl font-normal text-black leading-none tracking-normal">
             BLACKMAGICKOPS
           </div>
