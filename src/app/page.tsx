@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, Check, CheckCircle, ChevronDown, Cloud, Code, Cog, Eye, Globe, Layers, Menu, Shield, Star, Target, X } from "lucide-react"
@@ -838,7 +839,11 @@ export default function Home() {
             </div>
 
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
             >
               <span>Back to top</span>
@@ -1660,8 +1665,16 @@ function CountUpMetric({ end, prefix = "", suffix = "" }: { end: number; prefix?
 function EnergyGrid() {
   // Create grid dimensions
   const gridSize = 40; // Size of each grid cell in pixels
-  const cols = Math.ceil(window?.innerWidth / gridSize) || 30;
-  const rows = Math.ceil(window?.innerHeight / gridSize) || 20;
+  const [cols, setCols] = useState(30);
+  const [rows, setRows] = useState(20);
+
+  useEffect(() => {
+    // Set dimensions after component mounts (client-side only)
+    if (typeof window !== 'undefined') {
+      setCols(Math.ceil(window.innerWidth / gridSize) || 30);
+      setRows(Math.ceil(window.innerHeight / gridSize) || 20);
+    }
+  }, []);
 
   // Generate grid lines with random data flow pulses
   const [pulses, setPulses] = useState<Array<{
@@ -1808,8 +1821,8 @@ function EnergyGrid() {
               filter: 'blur(1px)',
             }}
             animate={{
-              x: [Math.random() * window.innerWidth, Math.random() * window.innerWidth],
-              y: [Math.random() * window.innerHeight, Math.random() * window.innerHeight],
+              x: [Math.random() * 1200, Math.random() * 1200],
+              y: [Math.random() * 800, Math.random() * 800],
               opacity: [0, 0.6, 0],
               scale: [0.3, 1, 0.3],
             }}

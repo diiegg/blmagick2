@@ -19,53 +19,52 @@ const nextConfig: NextConfig = {
 
   // Code splitting and performance
   experimental: {
-    optimizeCss: true,
     gzipSize: true,
   },
 
-  // Headers for PWA and security
-  async headers() {
-    return [
-      {
-        source: '/manifest.json',
-        headers: [
-          {
-            key: 'Content-Type',
-            value: 'application/manifest+json',
-          },
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-        ],
-      },
-    ];
-  },
+  // Headers for PWA and security (disabled for static export)
+  // async headers() {
+  //   return [
+  //     {
+  //       source: '/manifest.json',
+  //       headers: [
+  //         {
+  //           key: 'Content-Type',
+  //           value: 'application/manifest+json',
+  //         },
+  //         {
+  //           key: 'Cache-Control',
+  //           value: 'public, max-age=31536000, immutable',
+  //         },
+  //       ],
+  //     },
+  //     {
+  //       source: '/(.*)',
+  //       headers: [
+  //         {
+  //           key: 'X-Content-Type-Options',
+  //           value: 'nosniff',
+  //         },
+  //         {
+  //           key: 'X-Frame-Options',
+  //           value: 'DENY',
+  //         },
+  //         {
+  //           key: 'X-XSS-Protection',
+  //           value: '1; mode=block',
+  //         },
+  //         {
+  //           key: 'Referrer-Policy',
+  //           value: 'strict-origin-when-cross-origin',
+  //         },
+  //         {
+  //           key: 'Permissions-Policy',
+  //           value: 'camera=(), microphone=(), geolocation=()',
+  //         },
+  //       ],
+  //     },
+  //   ];
+  // },
 
   eslint: {
     ignoreDuringBuilds: true,
