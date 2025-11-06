@@ -1,12 +1,40 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export function EtherealSpiritOrbs() {
-  // Generate initial positions for 8 unique spirit orbs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  
+  // Check for reduced motion preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Setup intersection observer to pause when off-screen
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Reduce orb count from 8 to 5 for better performance
   const [orbs] = useState(() =>
-    Array.from({ length: 8 }, (_, i) => ({
+    Array.from({ length: 5 }, (_, i) => ({
       id: i,
       x: Math.random() * 80 + 10, // 10-90% to avoid edges
       y: Math.random() * 80 + 10,
@@ -17,9 +45,14 @@ export function EtherealSpiritOrbs() {
     }))
   );
 
+  // If reduced motion is preferred, don't render orbs
+  if (prefersReducedMotion) {
+    return <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none" />;
+  }
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {orbs.map((orb) => (
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none">
+      {isInView && orbs.map((orb) => (
         <SpiritOrb key={orb.id} {...orb} />
       ))}
     </div>

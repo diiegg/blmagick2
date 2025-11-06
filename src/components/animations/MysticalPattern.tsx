@@ -1,13 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export function MysticalPattern() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  
+  // Check for reduced motion preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Setup intersection observer
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // If reduced motion is preferred, render static version
+  if (prefersReducedMotion) {
+    return <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none opacity-5" />;
+  }
+
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
       {/* Floating geometric shapes */}
-      <svg className="absolute inset-0 w-full h-full">
+      {isInView && (
+        <svg className="absolute inset-0 w-full h-full">
         <defs>
           <pattern id="hexPattern" x="0" y="0" width="100" height="87" patternUnits="userSpaceOnUse">
             <motion.path
@@ -23,9 +57,10 @@ export function MysticalPattern() {
         </defs>
         <rect width="100%" height="100%" fill="url(#hexPattern)" />
       </svg>
+      )}
 
-      {/* Floating circles */}
-      {[...Array(12)].map((_, i) => (
+      {/* Reduced particle count from 12 to 6 for better performance */}
+      {isInView && [...Array(6)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full border border-[--color-accent]"
@@ -50,8 +85,8 @@ export function MysticalPattern() {
         />
       ))}
 
-      {/* Rotating pentagrams */}
-      {[0, 1, 2].map((i) => (
+      {/* Rotating pentagrams - reduced from 3 to 2 */}
+      {isInView && [0, 1].map((i) => (
         <motion.div
           key={`penta-${i}`}
           className="absolute"
@@ -76,8 +111,8 @@ export function MysticalPattern() {
         </motion.div>
       ))}
 
-      {/* Particle field */}
-      {[...Array(30)].map((_, i) => (
+      {/* Particle field - reduced from 30 to 20 */}
+      {isInView && [...Array(20)].map((_, i) => (
         <motion.div
           key={`particle-${i}`}
           className="absolute w-1 h-1 rounded-full bg-[--color-accent]"

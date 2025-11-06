@@ -5,7 +5,7 @@ import { SectionIntro } from "../ui/SectionComponents";
 
 /**
  * RitualFramework - Displays the 4-step process framework
- * 
+ *
  * Features:
  * - Grid layout of process steps
  * - Animated central circle with orbiting markers
@@ -83,7 +83,7 @@ export function RitualFramework() {
 
 /**
  * CaseSigils - Portfolio/case studies section
- * 
+ *
  * Features:
  * - Grid of case study cards
  * - Hover gradient effects
@@ -137,7 +137,7 @@ export function CaseSigils() {
 
 /**
  * Alliances - Tech stack/tools showcase
- * 
+ *
  * Features:
  * - Grid of technology badges
  * - Hover effects on chips
@@ -178,7 +178,7 @@ export function Alliances() {
 
 /**
  * InvocationCTA - Call-to-action section before contact form
- * 
+ *
  * Features:
  * - Centered layout with headline and CTA button
  * - Scroll reveal animation

@@ -1,13 +1,41 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 export function EnergyGrid() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(true);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  
   // Create grid dimensions
   const gridSize = 40; // Size of each grid cell in pixels
   const [cols, setCols] = useState(30);
   const [rows, setRows] = useState(20);
+
+  // Check for reduced motion preference
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+    
+    const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  // Setup intersection observer to pause when off-screen
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     // Set dimensions after component mounts (client-side only)
@@ -28,6 +56,12 @@ export function EnergyGrid() {
   }>>([]);
 
   useEffect(() => {
+    // Don't generate pulses if reduced motion is preferred or not in view
+    if (prefersReducedMotion || !isInView) {
+      setPulses([]);
+      return;
+    }
+    
     // Generate random data flow pulses
     const generatePulses = () => {
       const newPulses = Array.from({ length: 8 }, (_, i) => ({
@@ -46,10 +80,15 @@ export function EnergyGrid() {
     // Regenerate pulses periodically
     const interval = setInterval(generatePulses, 8000);
     return () => clearInterval(interval);
-  }, [cols, rows]);
+  }, [cols, rows, prefersReducedMotion, isInView]);
+
+  // If reduced motion is preferred, render static version
+  if (prefersReducedMotion) {
+    return <div ref={containerRef} className="absolute inset-0 overflow-hidden opacity-5" />;
+  }
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden">
       {/* Vertical Grid Lines */}
       <div className="absolute inset-0">
         {Array.from({ length: cols }, (_, i) => (
