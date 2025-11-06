@@ -98,13 +98,19 @@ export function MysticalInput({
   placeholder,
   value,
   onChange,
-  required = false
+  required = false,
+  id,
+  name,
+  'aria-label': ariaLabel
 }: {
   type?: string;
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
   required?: boolean;
+  id?: string;
+  name?: string;
+  'aria-label'?: string;
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -112,12 +118,15 @@ export function MysticalInput({
     <div className={`mystical-input relative ${isFocused ? 'focused' : ''}`}>
       <input
         type={type}
+        id={id}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         required={required}
+        aria-label={ariaLabel || placeholder}
         className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300"
       />
       {isFocused && (
@@ -139,19 +148,27 @@ export function MysticalTextarea({
   value,
   onChange,
   rows = 4,
-  required = false
+  required = false,
+  id,
+  name,
+  'aria-label': ariaLabel
 }: {
   placeholder: string;
   value: string;
   onChange: (value: string) => void;
   rows?: number;
   required?: boolean;
+  id?: string;
+  name?: string;
+  'aria-label'?: string;
 }) {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <div className={`mystical-input relative ${isFocused ? 'focused' : ''}`}>
       <textarea
+        id={id}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -159,6 +176,7 @@ export function MysticalTextarea({
         onBlur={() => setIsFocused(false)}
         required={required}
         rows={rows}
+        aria-label={ariaLabel || placeholder}
         className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300 resize-none"
       />
       {isFocused && (

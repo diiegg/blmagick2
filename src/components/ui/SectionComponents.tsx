@@ -75,11 +75,21 @@ export function SigilDivider({ variant = "default" }: { variant?: "default" | "p
  * - Staggered reveal animations
  * - Consistent typography and spacing
  * - Centered layout with max-width constraint
+ * - Optional headingId for aria-labelledby relationships
  */
-export function SectionIntro({ title, subtitle }: { title: string; subtitle: string }) {
+export function SectionIntro({ 
+  title, 
+  subtitle, 
+  headingId 
+}: { 
+  title: string; 
+  subtitle: string;
+  headingId?: string;
+}) {
   return (
     <div className="text-center">
       <motion.h2
+        id={headingId}
         initial={{ opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.5 }}

@@ -53,13 +53,20 @@ export default function Home() {
   const haloShift = useTransform(scrollY, [0, 800], [0, 60]);
 
   return (
-    <main
-      ref={pageRef}
-      className="relative z-20 min-h-screen overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
-      style={{ paddingTop: '150px' }}
-    >
-      {/* Ambient halos */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
+    <>
+      {/* Skip to main content link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
+      <main
+        id="main-content"
+        ref={pageRef}
+        className="relative z-20 min-h-screen overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
+        style={{ paddingTop: '150px' }}
+      >
+        {/* Ambient halos */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <motion.div
           style={{ y: haloShift }}
           initial={{ opacity: 0, scale: 0.9 }}
@@ -244,11 +251,12 @@ export default function Home() {
       <AnimatedMetrics />
 
       {/* Disciplines - Enhanced with Tabbed Interface */}
-      <section id="disciplines" className="py-28">
+      <section id="disciplines" className="py-28" aria-labelledby="disciplines-heading">
         <div className="section">
           <SectionIntro
             title="Core Disciplines"
             subtitle="Each engagement blends infrastructure mastery, automation, and disciplined execution."
+            headingId="disciplines-heading"
           />
           <div className="mt-16">
             <TabbedInterface
@@ -381,11 +389,12 @@ export default function Home() {
       <SigilDivider />
 
       {/* Enhanced Ritual Framework with Timeline */}
-      <section id="framework" className="py-28">
+      <section id="framework" className="py-28" aria-labelledby="framework-heading">
         <div className="section">
           <SectionIntro
             title="Our Ritual Framework"
             subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
+            headingId="framework-heading"
           />
 
           <div className="mt-16 asymmetric-grid">
@@ -445,7 +454,7 @@ export default function Home() {
       <SigilDivider />
 
       {/* Philosophy */}
-      <section id="philosophy" className="py-32">
+      <section id="philosophy" className="py-32" aria-labelledby="philosophy-heading">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -453,7 +462,7 @@ export default function Home() {
           transition={{ duration: 1.4 }}
           className="section text-center max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold mb-8">Our Philosophy</h2>
+          <h2 id="philosophy-heading" className="text-4xl md:text-5xl font-semibold mb-8">Our Philosophy</h2>
           <p className="text-xl leading-relaxed text-[--color-muted]">
             We treat engineering as a sacred craft — where precision is devotion, and automation is ritual.
             Our mission: to summon order from chaos through deliberate design and disciplined execution.
@@ -648,7 +657,7 @@ export default function Home() {
       <SigilDivider />
 
       {/* Contact */}
-      <section id="contact" className="py-32">
+      <section id="contact" className="py-32" aria-labelledby="contact-heading">
         <ScrollReveal direction="bottom" className="section max-w-4xl mx-auto">
           <MysticalCard className="p-10 md:p-14">
             <div className="text-center mb-10">
@@ -657,6 +666,7 @@ export default function Home() {
                 delay={500}
               />
               <motion.h2
+                id="contact-heading"
                 className="text-4xl font-semibold mb-6"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
@@ -871,6 +881,7 @@ export default function Home() {
       {/* Performance Monitor (Development only) */}
       <PerformanceMonitor />
     </main>
+    </>
   );
 }
 
@@ -903,41 +914,54 @@ function MysticalContactForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
         <div className="grid md:grid-cols-2 gap-6">
           <MysticalInput
+            id="contact-name"
+            name="name"
             placeholder="Your Name"
             value={formData.name}
             onChange={(value) => setFormData(prev => ({ ...prev, name: value }))}
             required
+            aria-label="Your name"
           />
           <MysticalInput
+            id="contact-email"
+            name="email"
             type="email"
             placeholder="Email Address"
             value={formData.email}
             onChange={(value) => setFormData(prev => ({ ...prev, email: value }))}
             required
+            aria-label="Your email address"
           />
         </div>
 
         <MysticalInput
+          id="contact-project"
+          name="project"
           placeholder="Project Type"
           value={formData.project}
           onChange={(value) => setFormData(prev => ({ ...prev, project: value }))}
+          aria-label="Project type or category"
         />
 
         <MysticalTextarea
+          id="contact-message"
+          name="message"
           placeholder="Tell us about your mystical project..."
           value={formData.message}
           onChange={(value) => setFormData(prev => ({ ...prev, message: value }))}
           rows={5}
           required
+          aria-label="Project description and details"
         />
 
         <FloatingCTA
           href="#"
           className="w-full justify-center"
           variant="primary"
+          aria-label={isSubmitting ? 'Submitting form...' : 'Submit contact form'}
         >
           {isSubmitting ? (
             <motion.div

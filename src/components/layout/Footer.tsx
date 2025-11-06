@@ -5,7 +5,7 @@ import { ArrowRight, Globe } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16">
+    <footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16" role="contentinfo">
       <div className="section">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 text-xl mb-6">
-              <span className="text-2xl">🪄</span>
+              <span className="text-2xl" aria-hidden="true">🪄</span>
               <span className="font-semibold">BlackMagickOps</span>
             </div>
             <p className="text-[--color-muted] mb-6 max-w-md">
@@ -28,111 +28,117 @@ export function Footer() {
             </p>
 
             {/* Social Links */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4" role="navigation" aria-label="Social media links">
               <a
                 href="https://github.com/blackmagickops"
-                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-                aria-label="GitHub"
+                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
+                aria-label="Visit our GitHub profile"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-4 h-4" aria-hidden="true" />
               </a>
               <a
                 href="https://linkedin.com/company/blackmagickops"
-                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-                aria-label="LinkedIn"
+                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
+                aria-label="Visit our LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-4 h-4" aria-hidden="true" />
               </a>
               <a
                 href="https://twitter.com/blackmagickops"
-                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-                aria-label="Twitter"
+                className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
+                aria-label="Visit our Twitter profile"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Globe className="w-4 h-4" />
+                <Globe className="w-4 h-4" aria-hidden="true" />
               </a>
             </div>
           </div>
 
           {/* Services */}
-          <div>
+          <nav aria-label="Services">
             <h4 className="font-semibold text-[--color-text] mb-4">Services</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Platform Engineering
                 </a>
               </li>
               <li>
-                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   DevOps Acceleration
                 </a>
               </li>
               <li>
-                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#disciplines" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Automation & FinOps
                 </a>
               </li>
               <li>
-                <a href="#framework" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#framework" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Consulting
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Resources */}
-          <div>
+          <nav aria-label="Resources">
             <h4 className="font-semibold text-[--color-text] mb-4">Resources</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#work" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#work" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Case Studies
                 </a>
               </li>
               <li>
-                <a href="#testimonials" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#testimonials" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Testimonials
                 </a>
               </li>
               <li>
-                <a href="#faq" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#faq" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   FAQ
                 </a>
               </li>
               <li>
-                <a href="/blog" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="/blog" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Blog
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
 
           {/* Company */}
-          <div>
+          <nav aria-label="Company">
             <h4 className="font-semibold text-[--color-text] mb-4">Company</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#philosophy" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#philosophy" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   About
                 </a>
               </li>
               <li>
-                <a href="#contact" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="#contact" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Contact
                 </a>
               </li>
               <li>
-                <a href="/careers" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="/careers" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Careers
                 </a>
               </li>
               <li>
-                <a href="/partners" className="text-[--color-muted] hover:text-[--color-brand] transition-colors">
+                <a href="/partners" className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                   Partners
                 </a>
               </li>
             </ul>
-          </div>
+          </nav>
         </motion.div>
 
         {/* Bottom Section */}
@@ -145,17 +151,17 @@ export function Footer() {
         >
           <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-[--color-muted]">
             <p>© {new Date().getFullYear()} BlackMagickOps. All rights reserved.</p>
-            <div className="flex items-center gap-6">
-              <a href="/privacy" className="hover:text-[--color-brand] transition-colors">
+            <nav className="flex items-center gap-6" aria-label="Legal">
+              <a href="/privacy" className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                 Privacy Policy
               </a>
-              <a href="/terms" className="hover:text-[--color-brand] transition-colors">
+              <a href="/terms" className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                 Terms of Service
               </a>
-              <a href="/cookies" className="hover:text-[--color-brand] transition-colors">
+              <a href="/cookies" className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded">
                 Cookie Policy
               </a>
-            </div>
+            </nav>
           </div>
 
           <button
@@ -164,11 +170,11 @@ export function Footer() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
-            aria-label="Back to top"
+            className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded-lg p-2"
+            aria-label="Scroll back to top of page"
           >
             <span>Back to top</span>
-            <ArrowRight className="w-4 h-4 -rotate-90" />
+            <ArrowRight className="w-4 h-4 -rotate-90" aria-hidden="true" />
           </button>
         </motion.div>
       </div>
