@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useIsLowPerformance } from "@/hooks/useIsMobile";
 
 export function MysticalPattern() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const isLowPerf = useIsLowPerformance();
   
   // Check for reduced motion preference
   useEffect(() => {
@@ -31,6 +33,11 @@ export function MysticalPattern() {
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
+
+  // Adaptive element counts for performance
+  const particleCount = isLowPerf ? 4 : 6;
+  const pentagramCount = isLowPerf ? 1 : 2;
+  const particleFieldCount = isLowPerf ? 12 : 20;
 
   // If reduced motion is preferred, render static version
   if (prefersReducedMotion) {
@@ -59,8 +66,8 @@ export function MysticalPattern() {
       </svg>
       )}
 
-      {/* Reduced particle count from 12 to 6 for better performance */}
-      {isInView && [...Array(6)].map((_, i) => (
+      {/* Reduced particle count from 12 to 6 for better performance, 4 on mobile */}
+      {isInView && [...Array(particleCount)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full border border-[--color-accent]"
@@ -85,8 +92,8 @@ export function MysticalPattern() {
         />
       ))}
 
-      {/* Rotating pentagrams - reduced from 3 to 2 */}
-      {isInView && [0, 1].map((i) => (
+      {/* Rotating pentagrams - reduced from 3 to 2, 1 on mobile */}
+      {isInView && [...Array(pentagramCount)].map((i) => (
         <motion.div
           key={`penta-${i}`}
           className="absolute"
@@ -111,8 +118,8 @@ export function MysticalPattern() {
         </motion.div>
       ))}
 
-      {/* Particle field - reduced from 30 to 20 */}
-      {isInView && [...Array(20)].map((_, i) => (
+      {/* Particle field - reduced from 30 to 20, 12 on mobile */}
+      {isInView && [...Array(particleFieldCount)].map((_, i) => (
         <motion.div
           key={`particle-${i}`}
           className="absolute w-1 h-1 rounded-full bg-[--color-accent]"

@@ -2,11 +2,13 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useIsLowPerformance } from "@/hooks/useIsMobile";
 
 export function EtherealSpiritOrbs() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const isLowPerf = useIsLowPerformance();
   
   // Check for reduced motion preference
   useEffect(() => {
@@ -32,9 +34,10 @@ export function EtherealSpiritOrbs() {
     return () => observer.disconnect();
   }, []);
 
-  // Reduce orb count from 8 to 5 for better performance
+  // Reduce orb count for better performance: 5 on desktop, 3 on mobile/low-performance
+  const orbCount = isLowPerf ? 3 : 5;
   const [orbs] = useState(() =>
-    Array.from({ length: 5 }, (_, i) => ({
+    Array.from({ length: orbCount }, (_, i) => ({
       id: i,
       x: Math.random() * 80 + 10, // 10-90% to avoid edges
       y: Math.random() * 80 + 10,

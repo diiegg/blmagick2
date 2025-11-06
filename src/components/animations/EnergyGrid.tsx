@@ -2,16 +2,18 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { useIsLowPerformance } from "@/hooks/useIsMobile";
 
 export function EnergyGrid() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const isLowPerf = useIsLowPerformance();
   
-  // Create grid dimensions
-  const gridSize = 40; // Size of each grid cell in pixels
-  const [cols, setCols] = useState(30);
-  const [rows, setRows] = useState(20);
+  // Create grid dimensions - reduce on mobile/low-performance
+  const gridSize = 40;
+  const [cols, setCols] = useState(isLowPerf ? 15 : 30);
+  const [rows, setRows] = useState(isLowPerf ? 10 : 20);
 
   // Check for reduced motion preference
   useEffect(() => {
