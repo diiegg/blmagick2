@@ -7,8 +7,25 @@ export const metadata: Metadata = {
     template: "%s | BlackMagickOps"
   },
   description: "Precision. Discipline. Magic. - Expert DevOps consultancy specializing in platform engineering, automation, and cloud-native infrastructure. Transform your development workflow with mystical precision.",
-  keywords: ["DevOps", "Platform Engineering", "Cloud Native", "Kubernetes", "Automation", "Infrastructure", "Consultancy"],
-  authors: [{ name: "BlackMagickOps" }],
+  keywords: [
+    "DevOps", 
+    "Platform Engineering", 
+    "Cloud Native", 
+    "Kubernetes", 
+    "Automation", 
+    "Infrastructure as Code",
+    "CI/CD",
+    "GitOps",
+    "FinOps",
+    "Observability",
+    "Backstage",
+    "SLSA",
+    "DevOps Consultancy",
+    "Cloud Infrastructure",
+    "Site Reliability Engineering",
+    "SRE"
+  ],
+  authors: [{ name: "BlackMagickOps", url: "https://blackmagickops.com" }],
   creator: "BlackMagickOps",
   publisher: "BlackMagickOps",
   metadataBase: new URL('https://blackmagickops.com'),
@@ -36,6 +53,8 @@ export const metadata: Metadata = {
     title: 'BlackMagickOps - DevOps Excellence',
     description: 'Precision. Discipline. Magic. - Transform your infrastructure with mystical DevOps precision.',
     images: ['/twitter-image.png'],
+    creator: '@blackmagickops',
+    site: '@blackmagickops',
   },
   robots: {
     index: true,
@@ -48,6 +67,14 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    // Add when available:
+    // google: 'your-google-site-verification-code',
+    // yandex: 'your-yandex-verification-code',
+    // bing: 'your-bing-verification-code',
+  },
+  category: 'Technology',
+  classification: 'Business',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
@@ -66,38 +93,106 @@ export const viewport: Viewport = {
   ],
 };
 
-// Structured Data
+// Structured Data - Enhanced with multiple schemas
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "BlackMagickOps",
-  "description": "Expert DevOps consultancy specializing in platform engineering, automation, and cloud-native infrastructure.",
-  "url": "https://blackmagickops.com",
-  "logo": "https://blackmagickops.com/logo.png",
-  "sameAs": [
-    "https://github.com/blackmagickops",
-    "https://linkedin.com/company/blackmagickops"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "availableLanguage": "English"
-  },
-  "service": [
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://blackmagickops.com/#organization",
+      "name": "BlackMagickOps",
+      "description": "Expert DevOps consultancy specializing in platform engineering, automation, and cloud-native infrastructure.",
+      "url": "https://blackmagickops.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://blackmagickops.com/logo.png",
+        "width": 512,
+        "height": 512
+      },
+      "sameAs": [
+        "https://github.com/blackmagickops",
+        "https://linkedin.com/company/blackmagickops",
+        "https://twitter.com/blackmagickops"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "English",
+        "areaServed": "US"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "knowsAbout": [
+        "DevOps",
+        "Platform Engineering",
+        "Kubernetes",
+        "CI/CD",
+        "Cloud Native",
+        "Infrastructure as Code",
+        "Automation",
+        "FinOps",
+        "Observability"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://blackmagickops.com/#website",
+      "url": "https://blackmagickops.com",
+      "name": "BlackMagickOps",
+      "description": "Precision. Discipline. Magic. - Transform your infrastructure with mystical DevOps precision.",
+      "publisher": {
+        "@id": "https://blackmagickops.com/#organization"
+      },
+      "inLanguage": "en-US"
+    },
     {
       "@type": "Service",
+      "@id": "https://blackmagickops.com/#platform-engineering",
       "name": "Platform Engineering",
-      "description": "Developer platforms with golden paths, strong guardrails, and seamless delivery."
+      "description": "Developer platforms with golden paths, strong guardrails, Backstage IDP, multi-tenant Kubernetes with OPA, and observability-as-a-product.",
+      "provider": {
+        "@id": "https://blackmagickops.com/#organization"
+      },
+      "serviceType": "Platform Engineering",
+      "areaServed": "US"
     },
     {
       "@type": "Service",
+      "@id": "https://blackmagickops.com/#devops-acceleration",
       "name": "DevOps Acceleration",
-      "description": "CI/CD at scale, supply chain security, progressive delivery made routine."
+      "description": "CI/CD at scale, supply chain security with SLSA attestations, progressive delivery, and immutable GitOps workflows.",
+      "provider": {
+        "@id": "https://blackmagickops.com/#organization"
+      },
+      "serviceType": "DevOps Consulting",
+      "areaServed": "US"
     },
     {
       "@type": "Service",
+      "@id": "https://blackmagickops.com/#automation-finops",
       "name": "Automation & FinOps",
-      "description": "Self-healing ops, actionable observability, cost control baked into your runbook."
+      "description": "Self-healing ops, actionable observability, cost control, and infrastructure automation.",
+      "provider": {
+        "@id": "https://blackmagickops.com/#organization"
+      },
+      "serviceType": "Cloud Automation",
+      "areaServed": "US"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://blackmagickops.com/#webpage",
+      "url": "https://blackmagickops.com",
+      "name": "BlackMagickOps - DevOps & Platform Engineering Excellence",
+      "description": "Precision. Discipline. Magic. - Expert DevOps consultancy specializing in platform engineering, automation, and cloud-native infrastructure.",
+      "isPartOf": {
+        "@id": "https://blackmagickops.com/#website"
+      },
+      "about": {
+        "@id": "https://blackmagickops.com/#organization"
+      },
+      "inLanguage": "en-US"
     }
   ]
 };
