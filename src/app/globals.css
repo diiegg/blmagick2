@@ -9,10 +9,10 @@
 
 /* ---- Base font + setup ---- */
 :root {
-  /* Variable Font Implementation */
-  --font-sans: "Inter Variable", "Space Grotesk", "Helvetica Neue", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  --font-display: "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono Variable", "Fira Code", "SF Mono", Monaco, Consolas, monospace;
+  /* Optimized Variable Fonts via Next.js */
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), "SF Mono", Monaco, Consolas, monospace;
 
   /* Typography Scale */
   --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8rem);
