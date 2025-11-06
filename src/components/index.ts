@@ -12,6 +12,7 @@ export { RitualFramework, CaseSigils, Alliances, InvocationCTA } from "./section
 
 // UI components
 export { AnimatedMetrics } from "./ui/AnimatedMetrics";
+export { ErrorBoundary } from "./ui/ErrorBoundary";
 export {
   TypewriterText,
   MysticalCard,

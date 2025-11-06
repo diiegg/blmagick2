@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
@@ -28,6 +27,7 @@ import {
   CaseSigils,
   Alliances,
   InvocationCTA,
+  ErrorBoundary,
 } from "@/components";
 
 // Lazy load heavy animation components for better performance
@@ -87,19 +87,25 @@ export default function Home() {
 
       {/* Energy Grid Background - Subtle animated grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-10">
-        <EnergyGrid />
+        <ErrorBoundary>
+          <EnergyGrid />
+        </ErrorBoundary>
       </div>
 
       {/* Hero */}
       <section className="relative min-h-screen pt-16 overflow-hidden">
         {/* Background Mystical Pattern - Subtle */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-          <MysticalPattern />
+          <ErrorBoundary>
+            <MysticalPattern />
+          </ErrorBoundary>
         </div>
 
         {/* Ethereal Spirit Orbs - Full Hero Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <EtherealSpiritOrbs />
+          <ErrorBoundary>
+            <EtherealSpiritOrbs />
+          </ErrorBoundary>
         </div>
 
         <div className="section relative z-10 min-h-screen flex items-center">
