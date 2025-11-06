@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import Image from "next/image";
+import { Suspense } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowRight, Check, CheckCircle, ChevronDown, Cloud, Code, Cog, Eye, Globe, Layers, Shield, Star, Target, X } from "lucide-react"
@@ -88,7 +90,9 @@ export default function Home() {
       {/* Energy Grid Background - Subtle animated grid */}
       <div className="fixed inset-0 pointer-events-none z-0 opacity-10">
         <ErrorBoundary>
-          <EnergyGrid />
+          <Suspense fallback={null}>
+            <EnergyGrid />
+          </Suspense>
         </ErrorBoundary>
       </div>
 
@@ -97,14 +101,18 @@ export default function Home() {
         {/* Background Mystical Pattern - Subtle */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
           <ErrorBoundary>
-            <MysticalPattern />
+            <Suspense fallback={null}>
+              <MysticalPattern />
+            </Suspense>
           </ErrorBoundary>
         </div>
 
         {/* Ethereal Spirit Orbs - Full Hero Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <ErrorBoundary>
-            <EtherealSpiritOrbs />
+            <Suspense fallback={null}>
+              <EtherealSpiritOrbs />
+            </Suspense>
           </ErrorBoundary>
         </div>
 
@@ -1030,11 +1038,11 @@ function LazyImage({
         <div className="lazy-placeholder absolute inset-0 rounded-lg" />
       )}
       {(isInView || priority) && (
-        <img
+        <Image
           src={src}
           alt={alt}
-          width={width}
-          height={height}
+          width={width || 800}
+          height={height || 600}
           loading={priority ? "eager" : "lazy"}
           onLoad={() => setIsLoaded(true)}
           className={`transition-opacity duration-500 ${
@@ -1614,11 +1622,13 @@ function MasonryPortfolio({
           className={`masonry-item card-module ${project.featured ? 'glass-premium' : 'neomorphic'}`}
         >
           {project.image && (
-            <div className="mb-4 rounded-lg overflow-hidden">
-              <img
+            <div className="mb-4 rounded-lg overflow-hidden relative h-48">
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="w-full h-auto object-cover"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="object-cover"
               />
             </div>
           )}

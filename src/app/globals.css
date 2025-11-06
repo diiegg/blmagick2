@@ -9,10 +9,10 @@
 
 /* ---- Base font + setup ---- */
 :root {
-  /* Optimized Variable Fonts via Next.js */
-  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-space-grotesk), var(--font-inter), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), "SF Mono", Monaco, Consolas, monospace;
+  /* Optimized Variable Fonts via Next.js + Geist (Aeonik alternative) */
+  --font-sans: var(--font-geist-sans), var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-geist-sans), var(--font-space-grotesk), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), var(--font-jetbrains-mono), "SF Mono", monospace;
 
   /* Typography Scale */
   --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8rem);

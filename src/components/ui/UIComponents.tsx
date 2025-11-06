@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import Image from "next/image";
 
 /**
  * TypewriterText - Animates text with a typewriter effect
@@ -217,9 +218,16 @@ export function PortalImage({
         delay: delay,
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
-      className={`mystical-portal overflow-hidden ${className}`}
+      className={`mystical-portal overflow-hidden relative ${className}`}
+      style={{ height: '100%' }}
     >
-      <img src={src} alt={alt} className="w-full h-full object-cover" />
+      <Image 
+        src={src} 
+        alt={alt} 
+        fill 
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover" 
+      />
     </motion.div>
   );
 }

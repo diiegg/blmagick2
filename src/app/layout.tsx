@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { GeistSans, GeistMono } from "geist/font";
 import "./globals.css";
 
 // Optimized font loading with Next.js
@@ -23,6 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
   preload: false, // Code font loaded on-demand
 });
+
+// Geist fonts (modern Aeonik alternative with superior rendering)
+// GeistSans and GeistMono are pre-configured with optimal settings
 
 export const metadata: Metadata = {
   title: {
@@ -224,7 +228,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html 
       lang="en" 
-      className={`dark ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         {/* Structured Data */}
