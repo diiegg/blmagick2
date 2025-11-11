@@ -28,8 +28,10 @@ This document provides a holistic analysis of the BlackMagickOps website codebas
 | Priority | Category | Impact | Effort | ROI |
 |----------|----------|--------|--------|-----|
 | P0 🔴 | **Missing PWA Assets** | Critical | Low | Very High |
+| P0 🔴 | **Security Headers (HSTS, CSP)** | Critical | Low | Very High |
 | P0 🔴 | **TypeScript `any` Types** | High | Medium | High |
 | P0 🔴 | **Console Logs in Production** | Medium | Low | High |
+| P1 🟡 | **Lighthouse CI Baseline** | High | Low | Very High |
 | P1 🟡 | **Form Validation** | High | Medium | High |
 | P1 🟡 | **Error Handling** | High | Medium | High |
 | P1 🟡 | **Loading States** | High | Low | High |
@@ -1398,6 +1400,24 @@ These items were not explicitly covered in earlier sections or need clearer trac
 - [ ] SEC3: Integrate dependency scanning (GitHub Dependabot + optional Snyk).
 - [ ] SEC4: Add security.txt file (`/.well-known/security.txt`).
 - [ ] SEC5: Automate SBOM generation (CycloneDX) during CI.
+- [ ] SEC6: **Implement HSTS header** (`Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`) via `netlify.toml` hosting configuration.
+- [ ] SEC7: **Add security headers bundle**: `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=()`.
+- [ ] SEC8: **Configure `netlify.toml`** with all security headers for static export deployment (see example below).
+- [ ] SEC9: **Add Cross-Origin policies** (`Cross-Origin-Opener-Policy: same-origin`, `Cross-Origin-Embedder-Policy: require-corp`) for future SharedArrayBuffer/WASM compatibility.
+- [ ] SEC10: **Automate security header validation** in CI using Lighthouse CI or custom `curl` script to verify headers are served correctly in production.
+
+**Example `netlify.toml` configuration:**
+```toml
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; frame-ancestors 'none';"
+```
 
 ### 15.7 PWA & Offline
 
@@ -1470,5 +1490,329 @@ These items were not explicitly covered in earlier sections or need clearer trac
 - [ ] RES3: Graceful degradation matrix (document which features disable under constraints).
 - [ ] RES4: Define monitoring escalation ladder (who responds, timeline).
 - [ ] RES5: Monthly dependency & vulnerability review cadence doc.
+
+---
+
+## 📋 COMPREHENSIVE PRIORITY MATRIX BY CATEGORY
+
+### 🏗️ ARCHITECTURE & PERFORMANCE
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **1.2.3** | Add Lighthouse CI to GitHub Actions | High | Low | Very High | 2-4h |
+| P1 🟡 | **1.1.2** | Split large component libraries | High | Medium | High | 4-6h |
+| P1 🟡 | **1.1.3** | Tree-shake Framer Motion | Medium | Medium | High | 2-3h |
+| P1 🟡 | **1.2.1** | Add Web Vitals monitoring | High | Low | Very High | 2-3h |
+| P1 🟡 | **1.2.2** | Implement performance budget alerts | High | Low | High | 2-3h |
+| P2 🟢 | **1.1.1** | Implement route-based code splitting | Medium | High | Medium | 6-8h |
+| P2 🟢 | **1.1.4** | Progressive image loading | Medium | Low | High | 2-3h |
+| P2 🟢 | **1.1.5** | Add bundle analyzer | Low | Low | Medium | 1-2h |
+| P2 🟢 | **1.3.1** | Optimize service worker caching | Medium | Medium | Medium | 3-4h |
+| P2 🟢 | **1.3.2** | Implement cache versioning | Medium | Low | Medium | 2-3h |
+| P3 🔵 | **1.4.1** | Add preconnect for critical origins | Low | Low | Low | 1h |
+| P3 🔵 | **1.4.2** | Implement DNS prefetch | Low | Low | Low | 1h |
+
+**Category Total: 12 tasks** | P0: 1 | P1: 4 | P2: 5 | P3: 2
+
+---
+
+### ♿ ACCESSIBILITY (WCAG 2.1 AA)
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **2.1.1** | Add skip-to-content link | Critical | Low | Very High | 1h |
+| P0 🔴 | **2.1.3** | Fix form label associations | Critical | Low | Very High | 2h |
+| P1 🟡 | **2.1.2** | Implement keyboard navigation | High | Medium | High | 4-6h |
+| P1 🟡 | **2.2.1** | Add ARIA labels to interactive elements | High | Medium | High | 3-4h |
+| P1 🟡 | **2.2.2** | Implement focus management | High | Medium | High | 3-4h |
+| P1 🟡 | **2.3.1** | Add reduced motion support | High | Low | Very High | 2-3h |
+| P2 🟢 | **2.2.3** | Add live regions for dynamic content | Medium | Low | High | 2-3h |
+| P2 🟢 | **2.3.2** | Test with screen readers | High | Medium | High | 4-6h |
+| P2 🟢 | **2.4.1** | Add automated a11y testing | Medium | Low | High | 2-3h |
+
+**Category Total: 9 tasks** | P0: 2 | P1: 4 | P2: 3
+
+---
+
+### 🔍 SEO & METADATA
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P1 🟡 | **3.1.1** | Enhance meta tags | High | Low | Very High | 2h |
+| P1 🟡 | **3.1.2** | Add Organization schema | High | Low | High | 2h |
+| P2 🟢 | **3.1.3** | Implement Service schema | Medium | Low | High | 2-3h |
+| P2 🟢 | **3.2.1** | Update robots.txt | Medium | Low | Medium | 30min |
+| P2 🟢 | **3.2.2** | Enhance sitemap with metadata | Medium | Low | Medium | 1-2h |
+| P2 🟢 | **SEO1** | Add FAQPage JSON-LD | Medium | Low | High | 2-3h |
+| P2 🟢 | **SEO2** | Implement BreadcrumbList schema | Low | Low | Medium | 1-2h |
+| P3 🔵 | **SEO3** | Create service-specific landing pages | Medium | High | Medium | 16-24h |
+| P3 🔵 | **SEO4** | Generate OG image automation | Low | Medium | Low | 4-6h |
+| P3 🔵 | **SEO5** | Add canonical URL tags | Low | Low | Low | 1h |
+
+**Category Total: 10 tasks** | P1: 2 | P2: 5 | P3: 3
+
+---
+
+### 🧪 TESTING & QUALITY ASSURANCE
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **4.1.1** | Set up Vitest testing framework | Critical | Low | Very High | 2-3h |
+| P1 🟡 | **4.1.2** | Write unit tests (80% coverage) | High | High | High | 20-30h |
+| P1 🟡 | **4.2.1** | Set up Playwright for E2E | High | Medium | High | 4-6h |
+| P2 🟢 | **4.1.3** | Add visual regression testing | Medium | Medium | Medium | 4-6h |
+| P2 🟢 | **4.2.2** | Write E2E tests for critical flows | High | High | High | 12-16h |
+| P2 🟢 | **4.2.3** | Add Lighthouse CI to E2E | Medium | Low | High | 2-3h |
+| P3 🔵 | **RES1** | Chaos test plan | Low | Medium | Medium | 4-6h |
+| P3 🔵 | **RES2** | Font loading fallback tests | Low | Low | Low | 2h |
+
+**Category Total: 8 tasks** | P0: 1 | P1: 2 | P2: 3 | P3: 2
+
+---
+
+### 🔒 SECURITY & COMPLIANCE
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **SEC6** | Implement HSTS header | Critical | Low | Very High | 1h |
+| P0 🔴 | **SEC7** | Add security headers bundle | Critical | Low | Very High | 1-2h |
+| P0 🔴 | **SEC8** | Configure netlify.toml security | Critical | Low | Very High | 1h |
+| P1 🟡 | **6.1.1** | Implement CSP via meta tag | High | Low | High | 2-3h |
+| P1 🟡 | **6.1.2** | Add Subresource Integrity | High | Low | High | 1-2h |
+| P1 🟡 | **SEC10** | Automate security header validation | High | Low | Very High | 2-3h |
+| P1 🟡 | **6.3.1** | Set up Dependabot | High | Low | High | 1h |
+| P2 🟢 | **SEC1** | Enhance CSP directives | Medium | Low | High | 1-2h |
+| P2 🟢 | **SEC2** | Add SRI to all external resources | Medium | Low | High | 2h |
+| P2 🟢 | **SEC3** | Integrate dependency scanning | Medium | Low | High | 2h |
+| P2 🟢 | **SEC4** | Create security.txt | Low | Low | Medium | 30min |
+| P2 🟢 | **SEC5** | Automate SBOM generation | Low | Low | Medium | 1-2h |
+| P3 🔵 | **SEC9** | Add Cross-Origin policies | Low | Low | Low | 1h |
+| P3 🔵 | **6.2.1** | Add form validation & sanitization | Medium | Medium | High | 4-6h |
+| P3 🔵 | **6.3.2** | Run security audit | Low | Low | Medium | 1h |
+
+**Category Total: 15 tasks** | P0: 3 | P1: 4 | P2: 5 | P3: 3
+
+---
+
+### 🎨 USER EXPERIENCE & UI/UX
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **PWA1** | Generate missing PWA assets | Critical | Low | Very High | 2-3h |
+| P1 🟡 | **5.1.1** | Add form validation | High | Medium | High | 4-6h |
+| P1 🟡 | **5.1.2** | Implement error handling | High | Medium | High | 3-4h |
+| P1 🟡 | **5.1.3** | Add loading states | High | Low | High | 2-3h |
+| P1 🟡 | **UX5** | Add 404 & 500 custom pages | High | Low | High | 2-3h |
+| P2 🟢 | **F1** | Integrate react-hook-form + zod | High | Medium | High | 4-6h |
+| P2 🟢 | **F2** | Add honeypot anti-spam | Medium | Low | High | 2h |
+| P2 🟢 | **F3** | Optimistic UI state | Medium | Low | Medium | 2-3h |
+| P2 🟢 | **F4** | Form autosave (localStorage) | Low | Low | Medium | 2h |
+| P2 🟢 | **UX1** | Skeleton placeholders | Medium | Low | High | 2-3h |
+| P2 🟢 | **UX2** | Add scroll progress bar | Low | Low | Medium | 1-2h |
+| P3 🔵 | **5.2.1** | Add success/error toast notifications | Medium | Low | Medium | 2-3h |
+| P3 🔵 | **5.2.2** | Implement optimistic UI updates | Low | Medium | Low | 3-4h |
+| P3 🔵 | **PWA2** | Add offline fallback page | Low | Low | Medium | 2h |
+| P3 🔵 | **PWA3** | Gate push notification prompts | Low | Low | Low | 1h |
+| P3 🔵 | **PWA4** | Add versioning + changelog | Low | Low | Low | 2h |
+| P3 🔵 | **UX3** | Parallax layering refinement | Low | Medium | Low | 3-4h |
+| P3 🔵 | **UX4** | Micro-interaction sound toggle | Low | Low | Low | 2-3h |
+
+**Category Total: 18 tasks** | P0: 1 | P1: 4 | P2: 6 | P3: 7
+
+---
+
+### 💻 CODE QUALITY & MAINTAINABILITY
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P0 🔴 | **7.1.1** | Remove TypeScript `any` types | High | Medium | High | 4-6h |
+| P0 🔴 | **7.3.1** | Remove console logs | Medium | Low | High | 1-2h |
+| P1 🟡 | **7.1.2** | Add strict null checks | High | High | High | 8-12h |
+| P1 🟡 | **7.2.1** | Refactor duplicated code | Medium | Medium | High | 6-8h |
+| P2 🟢 | **7.1.3** | Enable strict TypeScript mode | Medium | Medium | Medium | 4-6h |
+| P2 🟢 | **7.2.2** | Extract magic numbers to constants | Low | Low | Medium | 2-3h |
+| P2 🟢 | **7.3.2** | Set up ESLint rules | Medium | Low | High | 1-2h |
+| P2 🟢 | **CQ1** | Extract inline styles to CSS modules | Low | Medium | Medium | 4-6h |
+| P2 🟢 | **CQ2** | Add prop-types or Zod schemas | Medium | Medium | Medium | 4-6h |
+| P2 🟢 | **CQ3** | Structured logging wrapper | Low | Low | Medium | 2-3h |
+| P3 🔵 | **CQ4** | Extract animation constants | Low | Low | Low | 2h |
+| P3 🔵 | **CQ5** | Unify error handling patterns | Low | Medium | Low | 3-4h |
+
+**Category Total: 12 tasks** | P0: 2 | P1: 2 | P2: 6 | P3: 2
+
+---
+
+### 📊 ANALYTICS & MONITORING
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P1 🟡 | **8.1.1** | Add Google Analytics | High | Low | High | 1-2h |
+| P1 🟡 | **8.2.1** | Integrate Sentry | High | Low | Very High | 2-3h |
+| P2 🟢 | **8.1.2** | Implement event tracking | Medium | Medium | High | 4-6h |
+| P2 🟢 | **8.1.3** | Add conversion tracking | High | Low | High | 2-3h |
+| P2 🟢 | **8.2.2** | Configure error boundaries | Medium | Low | High | 2-3h |
+| P2 🟢 | **8.3.1** | Add performance monitoring | Medium | Medium | High | 3-4h |
+| P2 🟢 | **8.3.2** | Set up performance budgets | Medium | Low | High | 2h |
+| P2 🟢 | **OBS1** | Add Real User Monitoring | High | Low | High | 2-3h |
+| P2 🟢 | **OBS2** | Instrument Sentry traces | Medium | Medium | Medium | 4-6h |
+| P3 🔵 | **OBS3** | Configure alerting thresholds | Low | Low | Medium | 1-2h |
+| P3 🔵 | **OBS4** | Add feature flag system | Low | Medium | Low | 4-6h |
+| P3 🔵 | **OBS5** | Privacy consent banner | Medium | Medium | Medium | 3-4h |
+| P3 🔵 | **F5** | Analytics for validation errors | Low | Low | Low | 1-2h |
+
+**Category Total: 13 tasks** | P1: 2 | P2: 7 | P3: 4
+
+---
+
+### 📝 DOCUMENTATION & DEVELOPER EXPERIENCE
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P1 🟡 | **9.1.3** | Set up GitHub Actions CI/CD | High | Medium | Very High | 4-6h |
+| P1 🟡 | **9.3.1** | Add environment variable validation | High | Low | High | 2h |
+| P2 🟢 | **9.1.1** | Create CONTRIBUTING.md | Medium | Low | Medium | 2-3h |
+| P2 🟢 | **9.1.2** | Add CODE_OF_CONDUCT.md | Low | Low | Low | 1h |
+| P2 🟢 | **9.2.1** | Enhance README documentation | Medium | Medium | Medium | 3-4h |
+| P2 🟢 | **9.2.2** | Add JSDoc comments | Medium | High | Medium | 8-12h |
+| P2 🟢 | **9.2.3** | Set up Storybook | Medium | High | Medium | 8-12h |
+| P2 🟢 | **9.3.2** | Create .env.example file | Medium | Low | Medium | 30min |
+| P2 🟢 | **DX1** | Husky + lint-staged | Medium | Low | High | 1-2h |
+| P2 🟢 | **DX2** | Commit message linting | Low | Low | Medium | 1h |
+| P3 🔵 | **DX3** | Storybook + Chromatic | Low | High | Low | 12-16h |
+| P3 🔵 | **DX4** | Add ADR directory | Low | Low | Low | 1-2h |
+| P3 🔵 | **DX5** | Local performance benchmark | Low | Low | Low | 2-3h |
+
+**Category Total: 13 tasks** | P1: 2 | P2: 8 | P3: 3
+
+---
+
+### 🚀 BUILD & DEPLOYMENT
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P2 🟢 | **BUILD1** | Add bundle analyzer to CI | Medium | Low | High | 1-2h |
+| P2 🟢 | **BUILD3** | Pre-render critical fonts subset | Medium | Medium | Medium | 3-4h |
+| P2 🟢 | **BUILD4** | Compression verification | Low | Low | Medium | 1h |
+| P3 🔵 | **BUILD2** | Differential builds (modern/legacy) | Low | High | Low | 6-8h |
+| P3 🔵 | **BUILD5** | Document deployment alternatives | Low | Low | Low | 2-3h |
+
+**Category Total: 5 tasks** | P2: 3 | P3: 2
+
+---
+
+### 🌍 INTERNATIONALIZATION (FUTURE)
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P3 🔵 | **I18N1** | Extract copy to JSON | Low | High | Low | 8-12h |
+| P3 🔵 | **I18N2** | Language detection logic | Low | Medium | Low | 3-4h |
+| P3 🔵 | **I18N3** | Pseudolocalization environment | Low | Low | Low | 2h |
+| P3 🔵 | **I18N4** | RTL stylesheet sandbox | Low | Medium | Low | 4-6h |
+| P3 🔵 | **I18N5** | Date/number formatting (Intl API) | Low | Low | Low | 2-3h |
+
+**Category Total: 5 tasks** | P3: 5
+
+---
+
+### 🛡️ RESILIENCE & RELIABILITY
+
+| Priority | Task ID | Description | Impact | Effort | ROI | Est. Time |
+|----------|---------|-------------|--------|--------|-----|-----------|
+| P2 🟢 | **RES3** | Graceful degradation matrix | Medium | Low | High | 2-3h |
+| P2 🟢 | **RES4** | Monitoring escalation ladder | Medium | Low | Medium | 1-2h |
+| P2 🟢 | **RES5** | Monthly dependency review cadence | Low | Low | Medium | 1h |
+| P3 🔵 | **PWA5** | Periodic background sync | Low | Medium | Low | 3-4h |
+
+**Category Total: 4 tasks** | P2: 3 | P3: 1
+
+---
+
+## 📈 MASTER SUMMARY
+
+### Tasks by Priority Level
+
+| Priority | Count | Percentage | Total Estimated Time |
+|----------|-------|------------|---------------------|
+| **P0 🔴 Critical** | 13 | 10.5% | 24-35 hours |
+| **P1 🟡 High** | 32 | 25.8% | 85-115 hours |
+| **P2 🟢 Medium** | 58 | 46.8% | 145-195 hours |
+| **P3 🔵 Low** | 35 | 28.2% | 95-140 hours |
+| **TOTAL** | **124** | **100%** | **349-485 hours** |
+
+### Tasks by Category
+
+| Category | Total | P0 | P1 | P2 | P3 | Est. Time |
+|----------|-------|----|----|----|----|-----------|
+| 🏗️ Architecture & Performance | 12 | 1 | 4 | 5 | 2 | 30-45h |
+| ♿ Accessibility | 9 | 2 | 4 | 3 | 0 | 24-35h |
+| 🔍 SEO & Metadata | 10 | 0 | 2 | 5 | 3 | 28-42h |
+| 🧪 Testing & QA | 8 | 1 | 2 | 3 | 2 | 50-72h |
+| 🔒 Security & Compliance | 15 | 3 | 4 | 5 | 3 | 24-34h |
+| 🎨 UX & UI/UX | 18 | 1 | 4 | 6 | 7 | 38-57h |
+| 💻 Code Quality | 12 | 2 | 2 | 6 | 2 | 41-63h |
+| 📊 Analytics & Monitoring | 13 | 0 | 2 | 7 | 4 | 31-48h |
+| 📝 Documentation & DX | 13 | 0 | 2 | 8 | 3 | 43-65h |
+| 🚀 Build & Deployment | 5 | 0 | 0 | 3 | 2 | 13-20h |
+| 🌍 Internationalization | 5 | 0 | 0 | 0 | 5 | 19-29h |
+| 🛡️ Resilience | 4 | 0 | 0 | 3 | 1 | 7-12h |
+
+---
+
+## 🎯 RECOMMENDED EXECUTION PHASES
+
+### Phase 1: Critical Foundation (P0) - Week 1-2
+**Focus**: Security, PWA basics, code quality fundamentals
+- 13 tasks | ~24-35 hours
+- Security headers (SEC6, SEC7, SEC8)
+- PWA assets generation
+- TypeScript cleanup
+- Accessibility fundamentals (skip links, form labels)
+- Testing framework setup
+
+### Phase 2: High-Impact Quick Wins (P1) - Week 3-5
+**Focus**: Performance monitoring, error handling, form validation
+- 32 tasks | ~85-115 hours
+- Lighthouse CI integration
+- Web Vitals monitoring
+- Sentry integration
+- Form validation & error states
+- Keyboard navigation
+- CI/CD pipeline setup
+
+### Phase 3: Quality & Polish (P2) - Week 6-10
+**Focus**: Testing coverage, analytics, documentation
+- 58 tasks | ~145-195 hours
+- Unit test coverage (80%)
+- E2E test suite
+- Visual regression testing
+- Analytics implementation
+- JSDoc documentation
+- Storybook setup
+
+### Phase 4: Enhancement & Future-Proofing (P3) - Week 11-15
+**Focus**: Advanced features, i18n prep, optimization
+- 35 tasks | ~95-140 hours
+- Service-specific landing pages
+- i18n infrastructure
+- Advanced PWA features
+- Micro-interactions
+- Performance optimization refinements
+
+---
+
+## 🚦 QUICK START: FIRST 10 TASKS (2-3 Days)
+
+1. ✅ **SEC8** - Configure netlify.toml with security headers (1h)
+2. ✅ **SEC6** - Implement HSTS header (1h)
+3. ✅ **SEC7** - Add security headers bundle (1-2h)
+4. ✅ **PWA1** - Generate missing PWA assets (2-3h)
+5. ✅ **7.3.1** - Remove console logs from production (1-2h)
+6. ✅ **2.1.1** - Add skip-to-content link (1h)
+7. ✅ **2.1.3** - Fix form label associations (2h)
+8. ✅ **1.2.3** - Add Lighthouse CI to GitHub Actions (2-4h)
+9. ✅ **4.1.1** - Set up Vitest testing framework (2-3h)
+10. ✅ **9.3.1** - Add environment variable validation (2h)
+
+**Total: 15-20 hours** | Impact: Immediate security & quality improvements
 
 ---
