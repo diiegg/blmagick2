@@ -93,7 +93,7 @@ export function MysticalPattern() {
       ))}
 
       {/* Rotating pentagrams - reduced from 3 to 2, 1 on mobile */}
-      {isInView && [...Array(pentagramCount)].map((i) => (
+      {isInView && [...Array(pentagramCount)].map((_, i) => (
         <motion.div
           key={`penta-${i}`}
           className="absolute"
