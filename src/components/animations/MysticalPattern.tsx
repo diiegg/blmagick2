@@ -9,13 +9,13 @@ export function MysticalPattern() {
   const [isInView, setIsInView] = useState(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const isLowPerf = useIsLowPerformance();
-  
+
   // Check for reduced motion preference
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setPrefersReducedMotion(mediaQuery.matches);
-    
+
     const handleChange = (e: MediaQueryListEvent) => setPrefersReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
@@ -24,12 +24,12 @@ export function MysticalPattern() {
   // Setup intersection observer
   useEffect(() => {
     if (!containerRef.current) return;
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => setIsInView(entry.isIntersecting),
       { threshold: 0 }
     );
-    
+
     observer.observe(containerRef.current);
     return () => observer.disconnect();
   }, []);
