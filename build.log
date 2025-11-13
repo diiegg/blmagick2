@@ -1,0 +1,32 @@
+
+> nextjs-shadcn@0.1.0 build /Users/diegoquiroga/MEGAsync Downloads/blackmagickops-web2/blackmagickops-web2
+> next build
+
+   ▲ Next.js 15.5.6
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 3.3s
+   Skipping validation of types
+   Skipping linting
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ ✓ Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+   Exporting (0/2) ...
+ ✓ Exporting (2/2)
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    61.5 kB         164 kB
+└ ○ /_not-found                            993 B         103 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/52354350-b97add9366503fa8.js  54.2 kB
+  ├ chunks/996-70084ed55b81d494.js       45.9 kB
+  └ other shared chunks (total)          1.92 kB
+
+
+○  (Static)  prerendered as static content
+
