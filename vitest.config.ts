@@ -10,6 +10,8 @@ export default defineConfig({
 		setupFiles: ["./vitest.setup.ts"],
 		css: true,
 		exclude: ["node_modules", "e2e/**"],
+		// JUnit reporter for Codecov test results
+		reporters: ["default", ["junit", { outputFile: "test-report.junit.xml" }]],
 		coverage: {
 			provider: "v8",
 			reporter: ["text", "json", "html", "cobertura"],
