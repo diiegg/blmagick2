@@ -54,8 +54,11 @@ export default defineConfig({
 	],
 
 	// Run local dev server before tests (if not already running)
+	// Use npx serve for static export (output: 'export' in next.config.ts)
 	webServer: {
-		command: "pnpm build && pnpm start",
+		command: process.env.CI
+			? "pnpm build && npx serve@latest out -l 3000"
+			: "pnpm dev",
 		url: "http://localhost:3000",
 		reuseExistingServer: !process.env.CI,
 		timeout: 120 * 1000,
