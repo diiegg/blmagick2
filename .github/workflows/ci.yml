@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main, dev, 'feature/**']
   pull_request:
-    branches: [main, dev]
+    branches: [dev, main]
 
 jobs:
   # Lint and Type Check
@@ -78,7 +78,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Lighthouse Performance Test
     needs: build
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' && github.base_ref == 'dev'
     
     steps:
       - name: Checkout code
@@ -177,15 +177,17 @@ jobs:
           NEXT_PUBLIC_GA_ID: ${{ secrets.NEXT_PUBLIC_GA_ID }}
 
       - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v3.0
-        with:
-          publish-dir: './out'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: echo "🚀 Deployment to Netlify disabled. Deploy manually or enable when ready."
+        # Uncomment below when ready to deploy:
+        # uses: nwtgck/actions-netlify@v3.0
+        # with:
+        #   publish-dir: './out'
+        #   production-branch: main
+        #   github-token: ${{ secrets.GITHUB_TOKEN }}
+        #   deploy-message: "Deploy from GitHub Actions"
+        #   enable-pull-request-comment: true
+        #   enable-commit-comment: true
+        #   overwrites-pull-request-comment: true
+        # env:
+        #   NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        #   NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
