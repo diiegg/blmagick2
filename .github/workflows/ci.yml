@@ -214,6 +214,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build static site for E2E
+        run: pnpm build
+        env:
+          NODE_ENV: production
+
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps
 
@@ -221,6 +226,7 @@ jobs:
         run: pnpm test:e2e
         env:
           PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+          CI: true
 
       - name: Upload test results
         if: always()
