@@ -5,6 +5,9 @@ import Image from "next/image";
 import { Suspense } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { ArrowRight, Check, CheckCircle, ChevronDown, Cloud, Code, Cog, Eye, Globe, Layers, Shield, Star, Target, X } from "lucide-react"
 
 // Import layout and UI components directly (small bundle size)
@@ -900,80 +903,115 @@ export default function Home() {
 
 /* ---------- Sigil Divider ---------- */
 
+// Form validation schema
+const contactFormSchema = z.object({
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(50, "Name must be less than 50 characters")
+    .regex(/^[a-zA-Z\s'-]+$/, "Name can only contain letters, spaces, hyphens, and apostrophes"),
+  email: z.string()
+    .email("Please enter a valid email address")
+    .max(100, "Email must be less than 100 characters"),
+  project: z.string()
+    .min(3, "Project type must be at least 3 characters")
+    .max(100, "Project type must be less than 100 characters")
+    .optional()
+    .or(z.literal('')),
+  message: z.string()
+    .min(10, "Message must be at least 10 characters")
+    .max(1000, "Message must be less than 1000 characters")
+});
+
+type ContactFormData = z.infer<typeof contactFormSchema>;
+
 // Enhanced Contact Form
 function MysticalContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    project: '',
-    message: ''
-  });
   const [showSuccess, setShowSuccess] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  
+  const { 
+    register, 
+    handleSubmit, 
+    formState: { errors, isSubmitting }, 
+    reset 
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactFormSchema),
+    mode: "onBlur"
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
+  const onSubmit = async (data: ContactFormData) => {
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     setShowSuccess(true);
-    setIsSubmitting(false);
-    setFormData({ name: '', email: '', project: '', message: '' });
+    reset();
 
     setTimeout(() => setShowSuccess(false), 3000);
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="space-y-6" aria-label="Contact form">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" aria-label="Contact form" noValidate>
         <div className="grid md:grid-cols-2 gap-6">
-          <MysticalInput
-            id="contact-name"
-            name="name"
-            placeholder="Your Name"
-            value={formData.name}
-            onChange={(value) => setFormData(prev => ({ ...prev, name: value }))}
-            required
-            aria-label="Your name"
-          />
-          <MysticalInput
-            id="contact-email"
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={(value) => setFormData(prev => ({ ...prev, email: value }))}
-            required
-            aria-label="Your email address"
-          />
+          <div>
+            <input
+              {...register("name")}
+              id="contact-name"
+              type="text"
+              placeholder="Your Name"
+              aria-label="Your name"
+              className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300"
+            />
+            {errors.name && (
+              <p className="mt-1 text-sm text-red-400" role="alert">{errors.name.message}</p>
+            )}
+          </div>
+          <div>
+            <input
+              {...register("email")}
+              id="contact-email"
+              type="email"
+              placeholder="Email Address"
+              aria-label="Your email address"
+              className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300"
+            />
+            {errors.email && (
+              <p className="mt-1 text-sm text-red-400" role="alert">{errors.email.message}</p>
+            )}
+          </div>
         </div>
 
-        <MysticalInput
-          id="contact-project"
-          name="project"
-          placeholder="Project Type"
-          value={formData.project}
-          onChange={(value) => setFormData(prev => ({ ...prev, project: value }))}
-          aria-label="Project type or category"
-        />
+        <div>
+          <input
+            {...register("project")}
+            id="contact-project"
+            type="text"
+            placeholder="Project Type (Optional)"
+            aria-label="Project type or category"
+            className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300"
+          />
+          {errors.project && (
+            <p className="mt-1 text-sm text-red-400" role="alert">{errors.project.message}</p>
+          )}
+        </div>
 
-        <MysticalTextarea
-          id="contact-message"
-          name="message"
-          placeholder="Tell us about your mystical project..."
-          value={formData.message}
-          onChange={(value) => setFormData(prev => ({ ...prev, message: value }))}
-          rows={5}
-          required
-          aria-label="Project description and details"
-        />
+        <div>
+          <textarea
+            {...register("message")}
+            id="contact-message"
+            placeholder="Tell us about your mystical project..."
+            rows={5}
+            aria-label="Project description and details"
+            className="w-full px-4 py-3 bg-[--color-surface] border border-[--color-border] rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none focus:border-[--color-brand] transition-all duration-300 resize-none"
+          />
+          {errors.message && (
+            <p className="mt-1 text-sm text-red-400" role="alert">{errors.message.message}</p>
+          )}
+        </div>
 
-        <FloatingCTA
-          href="#"
-          className="w-full justify-center"
-          variant="primary"
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full px-6 py-3 bg-[--color-brand] hover:bg-[--color-brand]/90 text-white rounded-lg transition-all duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label={isSubmitting ? 'Submitting form...' : 'Submit contact form'}
         >
           {isSubmitting ? (
@@ -984,7 +1022,7 @@ function MysticalContactForm() {
             />
           ) : null}
           {isSubmitting ? 'Casting Spell...' : 'Begin the Ritual →'}
-        </FloatingCTA>
+        </button>
       </form>
 
       <SuccessAnimation show={showSuccess} />
