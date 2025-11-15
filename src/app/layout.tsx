@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { GeistSans, GeistMono } from "geist/font";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 // Optimized font loading with Next.js
@@ -274,6 +276,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="main-content">
           {children}
         </div>
+
+        {/* Vercel Analytics */}
+        <Analytics />
+        
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );

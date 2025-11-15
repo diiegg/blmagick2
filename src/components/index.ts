@@ -2,6 +2,9 @@
 export { Header } from "./layout/Header";
 export { Footer } from "./layout/Footer";
 
+// Analytics components
+export { WebVitals } from "./analytics/WebVitals";
+
 // Animation components
 export { EnergyGrid } from "./animations/EnergyGrid";
 export { MysticalPattern } from "./animations/MysticalPattern";

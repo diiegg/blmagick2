@@ -43,6 +43,9 @@ import {
 import { CSRFProtection, RateLimiter, InputSanitizer, useHoneypot } from "@/lib/formSecurity";
 import { useFocusVisible } from "@/hooks/useKeyboardNavigation";
 
+// Import analytics and monitoring
+import { WebVitals } from "@/components/analytics/WebVitals";
+
 // Lazy load heavy animation components for better performance
 const EnergyGrid = dynamic(() => import('@/components/animations/EnergyGrid').then(mod => ({ default: mod.EnergyGrid })), {
   ssr: false,
@@ -67,6 +70,9 @@ export default function Home() {
 
   return (
     <>
+      {/* Web Vitals Monitoring */}
+      <WebVitals />
+
       {/* Skip to main content link for keyboard navigation */}
       <a href="#main-content" className="skip-link">
         Skip to main content
