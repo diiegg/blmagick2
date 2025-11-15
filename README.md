@@ -1,3 +1,9 @@
+# BlackMagickOps Web
+
+[![codecov](https://codecov.io/gh/diiegg/blmagick2/branch/main/graph/badge.svg)](https://codecov.io/gh/diiegg/blmagick2)
+[![Code Coverage](https://img.shields.io/codecov/c/github/diiegg/blmagick2/main?label=coverage&logo=codecov)](https://codecov.io/gh/diiegg/blmagick2)
+[![CI/CD Pipeline](https://github.com/diiegg/blmagick2/actions/workflows/ci.yml/badge.svg)](https://github.com/diiegg/blmagick2/actions/workflows/ci.yml)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -27,11 +33,12 @@ This project uses multiple coverage reporting tools to ensure code quality:
 ### 📊 Coverage Providers
 
 1. **Codecov** - Main coverage dashboard
-   - Badge: [![codecov](https://codecov.io/gh/diiegg/blmagick2/branch/main/graph/badge.svg)](https://codecov.io/gh/diiegg/blmagick2)
-   - View detailed reports at: https://codecov.io/gh/diiegg/blmagick2
+   - Badge: Shows line rate coverage percentage (updates automatically)
+   - View detailed reports at: <https://codecov.io/gh/diiegg/blmagick2>
 
-2. **Code Coverage Summary** - In-line PR comments
+2. **Code Coverage Summary** - In-line PR comments & workflow badge
    - Automatically posts coverage metrics on pull requests
+   - Generates badge in GitHub Actions workflow summary
    - Shows line rate, branch rate, and file-by-file breakdown
    - Generated using [irongut/CodeCoverageSummary](https://github.com/marketplace/actions/code-coverage-summary)
 
