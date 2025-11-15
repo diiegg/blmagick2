@@ -20,6 +20,49 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Code Coverage Reports
+
+This project uses multiple coverage reporting tools to ensure code quality:
+
+### 📊 Coverage Providers
+
+1. **Codecov** - Main coverage dashboard
+   - Badge: [![codecov](https://codecov.io/gh/diiegg/blmagick2/branch/main/graph/badge.svg)](https://codecov.io/gh/diiegg/blmagick2)
+   - View detailed reports at: https://codecov.io/gh/diiegg/blmagick2
+
+2. **Code Coverage Summary** - In-line PR comments
+   - Automatically posts coverage metrics on pull requests
+   - Shows line rate, branch rate, and file-by-file breakdown
+   - Generated using [irongut/CodeCoverageSummary](https://github.com/marketplace/actions/code-coverage-summary)
+
+### 📈 Coverage Reports Generated
+
+The test suite generates multiple coverage formats:
+- **Cobertura XML**: `coverage/cobertura-coverage.xml` (used by Codecov and Code Coverage Summary)
+- **HTML Report**: `coverage/index.html` (visual coverage browser)
+- **JSON Report**: `coverage/coverage-final.json` (programmatic access)
+- **Text Summary**: Console output during test runs
+
+### 🧪 Running Coverage Locally
+
+```bash
+# Run tests with coverage report
+pnpm test:coverage
+
+# View HTML coverage report in browser
+open coverage/index.html
+```
+
+### 📝 Coverage Language
+
+**Primary Metric: Line Rate Coverage**
+- **Line Rate**: Percentage of executable code lines covered by tests
+- **Branch Rate**: Percentage of conditional branches tested
+- **Function Coverage**: Percentage of functions executed in tests
+- **Statement Coverage**: Percentage of statements executed
+
+The badge displays **Line Rate** as the primary coverage metric, representing the percentage of code lines executed during testing.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
