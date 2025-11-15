@@ -1550,14 +1550,14 @@ function StickyNavigation({
 }
 
 // Infinite Scroll Container
-function InfiniteScrollContainer({
+function InfiniteScrollContainer<T>({
   items,
   renderItem,
   loadMore,
   hasMore
 }: {
-  items: any[];
-  renderItem: (item: any, index: number) => React.ReactNode;
+  items: T[];
+  renderItem: (item: T, index: number) => React.ReactNode;
   loadMore: () => void;
   hasMore: boolean;
 }) {
