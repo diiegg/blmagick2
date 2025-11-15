@@ -225,7 +225,7 @@ jobs:
           NODE_ENV: production
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install --with-deps
+        run: pnpm exec playwright install chromium --with-deps
 
       - name: Run E2E tests
         run: pnpm test:e2e
