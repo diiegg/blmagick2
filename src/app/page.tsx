@@ -19,7 +19,6 @@ import {
   SectionIntro,
   TypewriterText,
   MysticalCard,
-  FloatingCTA,
   MysticalInput,
   MysticalTextarea,
   PortalImage,
@@ -29,21 +28,30 @@ import {
   FloatingSocialIcon,
   SuccessAnimation,
   RitualFramework,
+  Skeleton,
+  CardSkeleton,
+  MetricsSkeleton,
+  EnhancedCTA,
+  CTAGroup,
   CaseSigils,
   Alliances,
   InvocationCTA,
   ErrorBoundary,
 } from "@/components";
 
+// Import security and keyboard navigation utilities
+import { CSRFProtection, RateLimiter, InputSanitizer, useHoneypot } from "@/lib/formSecurity";
+import { useFocusVisible } from "@/hooks/useKeyboardNavigation";
+
 // Lazy load heavy animation components for better performance
 const EnergyGrid = dynamic(() => import('@/components/animations/EnergyGrid').then(mod => ({ default: mod.EnergyGrid })), {
   ssr: false,
-  loading: () => null
+  loading: () => <Skeleton className="h-full w-full" />
 });
 
 const MysticalPattern = dynamic(() => import('@/components/animations/MysticalPattern').then(mod => ({ default: mod.MysticalPattern })), {
   ssr: false,
-  loading: () => null
+  loading: () => <Skeleton className="h-64 w-full" />
 });
 
 const EtherealSpiritOrbs = dynamic(() => import('@/components/animations/EtherealSpiritOrbs').then(mod => ({ default: mod.EtherealSpiritOrbs })), {
@@ -99,8 +107,10 @@ export default function Home() {
         </ErrorBoundary>
       </div>
 
-      {/* Hero */}
-      <section className="relative min-h-screen pt-16 overflow-hidden">
+      {/* Main Content */}
+      <main id="main-content">
+        {/* Hero */}
+        <section className="relative min-h-screen pt-16 overflow-hidden">
         {/* Background Mystical Pattern - Subtle */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
           <ErrorBoundary>
@@ -151,20 +161,23 @@ export default function Home() {
 
               {/* Primary CTAs */}
               <div className="flex flex-wrap gap-4 lg:justify-start justify-center">
-                <FloatingCTA
+                <EnhancedCTA
                   href="#contact"
                   className="px-8 py-4 text-lg"
                   variant="primary"
+                  analyticsId="hero-begin-ritual"
+                  testVariant="A"
                 >
                   Begin the Ritual
-                </FloatingCTA>
-                <FloatingCTA
+                </EnhancedCTA>
+                <EnhancedCTA
                   href="#disciplines"
                   className="px-8 py-4 text-lg"
                   variant="ghost"
+                  analyticsId="hero-explore-capabilities"
                 >
                   Explore Capabilities
-                </FloatingCTA>
+                </EnhancedCTA>
               </div>
             </motion.div>
 
@@ -705,6 +718,7 @@ export default function Home() {
 
       {/* Invocation CTA */}
       <InvocationCTA />
+      </main>
 
       {/* Footer */}
       <footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16">
@@ -924,26 +938,86 @@ const contactFormSchema = z.object({
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
 
-// Enhanced Contact Form
+// Rate limiter for form submissions (max 3 per 5 minutes)
+const formRateLimiter = new RateLimiter({
+  maxAttempts: 3,
+  windowMs: 5 * 60 * 1000,
+});
+
+// Enhanced Contact Form with Security
 function MysticalContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [rateLimitError, setRateLimitError] = useState<string | null>(null);
+  const [csrfToken, setCSRFToken] = useState<string>("");
+  const honeypot = useHoneypot();
+  
+  // Initialize CSRF token and focus visible on mount
+  useEffect(() => {
+    const token = CSRFProtection.getToken() || CSRFProtection.generateToken();
+    setCSRFToken(token);
+  }, []);
+
+  // Initialize focus-visible for keyboard navigation
+  useFocusVisible();
   
   const { 
     register, 
     handleSubmit, 
     formState: { errors, isSubmitting }, 
-    reset 
+    reset,
+    watch
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
     mode: "onBlur"
   });
 
   const onSubmit = async (data: ContactFormData) => {
-    // Simulate form submission
+    // Check rate limit
+    const userIdentifier = `form_${typeof window !== 'undefined' ? window.location.hostname : 'local'}`;
+    if (!formRateLimiter.isAllowed(userIdentifier)) {
+      const remainingTime = Math.ceil(formRateLimiter.getRemainingTime(userIdentifier) / 1000 / 60);
+      setRateLimitError(`Too many submissions. Please wait ${remainingTime} minutes.`);
+      return;
+    }
+
+    // Validate CSRF token
+    if (!CSRFProtection.validateToken(csrfToken)) {
+      console.error("CSRF token validation failed");
+      return;
+    }
+
+    // Check honeypot (bot detection)
+    const honeypotValue = (document.querySelector(`[name="${honeypot.fieldName}"]`) as HTMLInputElement)?.value || "";
+    if (!honeypot.validate(honeypotValue)) {
+      console.log("Bot detected via honeypot");
+      return;
+    }
+
+    // Sanitize inputs
+    const sanitizedData = {
+      name: InputSanitizer.sanitizeText(data.name, 50),
+      email: InputSanitizer.sanitizeEmail(data.email),
+      project: data.project ? InputSanitizer.sanitizeText(data.project, 100) : "",
+      message: InputSanitizer.sanitizeText(data.message, 1000),
+    };
+
+    // Check for SQL injection attempts
+    const allInputs = Object.values(sanitizedData).join(" ");
+    if (InputSanitizer.hasSQLInjection(allInputs)) {
+      console.error("Potential SQL injection detected");
+      return;
+    }
+
+    // Simulate form submission with security data
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     setShowSuccess(true);
+    setRateLimitError(null);
     reset();
+
+    // Generate new CSRF token after successful submission
+    const newToken = CSRFProtection.generateToken();
+    setCSRFToken(newToken);
 
     setTimeout(() => setShowSuccess(false), 3000);
   };
@@ -1007,6 +1081,36 @@ function MysticalContactForm() {
             <p className="mt-1 text-sm text-red-400" role="alert">{errors.message.message}</p>
           )}
         </div>
+
+        {/* Honeypot field for bot detection */}
+        <input
+          type="text"
+          name={honeypot.fieldName}
+          style={{ 
+            position: 'absolute', 
+            left: '-9999px', 
+            width: '1px', 
+            height: '1px',
+            opacity: 0,
+            pointerEvents: 'none',
+            tabIndex: -1
+          }}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
+
+        {/* Rate limit error */}
+        {rateLimitError && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg"
+            role="alert"
+          >
+            <p className="text-red-400 text-sm">{rateLimitError}</p>
+          </motion.div>
+        )}
 
         <button
           type="submit"

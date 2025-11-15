@@ -8,7 +8,13 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-[--color-border]/60 bg-[--color-bg]/80 backdrop-blur-xl" role="banner">
+    <>
+      {/* Skip link for keyboard navigation */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+      
+      <header className="fixed top-0 z-50 w-full border-b border-[--color-border]/60 bg-[--color-bg]/80 backdrop-blur-xl" role="banner">
       <div className="section flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-2 font-semibold tracking-tight" aria-label="BlackMagickOps - Home">
           <span className="text-2xl" aria-hidden="true">🪄</span>
@@ -57,6 +63,7 @@ export function Header() {
           </div>
         </motion.nav>
       )}
-    </header>
+      </header>
+    </>
   );
 }
