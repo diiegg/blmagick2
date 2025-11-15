@@ -5,6 +5,7 @@ import { afterEach, vi } from "vitest";
 // Cleanup after each test
 afterEach(() => {
 	cleanup();
+	vi.restoreAllMocks();
 });
 
 // Mock Next.js router
@@ -76,3 +77,8 @@ Object.defineProperty(window, "matchMedia", {
 
 // Mock scrollTo
 window.scrollTo = vi.fn();
+
+// Store original console methods for optional strict error checking
+// These can be used in individual tests that want to detect console errors
+export const originalConsoleError = console.error;
+export const originalConsoleWarn = console.warn;
