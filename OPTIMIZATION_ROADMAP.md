@@ -1311,15 +1311,19 @@ const saveData = (navigator as any).connection?.saveData || false;
   - Performance budget configuration (250 KB scripts, 500 KB total)
 
 - [x] 🟡 **9.1.1-9.1.3**: CI/CD setup ✅
-  - GitHub Actions workflow with 5 jobs
-  - Automated linting and type checking
-  - Build verification on all branches
-  - Lighthouse CI performance testing on PRs
-  - Bundle size analysis
-  - Automated Netlify deployment on main branch
+  - **9.1.1**: Husky pre-commit hooks with lint-staged
+    - Installed husky@9.1.7 and lint-staged@16.2.6
+    - Auto-format staged files with Biome before commit
+    - Prevents inconsistent formatting in commits
+  - **9.1.2**: GitHub Actions workflow with 5 jobs
+    - Automated linting and type checking
+    - Build verification on all branches
+    - Lighthouse CI performance testing on PRs
+    - Bundle size analysis
+  - **9.1.3**: Automated Netlify deployment on main branch
 
-**Deliverables**: ✅ Full observability, automated deployments, performance budgets
-**New Dependencies**: @vercel/analytics, @vercel/speed-insights, @sentry/nextjs, web-vitals
+**Deliverables**: ✅ Full observability, automated deployments, performance budgets, pre-commit quality gates
+**New Dependencies**: @vercel/analytics, @vercel/speed-insights, @sentry/nextjs, web-vitals, husky, lint-staged
 **Build Status**: Successful (324 KB First Load JS)
 **Branch**: Merged to dev from feature/phase4-monitoring-analytics
 
