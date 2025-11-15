@@ -234,6 +234,33 @@ a:hover {
   color: var(--color-link-hover);
 }
 
+/* Focus visible - only show focus rings for keyboard navigation */
+*:focus {
+  outline: none;
+}
+
+*[data-focus-visible="true"] {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+/* Skip links for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-brand);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* ============================================================
    Inputs & Forms
 ============================================================ */
