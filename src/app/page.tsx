@@ -1220,10 +1220,10 @@ export default function Home() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: false, amount: 0.3 }}
 						transition={{ duration: 1, ease: "easeOut" }}
-						className="relative mt-16 -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 xl:-mx-16 overflow-hidden bg-[--color-accent] py-8 sm:py-12 md:py-16"
+						className="relative mt-16 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden bg-[--color-accent] py-8 sm:py-12 md:py-16"
 					>
-						<div className="text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[11rem] xl:text-[13rem] font-black leading-none tracking-tighter text-black select-none pointer-events-none text-center">
-							BLACKMAGICKOPS
+						<div className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[8rem] font-black leading-none tracking-tighter text-black select-none pointer-events-none text-center px-4">
+							BlackMagickOps
 						</div>
 					</motion.div>
 				</div>
