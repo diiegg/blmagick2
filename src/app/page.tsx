@@ -1009,8 +1009,8 @@ export default function Home() {
 				</main>
 
 				{/* Footer */}
-				<footer className="border-t border-[--color-border]/60 bg-[--color-bg] pb-0">
-					<div className="section pt-12">
+				<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16">
+					<div className="section">
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
