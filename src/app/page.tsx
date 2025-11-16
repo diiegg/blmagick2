@@ -1236,25 +1236,6 @@ export default function Home() {
 					</div>
 				</footer>
 
-				{/* Mystical Brand Section */}
-				<section className="relative z-10 overflow-hidden bg-[--color-brand] py-32">
-					{/* Content */}
-					<div className="relative section text-center">
-						<div className="text-4xl md:text-6xl lg:text-8xl font-normal text-black leading-none tracking-normal">
-							BLACKMAGICKOPS
-						</div>
-					</div>
-
-					{/* Scroll-triggered Reveal Effect */}
-					<motion.div
-						initial={{ scaleX: 0 }}
-						whileInView={{ scaleX: 1 }}
-						viewport={{ once: false, amount: 0.1 }}
-						transition={{ duration: 1.5, ease: "easeInOut" }}
-						className="absolute bottom-0 left-0 right-0 h-1 bg-white/30 origin-left"
-					/>
-				</section>
-
 				{/* Performance Monitor (Development only) */}
 				<PerformanceMonitor />
 			</main>
