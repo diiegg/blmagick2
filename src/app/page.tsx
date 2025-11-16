@@ -173,7 +173,7 @@ export default function Home() {
 			<main
 				id="main-content"
 				ref={pageRef}
-				className="relative z-20 overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36"
+				className="relative z-20 overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
 			>
 				{/* Ambient halos */}
 				<div
