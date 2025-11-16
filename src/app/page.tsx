@@ -241,12 +241,10 @@ export default function Home() {
 								>
 									{/* Brand Logo */}
 									<div className="flex items-center gap-3 mb-6">
-										<span className="text-4xl">🪄</span>
 										<span className="text-2xl font-semibold">
 											BlackMagickOps
 										</span>
-									</div>
-
+									</div>{" "}
 									{/* Main Headline */}
 									<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 										<span className="text-[--color-text]">
@@ -255,7 +253,6 @@ export default function Home() {
 										<br />
 										<span className="text-[--color-brand]">Magic.</span>
 									</h1>
-
 									{/* Main Description */}
 									<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
 										Engineering the invisible — we build{" "}
@@ -264,7 +261,6 @@ export default function Home() {
 										</strong>{" "}
 										that move with reliability, efficiency, and intent.
 									</p>
-
 									{/* Primary CTAs */}
 									<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
 										<EnhancedCTA
@@ -1025,7 +1021,6 @@ export default function Home() {
 							{/* Brand Section */}
 							<div className="lg:col-span-2">
 								<div className="flex items-center gap-2 text-xl mb-6">
-									<span className="text-2xl">🪄</span>
 									<span className="font-semibold">BlackMagickOps</span>
 								</div>
 								<p className="text-[--color-muted] mb-6 max-w-md">
