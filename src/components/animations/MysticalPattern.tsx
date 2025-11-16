@@ -40,6 +40,15 @@ export function MysticalPattern() {
 	const pentagramCount = isLowPerf ? 1 : 2;
 	const particleFieldCount = isLowPerf ? 12 : 20;
 
+	// Ensure counts are always numbers to prevent undefined keys
+	const safeParticleCount = Number.isFinite(particleCount) ? particleCount : 6;
+	const safePentagramCount = Number.isFinite(pentagramCount)
+		? pentagramCount
+		: 2;
+	const safeParticleFieldCount = Number.isFinite(particleFieldCount)
+		? particleFieldCount
+		: 20;
+
 	// If reduced motion is preferred, render static version
 	if (prefersReducedMotion) {
 		return (
@@ -88,7 +97,7 @@ export function MysticalPattern() {
 
 			{/* Reduced particle count from 12 to 6 for better performance, 4 on mobile */}
 			{isInView &&
-				Array.from({ length: particleCount }, (_, i) => (
+				Array.from({ length: safeParticleCount }, (_, i) => (
 					<motion.div
 						key={`circle-${i}`}
 						className="absolute rounded-full border border-[--color-accent]"
@@ -115,7 +124,7 @@ export function MysticalPattern() {
 
 			{/* Rotating pentagrams - reduced from 3 to 2, 1 on mobile */}
 			{isInView &&
-				Array.from({ length: pentagramCount }, (_, i) => (
+				Array.from({ length: safePentagramCount }, (_, i) => (
 					<motion.div
 						key={`pentagram-${i}`}
 						className="absolute"
@@ -150,7 +159,7 @@ export function MysticalPattern() {
 
 			{/* Particle field - reduced from 30 to 20, 12 on mobile */}
 			{isInView &&
-				[...Array(particleFieldCount)].map((_, i) => (
+				[...Array(safeParticleFieldCount)].map((_, i) => (
 					<motion.div
 						key={`particle-${i}`}
 						className="absolute w-1 h-1 rounded-full bg-[--color-accent]"

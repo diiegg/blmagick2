@@ -1,9 +1,75 @@
 import "@testing-library/jest-dom";
 import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import { afterEach, beforeEach, vi } from "vitest";
 
-// Cleanup after each test
+// Store original console methods
+const originalConsoleError = console.error;
+const originalConsoleWarn = console.warn;
+
+// Global console error tracking
+const consoleErrors: string[] = [];
+const consoleWarnings: string[] = [];
+
+// Override console.error to track errors
+console.error = (...args: any[]) => {
+	const message = args
+		.map((arg) => (typeof arg === "object" ? JSON.stringify(arg) : String(arg)))
+		.join(" ");
+
+	consoleErrors.push(message);
+
+	// Still log to console for debugging
+	originalConsoleError(...args);
+};
+
+// Override console.warn to track warnings
+console.warn = (...args: any[]) => {
+	const message = args
+		.map((arg) => (typeof arg === "object" ? JSON.stringify(arg) : String(arg)))
+		.join(" ");
+
+	consoleWarnings.push(message);
+
+	// Still log to console for debugging
+	originalConsoleWarn(...args);
+};
+
+// Check for console errors before each test
+beforeEach(() => {
+	consoleErrors.length = 0;
+	consoleWarnings.length = 0;
+});
+
+// Cleanup after each test and report console errors
 afterEach(() => {
+	// Check for React key warnings
+	const keyErrors = consoleErrors.filter(
+		(msg) =>
+			msg.includes("same key") ||
+			msg.includes("unique key") ||
+			msg.includes("key prop"),
+	);
+
+	if (keyErrors.length > 0) {
+		throw new Error(`❌ React key errors detected:\n${keyErrors.join("\n")}`);
+	}
+
+	// Check for other critical errors (excluding expected test errors)
+	const criticalErrors = consoleErrors.filter(
+		(msg) =>
+			!msg.includes(
+				"Not implemented: HTMLFormElement.prototype.requestSubmit",
+			) &&
+			!msg.includes(
+				"Not implemented: HTMLCanvasElement.prototype.getContext",
+			) &&
+			!msg.includes("Warning: ReactDOM.render"),
+	);
+
+	if (criticalErrors.length > 0) {
+		console.warn(`⚠️  Console errors in test:\n${criticalErrors.join("\n")}`);
+	}
+
 	cleanup();
 	vi.restoreAllMocks();
 });
@@ -78,7 +144,5 @@ Object.defineProperty(window, "matchMedia", {
 // Mock scrollTo
 window.scrollTo = vi.fn();
 
-// Store original console methods for optional strict error checking
-// These can be used in individual tests that want to detect console errors
-export const originalConsoleError = console.error;
-export const originalConsoleWarn = console.warn;
+// Export original console methods for optional use in individual tests
+export { originalConsoleError, originalConsoleWarn };
