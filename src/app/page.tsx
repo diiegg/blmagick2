@@ -1220,9 +1220,9 @@ export default function Home() {
 						whileInView={{ opacity: 1, y: 0 }}
 						viewport={{ once: false, amount: 0.3 }}
 						transition={{ duration: 1, ease: "easeOut" }}
-						className="relative mt-8 overflow-hidden"
+						className="relative mt-12 overflow-hidden"
 					>
-						<div className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-black leading-none tracking-tighter text-[--color-accent] opacity-80 select-none pointer-events-none whitespace-nowrap">
+						<div className="text-[6rem] sm:text-[8rem] md:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-black leading-none tracking-tight text-[#5BE3C1] opacity-90 select-none pointer-events-none">
 							BLACKMAGICKOPS
 						</div>
 					</motion.div>
