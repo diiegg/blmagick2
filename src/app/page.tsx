@@ -187,13 +187,6 @@ export default function Home() {
 						transition={{ duration: 2, ease: "easeOut" }}
 						className="absolute top-[-25%] left-[-10%] h-[45rem] w-[45rem] rounded-full bg-[--halo-brand] blur-[120px]"
 					/>
-					<motion.div
-						style={{ y: haloShift }}
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ delay: 0.6, duration: 2 }}
-						className="absolute bottom-[-20%] right-[-10%] h-[50rem] w-[50rem] rounded-full bg-[--halo-accent] blur-[140px]"
-					/>
 				</div>
 
 				{/* Header */}
@@ -966,7 +959,7 @@ export default function Home() {
 				{/* Contact */}
 				<section
 					id="contact"
-					className="py-32"
+					className="py-24"
 					aria-labelledby="contact-heading"
 				>
 					<ScrollReveal
