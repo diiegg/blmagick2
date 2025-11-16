@@ -704,7 +704,7 @@ export default function Home() {
 				<SigilDivider />
 
 				{/* Testimonials */}
-				<section id="testimonials" className="py-32">
+				<section id="testimonials" className="py-20">
 					<div className="section">
 						<SectionIntro
 							title="Client Testimonials"
@@ -758,7 +758,7 @@ export default function Home() {
 				<SigilDivider />
 
 				{/* FAQ Section */}
-				<section id="faq" className="py-32">
+				<section id="faq" className="py-20">
 					<div className="section">
 						<SectionIntro
 							title="Frequently Asked Questions"
@@ -959,7 +959,7 @@ export default function Home() {
 				{/* Contact */}
 				<section
 					id="contact"
-					className="py-24"
+					className="py-20"
 					aria-labelledby="contact-heading"
 				>
 					<ScrollReveal
@@ -991,13 +991,10 @@ export default function Home() {
 						</MysticalCard>
 					</ScrollReveal>
 				</section>
-
-				{/* Invocation CTA */}
-				<InvocationCTA />
 			</main>
 
 			{/* Footer */}
-			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16">
+			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-12">
 				<div className="section">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}

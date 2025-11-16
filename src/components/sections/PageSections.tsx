@@ -23,7 +23,7 @@ export function RitualFramework() {
 	];
 
 	return (
-		<section id="framework" className="py-28">
+		<section id="framework" className="py-20">
 			<div className="section">
 				<SectionIntro
 					title="Our Ritual Framework"
@@ -118,7 +118,7 @@ export function CaseSigils() {
 	];
 
 	return (
-		<section id="work" className="py-28">
+		<section id="work" className="py-20">
 			<div className="section">
 				<SectionIntro
 					title="Case Sigils"
@@ -177,7 +177,7 @@ export function Alliances() {
 	];
 
 	return (
-		<section id="alliances" className="py-24">
+		<section id="alliances" className="py-16">
 			<div className="section">
 				<SectionIntro
 					title="Alliances"
