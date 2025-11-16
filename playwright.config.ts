@@ -8,13 +8,13 @@ export default defineConfig({
 	testDir: "./e2e",
 
 	// Maximum time one test can run
-	timeout: 30 * 1000,
+	timeout: 20 * 1000, // Reduced from 30s to 20s
 
 	// Test execution settings
 	fullyParallel: true,
 	forbidOnly: !!process.env.CI,
-	retries: process.env.CI ? 2 : 0,
-	workers: process.env.CI ? 2 : undefined,
+	retries: process.env.CI ? 1 : 0, // Reduced from 2 to 1 retry
+	workers: process.env.CI ? 4 : undefined, // Increased from 2 to 4 workers
 
 	// Reporter configuration
 	reporter: process.env.CI
@@ -24,9 +24,12 @@ export default defineConfig({
 	// Shared settings for all projects
 	use: {
 		baseURL: process.env.PLAYWRIGHT_TEST_BASE_URL || "http://localhost:3000",
-		trace: "on-first-retry",
+		trace: "retain-on-failure", // Changed from on-first-retry to reduce overhead
 		screenshot: "only-on-failure",
-		video: "retain-on-failure",
+		video: "off", // Disabled video to speed up tests
+		// Optimize navigation waits
+		navigationTimeout: 15000, // Reduced from default 30s
+		actionTimeout: 10000, // Reduced from default 30s
 	},
 
 	// Configure projects for different browsers
