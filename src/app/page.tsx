@@ -3,7 +3,11 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { Suspense } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+// Optimized Framer Motion imports - tree-shakeable (Task 1.1.3)
+import { motion } from "framer-motion";
+import { useScroll } from "framer-motion";
+import { useTransform } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,30 +33,79 @@ import {
 import {
 	Header,
 	Footer,
-	AnimatedMetrics,
 	SigilDivider,
-	SectionIntro,
 	TypewriterText,
-	MysticalCard,
 	MysticalInput,
 	MysticalTextarea,
-	PortalImage,
-	CascadingList,
-	FloatingQuote,
-	ScrollReveal,
-	FloatingSocialIcon,
 	SuccessAnimation,
-	RitualFramework,
 	Skeleton,
-	CardSkeleton,
-	MetricsSkeleton,
-	EnhancedCTA,
-	CTAGroup,
-	CaseSigils,
-	Alliances,
-	InvocationCTA,
 	ErrorBoundary,
 } from "@/components";
+
+// Lazy load below-fold components for better performance (Task 1.1.2)
+const AnimatedMetrics = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.AnimatedMetrics })),
+);
+
+const SectionIntro = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.SectionIntro })),
+);
+
+const MysticalCard = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.MysticalCard })),
+);
+
+const PortalImage = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.PortalImage })),
+);
+
+const CascadingList = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.CascadingList })),
+);
+
+const FloatingQuote = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.FloatingQuote })),
+);
+
+const ScrollReveal = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.ScrollReveal })),
+);
+
+const FloatingSocialIcon = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.FloatingSocialIcon })),
+);
+
+const RitualFramework = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.RitualFramework })),
+);
+
+const CardSkeleton = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.CardSkeleton })),
+);
+
+const MetricsSkeleton = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.MetricsSkeleton })),
+);
+
+const EnhancedCTA = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.EnhancedCTA })),
+);
+
+const CTAGroup = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.CTAGroup })),
+);
+
+const CaseSigils = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.CaseSigils })),
+);
+
+const Alliances = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.Alliances })),
+);
+
+const InvocationCTA = dynamic(() =>
+	import("@/components").then((mod) => ({ default: mod.InvocationCTA })),
+);
 
 // Import security and keyboard navigation utilities
 import {
@@ -65,6 +118,8 @@ import { useFocusVisible } from "@/hooks/useKeyboardNavigation";
 
 // Import analytics and monitoring
 import { WebVitals } from "@/components/analytics/WebVitals";
+// Import image utilities for progressive loading (Task 1.1.4)
+import { generateBlurDataURL } from "@/lib/imageUtils";
 
 // Lazy load heavy animation components for better performance
 const EnergyGrid = dynamic(
@@ -1514,6 +1569,8 @@ function LazyImage({
 					width={width || 800}
 					height={height || 600}
 					loading={priority ? "eager" : "lazy"}
+					placeholder="blur"
+					blurDataURL={generateBlurDataURL(width || 800, height || 600)}
 					onLoad={() => setIsLoaded(true)}
 					className={`transition-opacity duration-500 ${
 						isLoaded ? "opacity-100" : "opacity-0"
