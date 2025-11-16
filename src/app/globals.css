@@ -217,10 +217,10 @@ body {
 		position: absolute;
 		inset: 0;
 		background: radial-gradient(
-				circle at 30% 20%,
-				var(--halo-brand),
-				transparent 70%
-			), radial-gradient(circle at 70% 80%, var(--halo-accent), transparent 70%);
+			circle at 30% 20%,
+			var(--halo-brand),
+			transparent 70%
+		);
 		z-index: -1;
 		filter: blur(100px);
 	}
