@@ -164,16 +164,14 @@ export default function Home() {
 		<>
 			{/* Web Vitals Monitoring */}
 			<WebVitals />
-
 			{/* Skip to main content link for keyboard navigation */}
 			<a href="#main-content" className="skip-link">
 				Skip to main content
 			</a>
-
 			<main
 				id="main-content"
 				ref={pageRef}
-				className="relative z-20 min-h-screen overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20 pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36"
+				className="relative z-20 overflow-x-hidden bg-[--color-bg] text-[--color-text] selection:bg-[--color-brand]/20"
 			>
 				{/* Ambient halos */}
 				<div
@@ -186,13 +184,6 @@ export default function Home() {
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 2, ease: "easeOut" }}
 						className="absolute top-[-25%] left-[-10%] h-[45rem] w-[45rem] rounded-full bg-[--halo-brand] blur-[120px]"
-					/>
-					<motion.div
-						style={{ y: haloShift }}
-						initial={{ opacity: 0, scale: 0.9 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ delay: 0.6, duration: 2 }}
-						className="absolute bottom-[-20%] right-[-10%] h-[50rem] w-[50rem] rounded-full bg-[--halo-accent] blur-[140px]"
 					/>
 				</div>
 
@@ -209,1036 +200,1036 @@ export default function Home() {
 				</div>
 
 				{/* Main Content */}
-				<main id="main-content">
-					{/* Hero */}
-					<section className="relative min-h-screen pt-16 overflow-hidden">
-						{/* Background Mystical Pattern - Subtle */}
-						<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-							<ErrorBoundary>
-								<Suspense fallback={null}>
-									<MysticalPattern />
-								</Suspense>
-							</ErrorBoundary>
-						</div>
+				{/* Hero */}
+				<section className="relative min-h-screen pt-16 overflow-hidden">
+					{/* Background Mystical Pattern - Subtle */}
+					<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
+						<ErrorBoundary>
+							<Suspense fallback={null}>
+								<MysticalPattern />
+							</Suspense>
+						</ErrorBoundary>
+					</div>
 
-						{/* Ethereal Spirit Orbs - Full Hero Background */}
-						<div className="absolute inset-0 overflow-hidden pointer-events-none">
-							<ErrorBoundary>
-								<Suspense fallback={null}>
-									<EtherealSpiritOrbs />
-								</Suspense>
-							</ErrorBoundary>
-						</div>
+					{/* Ethereal Spirit Orbs - Full Hero Background */}
+					<div className="absolute inset-0 overflow-hidden pointer-events-none">
+						<ErrorBoundary>
+							<Suspense fallback={null}>
+								<EtherealSpiritOrbs />
+							</Suspense>
+						</ErrorBoundary>
+					</div>
 
-						<div className="section relative z-10 min-h-screen flex items-center">
-							<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
-								{/* Left Column - Main Content */}
-								<motion.div
-									initial={{ opacity: 0, x: -40 }}
-									animate={{ opacity: 1, x: 0 }}
-									transition={{ duration: 1.2, ease: "easeOut" }}
-									className="lg:col-span-3 space-y-8"
-								>
-									{/* Brand Logo */}
-									<div className="flex items-center gap-3 mb-6">
-										<span className="text-4xl">🪄</span>
-										<span className="text-2xl font-semibold">
-											BlackMagickOps
-										</span>
+					<div className="section relative z-10 min-h-screen flex items-center">
+						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
+							{/* Left Column - Main Content */}
+							<motion.div
+								initial={{ opacity: 0, x: -40 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ duration: 1.2, ease: "easeOut" }}
+								className="lg:col-span-3 space-y-8"
+							>
+								{/* Brand Logo */}
+								<div className="flex items-center gap-3 mb-6">
+									<span className="text-2xl font-semibold">BlackMagickOps</span>
+								</div>{" "}
+								{/* Main Headline */}
+								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
+									<span className="text-[--color-text]">
+										Precision. Discipline.
+									</span>
+									<br />
+									<span className="text-[--color-brand]">Magic.</span>
+								</h1>
+								{/* Main Description */}
+								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
+									Engineering the invisible — we build{" "}
+									<strong className="font-semibold text-[--color-text]">
+										cloud-native platforms
+									</strong>{" "}
+									that move with reliability, efficiency, and intent.
+								</p>
+								{/* Primary CTAs */}
+								<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
+									<EnhancedCTA
+										href="#contact"
+										className="px-8 py-4 text-lg"
+										variant="primary"
+										analyticsId="hero-begin-ritual"
+										testVariant="A"
+									>
+										Begin the Ritual
+									</EnhancedCTA>
+									<EnhancedCTA
+										href="#disciplines"
+										className="px-8 py-4 text-lg"
+										variant="ghost"
+										analyticsId="hero-explore-capabilities"
+									>
+										Explore Capabilities
+									</EnhancedCTA>
+								</div>
+							</motion.div>
+
+							{/* Right Column - Supporting Content & Mystical Effects */}
+							<motion.div
+								initial={{ opacity: 0, x: 40 }}
+								animate={{ opacity: 1, x: 0 }}
+								transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+								className="lg:col-span-2 relative"
+							>
+								{/* Additional mystical elements for right column */}
+								<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+									<div className="absolute top-1/4 right-1/4 w-32 h-32">
+										<motion.div
+											className="w-full h-full rounded-full border border-[--color-accent]/30"
+											animate={{ rotate: 360, scale: [1, 1.1, 1] }}
+											transition={{
+												rotate: {
+													duration: 20,
+													repeat: Number.POSITIVE_INFINITY,
+													ease: "linear",
+												},
+												scale: {
+													duration: 4,
+													repeat: Number.POSITIVE_INFINITY,
+													ease: "easeInOut",
+												},
+											}}
+										/>
 									</div>
 
-									{/* Main Headline */}
-									<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
-										<span className="text-[--color-text]">
-											Precision. Discipline.
-										</span>
-										<br />
-										<span className="text-[--color-brand]">Magic.</span>
-									</h1>
-
-									{/* Main Description */}
-									<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-										Engineering the invisible — we build{" "}
-										<strong className="font-semibold text-[--color-text]">
-											cloud-native platforms
-										</strong>{" "}
-										that move with reliability, efficiency, and intent.
-									</p>
-
-									{/* Primary CTAs */}
-									<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
-										<EnhancedCTA
-											href="#contact"
-											className="px-8 py-4 text-lg"
-											variant="primary"
-											analyticsId="hero-begin-ritual"
-											testVariant="A"
-										>
-											Begin the Ritual
-										</EnhancedCTA>
-										<EnhancedCTA
-											href="#disciplines"
-											className="px-8 py-4 text-lg"
-											variant="ghost"
-											analyticsId="hero-explore-capabilities"
-										>
-											Explore Capabilities
-										</EnhancedCTA>
+									<div className="absolute bottom-1/3 left-1/4 w-24 h-24">
+										<motion.div
+											className="w-full h-full rounded-full border-2 border-[--color-brand]/20"
+											animate={{ rotate: -360, scale: [0.8, 1.2, 0.8] }}
+											transition={{
+												rotate: {
+													duration: 15,
+													repeat: Number.POSITIVE_INFINITY,
+													ease: "linear",
+												},
+												scale: {
+													duration: 6,
+													repeat: Number.POSITIVE_INFINITY,
+													ease: "easeInOut",
+												},
+											}}
+										/>
 									</div>
-								</motion.div>
+								</div>
 
-								{/* Right Column - Supporting Content & Mystical Effects */}
-								<motion.div
-									initial={{ opacity: 0, x: 40 }}
-									animate={{ opacity: 1, x: 0 }}
-									transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-									className="lg:col-span-2 relative"
-								>
-									{/* Additional mystical elements for right column */}
-									<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-										<div className="absolute top-1/4 right-1/4 w-32 h-32">
-											<motion.div
-												className="w-full h-full rounded-full border border-[--color-accent]/30"
-												animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-												transition={{
-													rotate: {
-														duration: 20,
-														repeat: Number.POSITIVE_INFINITY,
-														ease: "linear",
-													},
-													scale: {
-														duration: 4,
-														repeat: Number.POSITIVE_INFINITY,
-														ease: "easeInOut",
-													},
-												}}
-											/>
+								{/* Supporting Content Card */}
+								<div className="glass p-8 relative z-10 backdrop-blur-md">
+									<motion.div
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{ duration: 1, delay: 0.6 }}
+										className="space-y-6"
+									>
+										{/* Tagline */}
+										<h3 className="text-2xl font-semibold text-[--color-brand]">
+											Understand. Execute. Deliver.
+										</h3>
+
+										{/* Supporting Description */}
+										<p className="text-[--color-muted] leading-relaxed">
+											BlackMagickOps is your{" "}
+											<strong className="text-[--color-text]">
+												10x DevOps Engineer
+											</strong>{" "}
+											who can independently build, optimize, and secure your
+											entire platform infrastructure.
+										</p>
+
+										{/* Key Benefits */}
+										<div className="space-y-3">
+											{[
+												"Platform Engineering Excellence",
+												"Automated DevOps Pipelines",
+												"FinOps & Cost Optimization",
+											].map((benefit, i) => (
+												<motion.div
+													key={benefit}
+													initial={{ opacity: 0, x: 20 }}
+													animate={{ opacity: 1, x: 0 }}
+													transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
+													className="flex items-center gap-3"
+												>
+													<div className="w-2 h-2 rounded-full bg-[--color-accent]" />
+													<span className="text-sm text-[--color-text]">
+														{benefit}
+													</span>
+												</motion.div>
+											))}
 										</div>
 
-										<div className="absolute bottom-1/3 left-1/4 w-24 h-24">
-											<motion.div
-												className="w-full h-full rounded-full border-2 border-[--color-brand]/20"
-												animate={{ rotate: -360, scale: [0.8, 1.2, 0.8] }}
-												transition={{
-													rotate: {
-														duration: 15,
-														repeat: Number.POSITIVE_INFINITY,
-														ease: "linear",
-													},
-													scale: {
-														duration: 6,
-														repeat: Number.POSITIVE_INFINITY,
-														ease: "easeInOut",
-													},
-												}}
-											/>
-										</div>
-									</div>
-
-									{/* Supporting Content Card */}
-									<div className="glass p-8 relative z-10 backdrop-blur-md">
+										{/* Secondary CTA */}
 										<motion.div
 											initial={{ opacity: 0, y: 20 }}
 											animate={{ opacity: 1, y: 0 }}
-											transition={{ duration: 1, delay: 0.6 }}
-											className="space-y-6"
+											transition={{ duration: 0.8, delay: 1.2 }}
+											className="pt-4"
 										>
-											{/* Tagline */}
-											<h3 className="text-2xl font-semibold text-[--color-brand]">
-												Understand. Execute. Deliver.
-											</h3>
-
-											{/* Supporting Description */}
-											<p className="text-[--color-muted] leading-relaxed">
-												BlackMagickOps is your{" "}
-												<strong className="text-[--color-text]">
-													10x DevOps Engineer
-												</strong>{" "}
-												who can independently build, optimize, and secure your
-												entire platform infrastructure.
-											</p>
-
-											{/* Key Benefits */}
-											<div className="space-y-3">
-												{[
-													"Platform Engineering Excellence",
-													"Automated DevOps Pipelines",
-													"FinOps & Cost Optimization",
-												].map((benefit, i) => (
-													<motion.div
-														key={benefit}
-														initial={{ opacity: 0, x: 20 }}
-														animate={{ opacity: 1, x: 0 }}
-														transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
-														className="flex items-center gap-3"
-													>
-														<div className="w-2 h-2 rounded-full bg-[--color-accent]" />
-														<span className="text-sm text-[--color-text]">
-															{benefit}
-														</span>
-													</motion.div>
-												))}
-											</div>
-
-											{/* Secondary CTA */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.8, delay: 1.2 }}
-												className="pt-4"
+											<a
+												href="#contact"
+												className="inline-flex items-center gap-2 text-[--color-brand] hover:text-[--color-accent] transition-colors font-medium"
 											>
-												<a
-													href="#contact"
-													className="inline-flex items-center gap-2 text-[--color-brand] hover:text-[--color-accent] transition-colors font-medium"
-												>
-													Start a Project
-													<ArrowRight className="w-4 h-4" />
-												</a>
-											</motion.div>
+												Start a Project
+												<ArrowRight className="w-4 h-4" />
+											</a>
 										</motion.div>
-									</div>
-								</motion.div>
-							</div>
-						</div>
-					</section>
-
-					<SigilDivider variant="primary" />
-
-					{/* Animated Metrics */}
-					<AnimatedMetrics />
-
-					{/* Disciplines - Enhanced with Tabbed Interface */}
-					<section
-						id="disciplines"
-						className="py-28"
-						aria-labelledby="disciplines-heading"
-					>
-						<div className="section">
-							<SectionIntro
-								title="Core Disciplines"
-								subtitle="Each engagement blends infrastructure mastery, automation, and disciplined execution."
-								headingId="disciplines-heading"
-							/>
-							<div className="mt-16">
-								<TabbedInterface
-									tabs={[
-										{
-											label: "Platform Engineering",
-											icon: <Shield className="w-4 h-4 icon-pulse" />,
-											content: (
-												<div className="asymmetric-grid">
-													<div className="space-y-6">
-														<MysticalCard className="neomorphic">
-															<div className="flex items-center gap-4 mb-6">
-																<div className="text-5xl icon-float">🏗️</div>
-																<div>
-																	<h3 className="text-2xl font-semibold">
-																		Platform Engineering
-																	</h3>
-																	<p className="text-[--color-muted]">
-																		Developer platforms with golden paths and
-																		strong guardrails
-																	</p>
-																</div>
-															</div>
-															<CascadingList
-																items={[
-																	"Backstage IDP · Templates & golden paths",
-																	"Multi-tenant Kubernetes with OPA guardrails",
-																	"Observability-as-a-Product (SLOs, error budgets)",
-																]}
-																delay={0.1}
-															/>
-														</MysticalCard>
-													</div>
-													<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-														<h4 className="text-lg font-semibold mb-4">
-															Key Technologies
-														</h4>
-														<div className="grid grid-cols-2 gap-4">
-															{[
-																"Kubernetes",
-																"Backstage",
-																"OPA",
-																"Prometheus",
-															].map((tech, i) => (
-																<div
-																	key={tech}
-																	className="chip icon-hover text-center"
-																>
-																	{tech}
-																</div>
-															))}
-														</div>
-													</div>
-												</div>
-											),
-										},
-										{
-											label: "DevOps Acceleration",
-											icon: <Cog className="w-4 h-4 icon-rotate" />,
-											content: (
-												<div className="asymmetric-grid">
-													<div className="space-y-6">
-														<MysticalCard className="neomorphic">
-															<div className="flex items-center gap-4 mb-6">
-																<div className="text-5xl icon-pulse">⚙️</div>
-																<div>
-																	<h3 className="text-2xl font-semibold">
-																		DevOps Acceleration
-																	</h3>
-																	<p className="text-[--color-muted]">
-																		CI/CD at scale with supply chain security
-																	</p>
-																</div>
-															</div>
-															<CascadingList
-																items={[
-																	"Trunk-based, canary/blue-green, DORA focus",
-																	"SBOM, provenance, SLSA-aligned controls",
-																	"Dagger · GitHub Actions/GitLab CI",
-																]}
-																delay={0.1}
-															/>
-														</MysticalCard>
-													</div>
-													<div className="circuit-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-														<h4 className="text-lg font-semibold mb-4">
-															Deployment Strategies
-														</h4>
-														<div className="space-y-3">
-															{[
-																"Blue-Green",
-																"Canary",
-																"Rolling",
-																"Feature Flags",
-															].map((strategy, i) => (
-																<div
-																	key={strategy}
-																	className="flex items-center gap-3"
-																>
-																	<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
-																	<span>{strategy}</span>
-																</div>
-															))}
-														</div>
-													</div>
-												</div>
-											),
-										},
-										{
-											label: "Automation & FinOps",
-											icon: <Target className="w-4 h-4 icon-float" />,
-											content: (
-												<div className="asymmetric-grid">
-													<div className="space-y-6">
-														<MysticalCard className="neomorphic">
-															<div className="flex items-center gap-4 mb-6">
-																<div className="text-5xl icon-rotate">🜲</div>
-																<div>
-																	<h3 className="text-2xl font-semibold">
-																		Automation & FinOps
-																	</h3>
-																	<p className="text-[--color-muted]">
-																		Self-healing ops with cost control
-																	</p>
-																</div>
-															</div>
-															<CascadingList
-																items={[
-																	"Event-driven ops · KEDA · ChatOps",
-																	"Unified cost + reliability dashboards",
-																	"Rightsizing policies · budget alerts",
-																]}
-																delay={0.1}
-															/>
-														</MysticalCard>
-													</div>
-													<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
-														<h4 className="text-lg font-semibold mb-4">
-															Cost Optimization
-														</h4>
-														<div className="space-y-4">
-															<div className="flex justify-between items-center">
-																<span>Infrastructure Cost</span>
-																<span className="text-[--color-success]">
-																	-40%
-																</span>
-															</div>
-															<div className="flex justify-between items-center">
-																<span>Deployment Time</span>
-																<span className="text-[--color-success]">
-																	-75%
-																</span>
-															</div>
-															<div className="flex justify-between items-center">
-																<span>Manual Processes</span>
-																<span className="text-[--color-success]">
-																	-90%
-																</span>
-															</div>
-														</div>
-													</div>
-												</div>
-											),
-										},
-									]}
-								/>
-							</div>
-						</div>
-					</section>
-
-					<SigilDivider />
-
-					{/* Enhanced Ritual Framework with Timeline */}
-					<section
-						id="framework"
-						className="py-28"
-						aria-labelledby="framework-heading"
-					>
-						<div className="section">
-							<SectionIntro
-								title="Our Ritual Framework"
-								subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
-								headingId="framework-heading"
-							/>
-
-							<div className="mt-16 asymmetric-grid">
-								<div>
-									<ProcessTimeline
-										steps={[
-											{
-												title: "Discover",
-												description:
-													"Stakeholders, constraints, SLOs, current-state mapping.",
-												icon: <Eye className="w-6 h-6" />,
-											},
-											{
-												title: "Design",
-												description:
-													"Reference architecture, guardrails, golden paths.",
-												icon: <Code className="w-6 h-6" />,
-											},
-											{
-												title: "Automate",
-												description:
-													"IaC, pipelines, policies, runbooks, paved roads.",
-												icon: <Cog className="w-6 h-6" />,
-											},
-											{
-												title: "Optimize",
-												description: "SLOs, cost KPIs, continuous improvement.",
-												icon: <Target className="w-6 h-6" />,
-											},
-										]}
-									/>
+									</motion.div>
 								</div>
-
-								<div className="glass-premium p-8 rounded-2xl">
-									<h3 className="text-xl font-semibold mb-6">
-										Framework Benefits
-									</h3>
-									<div className="space-y-4">
-										{[
-											{
-												metric: "Deployment Velocity",
-												improvement: "10x faster",
-											},
-											{
-												metric: "Infrastructure Cost",
-												improvement: "40% reduction",
-											},
-											{
-												metric: "System Reliability",
-												improvement: "99.9% uptime",
-											},
-											{
-												metric: "Developer Experience",
-												improvement: "85% satisfaction",
-											},
-										].map((benefit, i) => (
-											<motion.div
-												key={benefit.metric}
-												initial={{ opacity: 0, x: 20 }}
-												whileInView={{ opacity: 1, x: 0 }}
-												transition={{ delay: i * 0.1 }}
-												className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/50"
-											>
-												<span className="text-[--color-muted]">
-													{benefit.metric}
-												</span>
-												<span className="text-[--color-brand] font-semibold">
-													{benefit.improvement}
-												</span>
-											</motion.div>
-										))}
-									</div>
-								</div>
-							</div>
+							</motion.div>
 						</div>
-					</section>
+					</div>
+				</section>
 
-					<SigilDivider />
+				<SigilDivider variant="primary" />
 
-					{/* Philosophy */}
-					<section
-						id="philosophy"
-						className="py-32"
-						aria-labelledby="philosophy-heading"
-					>
-						<motion.div
-							initial={{ opacity: 0 }}
-							whileInView={{ opacity: 1 }}
-							viewport={{ once: true, amount: 0.4 }}
-							transition={{ duration: 1.4 }}
-							className="section text-center max-w-3xl mx-auto"
-						>
-							<h2
-								id="philosophy-heading"
-								className="text-4xl md:text-5xl font-semibold mb-8"
-							>
-								Our Philosophy
-							</h2>
-							<p className="text-xl leading-relaxed text-[--color-muted]">
-								We treat engineering as a sacred craft — where precision is
-								devotion, and automation is ritual. Our mission: to summon order
-								from chaos through deliberate design and disciplined execution.
-							</p>
-						</motion.div>
-					</section>
+				{/* Animated Metrics */}
+				<AnimatedMetrics />
 
-					<SigilDivider />
-
-					{/* Case Sigils */}
-					<CaseSigils />
-
-					{/* Alliances */}
-					<Alliances />
-
-					<SigilDivider />
-
-					{/* Testimonials */}
-					<section id="testimonials" className="py-32">
-						<div className="section">
-							<SectionIntro
-								title="Client Testimonials"
-								subtitle="What our clients say about the mystical transformation of their infrastructure."
-							/>
-
-							<div className="mt-16">
-								<TestimonialCarousel
-									testimonials={[
-										{
-											quote:
-												"BlackMagickOps transformed our deployment pipeline from chaos to precision. Their platform engineering approach reduced our time-to-market by 70% while improving reliability dramatically.",
-											author: "Sarah Chen",
-											role: "VP of Engineering",
-											company: "TechFlow Systems",
-										},
-										{
-											quote:
-												"The mystical precision they brought to our infrastructure was remarkable. We went from manual deployments to fully automated CI/CD with comprehensive monitoring in just 12 weeks.",
-											author: "Marcus Rodriguez",
-											role: "CTO",
-											company: "CloudNative Solutions",
-										},
-										{
-											quote:
-												"Their FinOps integration saved us 40% on cloud costs while doubling our deployment frequency. The golden paths they created made our developers incredibly productive.",
-											author: "Elena Kowalski",
-											role: "DevOps Director",
-											company: "ScaleUp Ventures",
-										},
-										{
-											quote:
-												"The Backstage IDP implementation was game-changing. Our development teams now have self-service capabilities with proper guardrails. Security and compliance are baked in.",
-											author: "David Kim",
-											role: "Platform Lead",
-											company: "Enterprise Corp",
-										},
-										{
-											quote:
-												"BlackMagickOps doesn't just implement tools, they create a culture of excellence. The observability and SLO framework they built transformed how we think about reliability.",
-											author: "Priya Patel",
-											role: "Engineering Manager",
-											company: "Innovation Labs",
-										},
-									]}
-								/>
-							</div>
-						</div>
-					</section>
-
-					<SigilDivider />
-
-					{/* FAQ Section */}
-					<section id="faq" className="py-32">
-						<div className="section">
-							<SectionIntro
-								title="Frequently Asked Questions"
-								subtitle="Everything you need to know about our mystical DevOps practices."
-							/>
-
-							<div className="mt-16 max-w-4xl mx-auto">
-								<AccordionSection
-									items={[
-										{
-											title:
-												"What makes BlackMagickOps different from other DevOps consultancies?",
-											content: (
-												<div className="space-y-4">
-													<p>
-														We combine mystical precision with modern
-														engineering practices. Our approach integrates
-														platform engineering, automation, and FinOps into a
-														unified ritual framework that delivers measurable
-														results.
-													</p>
-													<ul className="space-y-2 text-[--color-muted]">
-														<li>
-															• Mystical framework with proven methodologies
-														</li>
-														<li>
-															• Focus on developer experience and platform
-															engineering
-														</li>
-														<li>
-															• Integration of cost optimization from day one
-														</li>
-														<li>
-															• Comprehensive automation and self-healing
-															systems
-														</li>
-													</ul>
+				{/* Disciplines - Enhanced with Tabbed Interface */}
+				<section
+					id="disciplines"
+					className="py-28"
+					aria-labelledby="disciplines-heading"
+				>
+					<div className="section">
+						<SectionIntro
+							title="Core Disciplines"
+							subtitle="Each engagement blends infrastructure mastery, automation, and disciplined execution."
+							headingId="disciplines-heading"
+						/>
+						<div className="mt-16">
+							<TabbedInterface
+								tabs={[
+									{
+										label: "Platform Engineering",
+										icon: <Shield className="w-4 h-4 icon-pulse" />,
+										content: (
+											<div className="asymmetric-grid">
+												<div className="space-y-6">
+													<MysticalCard className="neomorphic">
+														<div className="flex items-center gap-4 mb-6">
+															<div className="text-5xl icon-float">🏗️</div>
+															<div>
+																<h3 className="text-2xl font-semibold">
+																	Platform Engineering
+																</h3>
+																<p className="text-[--color-muted]">
+																	Developer platforms with golden paths and
+																	strong guardrails
+																</p>
+															</div>
+														</div>
+														<CascadingList
+															items={[
+																"Backstage IDP · Templates & golden paths",
+																"Multi-tenant Kubernetes with OPA guardrails",
+																"Observability-as-a-Product (SLOs, error budgets)",
+															]}
+															delay={0.1}
+														/>
+													</MysticalCard>
 												</div>
-											),
-										},
-										{
-											title: "How long does a typical engagement take?",
-											content: (
-												<div className="space-y-4">
-													<p>
-														Our ritual framework typically spans 12-16 weeks,
-														broken into four phases:
-													</p>
-													<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-														<div className="p-4 rounded-lg bg-[--color-surface]">
-															<h5 className="font-semibold text-[--color-brand]">
-																Discover (2-3 weeks)
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Assessment and planning
-															</p>
-														</div>
-														<div className="p-4 rounded-lg bg-[--color-surface]">
-															<h5 className="font-semibold text-[--color-brand]">
-																Design (3-4 weeks)
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Architecture and strategy
-															</p>
-														</div>
-														<div className="p-4 rounded-lg bg-[--color-surface]">
-															<h5 className="font-semibold text-[--color-brand]">
-																Automate (6-8 weeks)
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Implementation and deployment
-															</p>
-														</div>
-														<div className="p-4 rounded-lg bg-[--color-surface]">
-															<h5 className="font-semibold text-[--color-brand]">
-																Optimize (1-2 weeks)
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Monitoring and refinement
-															</p>
-														</div>
-													</div>
-												</div>
-											),
-										},
-										{
-											title: "What technologies do you specialize in?",
-											content: (
-												<div className="space-y-4">
-													<p>
-														We work with cutting-edge cloud-native technologies
-														and proven enterprise solutions:
-													</p>
-													<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
+													<h4 className="text-lg font-semibold mb-4">
+														Key Technologies
+													</h4>
+													<div className="grid grid-cols-2 gap-4">
 														{[
 															"Kubernetes",
 															"Backstage",
-															"Terraform",
-															"GitHub Actions",
-															"Prometheus",
-															"Grafana",
-															"ArgoCD",
 															"OPA",
-															"KEDA",
-															"Istio",
-														].map((tech) => (
+															"Prometheus",
+														].map((tech, i) => (
 															<div
 																key={tech}
-																className="chip text-center bg-[--color-brand]/10 text-[--color-brand]"
+																className="chip icon-hover text-center"
 															>
 																{tech}
 															</div>
 														))}
 													</div>
 												</div>
-											),
-										},
-										{
-											title:
-												"Do you provide ongoing support after implementation?",
-											content: (
-												<div className="space-y-4">
-													<p>
-														Yes, we offer multiple support models to ensure your
-														mystical infrastructure continues to evolve:
-													</p>
-													<ul className="space-y-3">
-														<li className="flex items-start gap-3">
-															<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+											</div>
+										),
+									},
+									{
+										label: "DevOps Acceleration",
+										icon: <Cog className="w-4 h-4 icon-rotate" />,
+										content: (
+											<div className="asymmetric-grid">
+												<div className="space-y-6">
+													<MysticalCard className="neomorphic">
+														<div className="flex items-center gap-4 mb-6">
+															<div className="text-5xl icon-pulse">⚙️</div>
 															<div>
-																<strong>Managed Services:</strong> Full platform
-																management and 24/7 monitoring
+																<h3 className="text-2xl font-semibold">
+																	DevOps Acceleration
+																</h3>
+																<p className="text-[--color-muted]">
+																	CI/CD at scale with supply chain security
+																</p>
 															</div>
-														</li>
-														<li className="flex items-start gap-3">
-															<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-															<div>
-																<strong>Advisory Retainer:</strong> Monthly
-																strategy sessions and architecture reviews
-															</div>
-														</li>
-														<li className="flex items-start gap-3">
-															<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-															<div>
-																<strong>On-Demand Support:</strong> Access to
-																our experts for troubleshooting and optimization
-															</div>
-														</li>
-													</ul>
+														</div>
+														<CascadingList
+															items={[
+																"Trunk-based, canary/blue-green, DORA focus",
+																"SBOM, provenance, SLSA-aligned controls",
+																"Dagger · GitHub Actions/GitLab CI",
+															]}
+															delay={0.1}
+														/>
+													</MysticalCard>
 												</div>
-											),
-										},
-										{
-											title: "What are your pricing models?",
-											content: (
-												<div className="space-y-4">
-													<p>
-														We offer flexible engagement models tailored to your
-														needs and budget:
-													</p>
-													<div className="space-y-4 mt-4">
-														<div className="p-4 rounded-lg border border-[--color-border]">
-															<h5 className="font-semibold text-[--color-accent]">
-																Project-Based
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Fixed scope, timeline, and budget for defined
-																deliverables
-															</p>
+												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
+													<h4 className="text-lg font-semibold mb-4">
+														Deployment Strategies
+													</h4>
+													<div className="space-y-3">
+														{[
+															"Blue-Green",
+															"Canary",
+															"Rolling",
+															"Feature Flags",
+														].map((strategy, i) => (
+															<div
+																key={strategy}
+																className="flex items-center gap-3"
+															>
+																<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
+																<span>{strategy}</span>
+															</div>
+														))}
+													</div>
+												</div>
+											</div>
+										),
+									},
+									{
+										label: "Automation & FinOps",
+										icon: <Target className="w-4 h-4 icon-float" />,
+										content: (
+											<div className="asymmetric-grid">
+												<div className="space-y-6">
+													<MysticalCard className="neomorphic">
+														<div className="flex items-center gap-4 mb-6">
+															<div className="text-5xl icon-rotate">🜲</div>
+															<div>
+																<h3 className="text-2xl font-semibold">
+																	Automation & FinOps
+																</h3>
+																<p className="text-[--color-muted]">
+																	Self-healing ops with cost control
+																</p>
+															</div>
 														</div>
-														<div className="p-4 rounded-lg border border-[--color-border]">
-															<h5 className="font-semibold text-[--color-accent]">
-																Time & Materials
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Flexible hourly or daily rates for ongoing work
-															</p>
+														<CascadingList
+															items={[
+																"Event-driven ops · KEDA · ChatOps",
+																"Unified cost + reliability dashboards",
+																"Rightsizing policies · budget alerts",
+															]}
+															delay={0.1}
+														/>
+													</MysticalCard>
+												</div>
+												<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
+													<h4 className="text-lg font-semibold mb-4">
+														Cost Optimization
+													</h4>
+													<div className="space-y-4">
+														<div className="flex justify-between items-center">
+															<span>Infrastructure Cost</span>
+															<span className="text-[--color-success]">
+																-40%
+															</span>
 														</div>
-														<div className="p-4 rounded-lg border border-[--color-border]">
-															<h5 className="font-semibold text-[--color-accent]">
-																Value-Based
-															</h5>
-															<p className="text-sm text-[--color-muted] mt-1">
-																Pricing tied to measurable business outcomes and
-																cost savings
-															</p>
+														<div className="flex justify-between items-center">
+															<span>Deployment Time</span>
+															<span className="text-[--color-success]">
+																-75%
+															</span>
+														</div>
+														<div className="flex justify-between items-center">
+															<span>Manual Processes</span>
+															<span className="text-[--color-success]">
+																-90%
+															</span>
 														</div>
 													</div>
 												</div>
-											),
+											</div>
+										),
+									},
+								]}
+							/>
+						</div>
+					</div>
+				</section>
+
+				<SigilDivider />
+
+				{/* Enhanced Ritual Framework with Timeline */}
+				<section
+					id="framework"
+					className="py-28"
+					aria-labelledby="framework-heading"
+				>
+					<div className="section">
+						<SectionIntro
+							title="Our Ritual Framework"
+							subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
+							headingId="framework-heading"
+						/>
+
+						<div className="mt-16 asymmetric-grid">
+							<div>
+								<ProcessTimeline
+									steps={[
+										{
+											title: "Discover",
+											description:
+												"Stakeholders, constraints, SLOs, current-state mapping.",
+											icon: <Eye className="w-6 h-6" />,
+										},
+										{
+											title: "Design",
+											description:
+												"Reference architecture, guardrails, golden paths.",
+											icon: <Code className="w-6 h-6" />,
+										},
+										{
+											title: "Automate",
+											description:
+												"IaC, pipelines, policies, runbooks, paved roads.",
+											icon: <Cog className="w-6 h-6" />,
+										},
+										{
+											title: "Optimize",
+											description: "SLOs, cost KPIs, continuous improvement.",
+											icon: <Target className="w-6 h-6" />,
 										},
 									]}
 								/>
 							</div>
+
+							<div className="glass-premium p-8 rounded-2xl">
+								<h3 className="text-xl font-semibold mb-6">
+									Framework Benefits
+								</h3>
+								<div className="space-y-4">
+									{[
+										{
+											metric: "Deployment Velocity",
+											improvement: "10x faster",
+										},
+										{
+											metric: "Infrastructure Cost",
+											improvement: "40% reduction",
+										},
+										{
+											metric: "System Reliability",
+											improvement: "99.9% uptime",
+										},
+										{
+											metric: "Developer Experience",
+											improvement: "85% satisfaction",
+										},
+									].map((benefit, i) => (
+										<motion.div
+											key={benefit.metric}
+											initial={{ opacity: 0, x: 20 }}
+											whileInView={{ opacity: 1, x: 0 }}
+											transition={{ delay: i * 0.1 }}
+											className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/50"
+										>
+											<span className="text-[--color-muted]">
+												{benefit.metric}
+											</span>
+											<span className="text-[--color-brand] font-semibold">
+												{benefit.improvement}
+											</span>
+										</motion.div>
+									))}
+								</div>
+							</div>
 						</div>
-					</section>
-
-					<SigilDivider />
-
-					{/* Contact */}
-					<section
-						id="contact"
-						className="py-32"
-						aria-labelledby="contact-heading"
-					>
-						<ScrollReveal
-							direction="bottom"
-							className="section max-w-4xl mx-auto"
-						>
-							<MysticalCard className="p-10 md:p-14">
-								<div className="text-center mb-10">
-									<TypewriterText text="Initiate Contact" delay={500} />
-									<motion.h2
-										id="contact-heading"
-										className="text-4xl font-semibold mb-6"
-										initial={{ opacity: 0 }}
-										whileInView={{ opacity: 1 }}
-										viewport={{ once: true }}
-										transition={{ delay: 2, duration: 0.8 }}
-									/>
-									<ScrollReveal direction="top" delay={0.3}>
-										<p className="mx-auto max-w-md text-[--color-muted]">
-											Describe your objective — we'll respond with a precision
-											plan and a path to measurable wins.
-										</p>
-									</ScrollReveal>
-								</div>
-
-								<div className="mx-auto max-w-2xl">
-									<MysticalContactForm />
-								</div>
-							</MysticalCard>
-						</ScrollReveal>
-					</section>
-
-					{/* Invocation CTA */}
-					<InvocationCTA />
-				</main>
-
-				{/* Footer */}
-				<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-16">
-					<div className="section">
-						<motion.div
-							initial={{ opacity: 0, y: 20 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0.3 }}
-							transition={{ duration: 0.8 }}
-							className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12"
-						>
-							{/* Brand Section */}
-							<div className="lg:col-span-2">
-								<div className="flex items-center gap-2 text-xl mb-6">
-									<span className="text-2xl">🪄</span>
-									<span className="font-semibold">BlackMagickOps</span>
-								</div>
-								<p className="text-[--color-muted] mb-6 max-w-md">
-									DevOps • Platform Engineering • Automation
-								</p>
-								<p className="text-sm text-[--color-muted] mb-6">
-									Precision. Discipline. Magic. Transform your infrastructure
-									with mystical DevOps practices.
-								</p>
-
-								{/* Social Links */}
-								<div className="flex items-center gap-4">
-									<a
-										href="https://github.com/blackmagickops"
-										className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-										aria-label="GitHub"
-									>
-										<Globe className="w-4 h-4" />
-									</a>
-									<a
-										href="https://linkedin.com/company/blackmagickops"
-										className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-										aria-label="LinkedIn"
-									>
-										<Globe className="w-4 h-4" />
-									</a>
-									<a
-										href="https://twitter.com/blackmagickops"
-										className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
-										aria-label="Twitter"
-									>
-										<Globe className="w-4 h-4" />
-									</a>
-								</div>
-							</div>
-
-							{/* Services */}
-							<div>
-								<h4 className="font-semibold text-[--color-text] mb-4">
-									Services
-								</h4>
-								<ul className="space-y-3 text-sm">
-									<li>
-										<a
-											href="#disciplines"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Platform Engineering
-										</a>
-									</li>
-									<li>
-										<a
-											href="#disciplines"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											DevOps Acceleration
-										</a>
-									</li>
-									<li>
-										<a
-											href="#disciplines"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Automation & FinOps
-										</a>
-									</li>
-									<li>
-										<a
-											href="#framework"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Consulting
-										</a>
-									</li>
-								</ul>
-							</div>
-
-							{/* Resources */}
-							<div>
-								<h4 className="font-semibold text-[--color-text] mb-4">
-									Resources
-								</h4>
-								<ul className="space-y-3 text-sm">
-									<li>
-										<a
-											href="#work"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Case Studies
-										</a>
-									</li>
-									<li>
-										<a
-											href="#testimonials"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Testimonials
-										</a>
-									</li>
-									<li>
-										<a
-											href="#faq"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											FAQ
-										</a>
-									</li>
-									<li>
-										<a
-											href="/blog"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Blog
-										</a>
-									</li>
-								</ul>
-							</div>
-
-							{/* Company */}
-							<div>
-								<h4 className="font-semibold text-[--color-text] mb-4">
-									Company
-								</h4>
-								<ul className="space-y-3 text-sm">
-									<li>
-										<a
-											href="#philosophy"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											About
-										</a>
-									</li>
-									<li>
-										<a
-											href="#contact"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Contact
-										</a>
-									</li>
-									<li>
-										<a
-											href="/careers"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Careers
-										</a>
-									</li>
-									<li>
-										<a
-											href="/partners"
-											className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
-										>
-											Partners
-										</a>
-									</li>
-								</ul>
-							</div>
-						</motion.div>
-
-						{/* Bottom Section */}
-						<motion.div
-							initial={{ opacity: 0 }}
-							whileInView={{ opacity: 1 }}
-							viewport={{ once: true, amount: 0.3 }}
-							transition={{ duration: 0.8, delay: 0.2 }}
-							className="mt-12 pt-8 border-t border-[--color-border]/60 flex flex-col md:flex-row justify-between items-center gap-4"
-						>
-							<div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-[--color-muted]">
-								<p>
-									© {new Date().getFullYear()} BlackMagickOps. All rights
-									reserved.
-								</p>
-								<div className="flex items-center gap-6">
-									<a
-										href="/privacy"
-										className="hover:text-[--color-brand] transition-colors"
-									>
-										Privacy Policy
-									</a>
-									<a
-										href="/terms"
-										className="hover:text-[--color-brand] transition-colors"
-									>
-										Terms of Service
-									</a>
-									<a
-										href="/cookies"
-										className="hover:text-[--color-brand] transition-colors"
-									>
-										Cookie Policy
-									</a>
-								</div>
-							</div>
-
-							<button
-								onClick={() => {
-									if (typeof window !== "undefined") {
-										window.scrollTo({ top: 0, behavior: "smooth" });
-									}
-								}}
-								className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
-							>
-								<span>Back to top</span>
-								<ArrowRight className="w-4 h-4 -rotate-90" />
-							</button>
-						</motion.div>
 					</div>
-				</footer>
+				</section>
 
-				{/* Performance Monitor (Development only) */}
-				<PerformanceMonitor />
+				<SigilDivider />
+
+				{/* Philosophy */}
+				<section
+					id="philosophy"
+					className="py-32"
+					aria-labelledby="philosophy-heading"
+				>
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true, amount: 0.4 }}
+						transition={{ duration: 1.4 }}
+						className="section text-center max-w-3xl mx-auto"
+					>
+						<h2
+							id="philosophy-heading"
+							className="text-4xl md:text-5xl font-semibold mb-8"
+						>
+							Our Philosophy
+						</h2>
+						<p className="text-xl leading-relaxed text-[--color-muted]">
+							We treat engineering as a sacred craft — where precision is
+							devotion, and automation is ritual. Our mission: to summon order
+							from chaos through deliberate design and disciplined execution.
+						</p>
+					</motion.div>
+				</section>
+
+				<SigilDivider />
+
+				{/* Case Sigils */}
+				<CaseSigils />
+
+				{/* Alliances */}
+				<Alliances />
+
+				<SigilDivider />
+
+				{/* Testimonials */}
+				<section id="testimonials" className="py-20">
+					<div className="section">
+						<SectionIntro
+							title="Client Testimonials"
+							subtitle="What our clients say about the mystical transformation of their infrastructure."
+						/>
+
+						<div className="mt-16">
+							<TestimonialCarousel
+								testimonials={[
+									{
+										quote:
+											"BlackMagickOps transformed our deployment pipeline from chaos to precision. Their platform engineering approach reduced our time-to-market by 70% while improving reliability dramatically.",
+										author: "Sarah Chen",
+										role: "VP of Engineering",
+										company: "TechFlow Systems",
+									},
+									{
+										quote:
+											"The mystical precision they brought to our infrastructure was remarkable. We went from manual deployments to fully automated CI/CD with comprehensive monitoring in just 12 weeks.",
+										author: "Marcus Rodriguez",
+										role: "CTO",
+										company: "CloudNative Solutions",
+									},
+									{
+										quote:
+											"Their FinOps integration saved us 40% on cloud costs while doubling our deployment frequency. The golden paths they created made our developers incredibly productive.",
+										author: "Elena Kowalski",
+										role: "DevOps Director",
+										company: "ScaleUp Ventures",
+									},
+									{
+										quote:
+											"The Backstage IDP implementation was game-changing. Our development teams now have self-service capabilities with proper guardrails. Security and compliance are baked in.",
+										author: "David Kim",
+										role: "Platform Lead",
+										company: "Enterprise Corp",
+									},
+									{
+										quote:
+											"BlackMagickOps doesn't just implement tools, they create a culture of excellence. The observability and SLO framework they built transformed how we think about reliability.",
+										author: "Priya Patel",
+										role: "Engineering Manager",
+										company: "Innovation Labs",
+									},
+								]}
+							/>
+						</div>
+					</div>
+				</section>
+
+				<SigilDivider />
+
+				{/* FAQ Section */}
+				<section id="faq" className="py-20">
+					<div className="section">
+						<SectionIntro
+							title="Frequently Asked Questions"
+							subtitle="Everything you need to know about our mystical DevOps practices."
+						/>
+
+						<div className="mt-16 max-w-4xl mx-auto">
+							<AccordionSection
+								items={[
+									{
+										title:
+											"What makes BlackMagickOps different from other DevOps consultancies?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													We combine mystical precision with modern engineering
+													practices. Our approach integrates platform
+													engineering, automation, and FinOps into a unified
+													ritual framework that delivers measurable results.
+												</p>
+												<ul className="space-y-2 text-[--color-muted]">
+													<li>
+														• Mystical framework with proven methodologies
+													</li>
+													<li>
+														• Focus on developer experience and platform
+														engineering
+													</li>
+													<li>
+														• Integration of cost optimization from day one
+													</li>
+													<li>
+														• Comprehensive automation and self-healing systems
+													</li>
+												</ul>
+											</div>
+										),
+									},
+									{
+										title: "How long does a typical engagement take?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													Our ritual framework typically spans 12-16 weeks,
+													broken into four phases:
+												</p>
+												<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+													<div className="p-4 rounded-lg bg-[--color-surface]">
+														<h5 className="font-semibold text-[--color-brand]">
+															Discover (2-3 weeks)
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Assessment and planning
+														</p>
+													</div>
+													<div className="p-4 rounded-lg bg-[--color-surface]">
+														<h5 className="font-semibold text-[--color-brand]">
+															Design (3-4 weeks)
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Architecture and strategy
+														</p>
+													</div>
+													<div className="p-4 rounded-lg bg-[--color-surface]">
+														<h5 className="font-semibold text-[--color-brand]">
+															Automate (6-8 weeks)
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Implementation and deployment
+														</p>
+													</div>
+													<div className="p-4 rounded-lg bg-[--color-surface]">
+														<h5 className="font-semibold text-[--color-brand]">
+															Optimize (1-2 weeks)
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Monitoring and refinement
+														</p>
+													</div>
+												</div>
+											</div>
+										),
+									},
+									{
+										title: "What technologies do you specialize in?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													We work with cutting-edge cloud-native technologies
+													and proven enterprise solutions:
+												</p>
+												<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+													{[
+														"Kubernetes",
+														"Backstage",
+														"Terraform",
+														"GitHub Actions",
+														"Prometheus",
+														"Grafana",
+														"ArgoCD",
+														"OPA",
+														"KEDA",
+														"Istio",
+													].map((tech) => (
+														<div
+															key={tech}
+															className="chip text-center bg-[--color-brand]/10 text-[--color-brand]"
+														>
+															{tech}
+														</div>
+													))}
+												</div>
+											</div>
+										),
+									},
+									{
+										title:
+											"Do you provide ongoing support after implementation?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													Yes, we offer multiple support models to ensure your
+													mystical infrastructure continues to evolve:
+												</p>
+												<ul className="space-y-3">
+													<li className="flex items-start gap-3">
+														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+														<div>
+															<strong>Managed Services:</strong> Full platform
+															management and 24/7 monitoring
+														</div>
+													</li>
+													<li className="flex items-start gap-3">
+														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+														<div>
+															<strong>Advisory Retainer:</strong> Monthly
+															strategy sessions and architecture reviews
+														</div>
+													</li>
+													<li className="flex items-start gap-3">
+														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+														<div>
+															<strong>On-Demand Support:</strong> Access to our
+															experts for troubleshooting and optimization
+														</div>
+													</li>
+												</ul>
+											</div>
+										),
+									},
+									{
+										title: "What are your pricing models?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													We offer flexible engagement models tailored to your
+													needs and budget:
+												</p>
+												<div className="space-y-4 mt-4">
+													<div className="p-4 rounded-lg border border-[--color-border]">
+														<h5 className="font-semibold text-[--color-accent]">
+															Project-Based
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Fixed scope, timeline, and budget for defined
+															deliverables
+														</p>
+													</div>
+													<div className="p-4 rounded-lg border border-[--color-border]">
+														<h5 className="font-semibold text-[--color-accent]">
+															Time & Materials
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Flexible hourly or daily rates for ongoing work
+														</p>
+													</div>
+													<div className="p-4 rounded-lg border border-[--color-border]">
+														<h5 className="font-semibold text-[--color-accent]">
+															Value-Based
+														</h5>
+														<p className="text-sm text-[--color-muted] mt-1">
+															Pricing tied to measurable business outcomes and
+															cost savings
+														</p>
+													</div>
+												</div>
+											</div>
+										),
+									},
+								]}
+							/>
+						</div>
+					</div>
+				</section>
+
+				<SigilDivider />
+
+				{/* Contact */}
+				<section
+					id="contact"
+					className="py-20"
+					aria-labelledby="contact-heading"
+				>
+					<ScrollReveal
+						direction="bottom"
+						className="section max-w-4xl mx-auto"
+					>
+						<MysticalCard className="p-10 md:p-14">
+							<div className="text-center mb-10">
+								<TypewriterText text="Initiate Contact" delay={500} />
+								<motion.h2
+									id="contact-heading"
+									className="text-4xl font-semibold mb-6"
+									initial={{ opacity: 0 }}
+									whileInView={{ opacity: 1 }}
+									viewport={{ once: true }}
+									transition={{ delay: 2, duration: 0.8 }}
+								/>
+								<ScrollReveal direction="top" delay={0.3}>
+									<p className="mx-auto max-w-md text-[--color-muted]">
+										Describe your objective — we'll respond with a precision
+										plan and a path to measurable wins.
+									</p>
+								</ScrollReveal>
+							</div>
+
+							<div className="mx-auto max-w-2xl">
+								<MysticalContactForm />
+							</div>
+						</MysticalCard>
+					</ScrollReveal>
+				</section>
+
+				{/* Invocation CTA */}
+				<InvocationCTA />
 			</main>
+			{/* Footer */}
+			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-12">
+				<div className="section">
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true, amount: 0.3 }}
+						transition={{ duration: 0.8 }}
+						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12"
+					>
+						{/* Brand Section */}
+						<div className="lg:col-span-2">
+							<div className="flex items-center gap-2 text-xl mb-6">
+								<span className="font-semibold">BlackMagickOps</span>
+							</div>
+							<p className="text-[--color-muted] mb-6 max-w-md">
+								DevOps • Platform Engineering • Automation
+							</p>
+							<p className="text-sm text-[--color-muted] mb-6">
+								Precision. Discipline. Magic. Transform your infrastructure with
+								mystical DevOps practices.
+							</p>
+
+							{/* Social Links */}
+							<div className="flex items-center gap-4">
+								<a
+									href="https://github.com/blackmagickops"
+									className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
+									aria-label="GitHub"
+								>
+									<Globe className="w-4 h-4" />
+								</a>
+								<a
+									href="https://linkedin.com/company/blackmagickops"
+									className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
+									aria-label="LinkedIn"
+								>
+									<Globe className="w-4 h-4" />
+								</a>
+								<a
+									href="https://twitter.com/blackmagickops"
+									className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors"
+									aria-label="Twitter"
+								>
+									<Globe className="w-4 h-4" />
+								</a>
+							</div>
+						</div>
+
+						{/* Services */}
+						<div>
+							<h4 className="font-semibold text-[--color-text] mb-4">
+								Services
+							</h4>
+							<ul className="space-y-3 text-sm">
+								<li>
+									<a
+										href="#disciplines"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Platform Engineering
+									</a>
+								</li>
+								<li>
+									<a
+										href="#disciplines"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										DevOps Acceleration
+									</a>
+								</li>
+								<li>
+									<a
+										href="#disciplines"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Automation & FinOps
+									</a>
+								</li>
+								<li>
+									<a
+										href="#framework"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Consulting
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						{/* Resources */}
+						<div>
+							<h4 className="font-semibold text-[--color-text] mb-4">
+								Resources
+							</h4>
+							<ul className="space-y-3 text-sm">
+								<li>
+									<a
+										href="#work"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Case Studies
+									</a>
+								</li>
+								<li>
+									<a
+										href="#testimonials"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Testimonials
+									</a>
+								</li>
+								<li>
+									<a
+										href="#faq"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										FAQ
+									</a>
+								</li>
+								<li>
+									<a
+										href="/blog"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Blog
+									</a>
+								</li>
+							</ul>
+						</div>
+
+						{/* Company */}
+						<div>
+							<h4 className="font-semibold text-[--color-text] mb-4">
+								Company
+							</h4>
+							<ul className="space-y-3 text-sm">
+								<li>
+									<a
+										href="#philosophy"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										About
+									</a>
+								</li>
+								<li>
+									<a
+										href="#contact"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Contact
+									</a>
+								</li>
+								<li>
+									<a
+										href="/careers"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Careers
+									</a>
+								</li>
+								<li>
+									<a
+										href="/partners"
+										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
+									>
+										Partners
+									</a>
+								</li>
+							</ul>
+						</div>
+					</motion.div>
+
+					{/* Bottom Section */}
+					<motion.div
+						initial={{ opacity: 0 }}
+						whileInView={{ opacity: 1 }}
+						viewport={{ once: true, amount: 0.3 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="mt-12 pt-8 border-t border-[--color-border]/60 flex flex-col md:flex-row justify-between items-center gap-4"
+					>
+						<div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-sm text-[--color-muted]">
+							<p>
+								© {new Date().getFullYear()} BlackMagickOps. All rights
+								reserved.
+							</p>
+							<div className="flex items-center gap-6">
+								<a
+									href="/privacy"
+									className="hover:text-[--color-brand] transition-colors"
+								>
+									Privacy Policy
+								</a>
+								<a
+									href="/terms"
+									className="hover:text-[--color-brand] transition-colors"
+								>
+									Terms of Service
+								</a>
+								<a
+									href="/cookies"
+									className="hover:text-[--color-brand] transition-colors"
+								>
+									Cookie Policy
+								</a>
+							</div>
+						</div>
+
+						<button
+							onClick={() => {
+								if (typeof window !== "undefined") {
+									window.scrollTo({ top: 0, behavior: "smooth" });
+								}
+							}}
+							className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
+						>
+							<span>Back to top</span>
+							<ArrowRight className="w-4 h-4 -rotate-90" />
+						</button>
+					</motion.div>
+
+					{/* Large Brand Banner with Scroll Effect */}
+					<motion.div
+						initial={{ opacity: 0, y: 100 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: false, amount: 0.3 }}
+						transition={{ duration: 1, ease: "easeOut" }}
+						className="relative mt-16 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden bg-[--color-accent] py-8 sm:py-12 md:py-16"
+					>
+						<div className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[8rem] font-black leading-none tracking-tighter text-black select-none pointer-events-none text-center px-4">
+							BlackMagickOps
+						</div>
+					</motion.div>
+				</div>
+			</footer>{" "}
+			{/* Performance Monitor (Development only) */}
+			<PerformanceMonitor />
 		</>
 	);
 }

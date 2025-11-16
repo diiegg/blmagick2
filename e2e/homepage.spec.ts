@@ -43,8 +43,8 @@ test.describe("Homepage - Critical User Journeys", () => {
 		// Click on Framework section
 		await page.click('a[href="#framework"]');
 
-		// Wait for scroll animation
-		await page.waitForTimeout(1000);
+		// Wait for URL to update (faster than timeout)
+		await expect(page).toHaveURL(/#framework/);
 
 		// Verify scroll position changed
 		const newScroll = await page.evaluate(() => window.scrollY);
@@ -61,31 +61,26 @@ test.describe("Homepage - Critical User Journeys", () => {
 		await expect(page.url()).toContain("#contact");
 	});
 
-	test("animated metrics count up correctly", async ({ page }) => {
+	test("animated metrics are visible and display values", async ({ page }) => {
 		// Scroll to metrics section
 		await page.locator("text=Platform Uptime").scrollIntoViewIfNeeded();
 
-		// Wait for animation to start
-		await page.waitForTimeout(500);
-
-		// Check that metrics are visible
+		// Check that metrics are visible (don't wait for animation)
 		await expect(page.locator("text=Platform Uptime")).toBeVisible();
 		await expect(page.locator("text=Deployment Speed")).toBeVisible();
 		await expect(page.locator("text=Squads Empowered")).toBeVisible();
 
-		// Wait for animation to complete
-		await page.waitForTimeout(2500);
-
-		// Verify final values are displayed
-		await expect(page.locator("text=/99\\.9%/")).toBeVisible();
-		await expect(page.locator("text=/\\+47%/")).toBeVisible();
+		// Verify values are present (animation will complete eventually)
+		await expect(page.locator("text=/99\\.9%/")).toBeVisible({ timeout: 3000 });
+		await expect(page.locator("text=/\\+47%/")).toBeVisible({ timeout: 3000 });
 	});
 });
 
 test.describe("Contact Form", () => {
 	test.beforeEach(async ({ page }) => {
 		await page.goto("/#contact");
-		await page.waitForLoadState("networkidle");
+		// Wait for form to be visible instead of networkidle
+		await expect(page.locator('input[placeholder*="Your Name"]')).toBeVisible();
 	});
 
 	test("form is visible and all fields are present", async ({ page }) => {
@@ -138,7 +133,7 @@ test.describe("Contact Form", () => {
 		);
 		await page.fill(
 			'textarea[placeholder*="mystical project"]',
-			"I need help with Kubernetes implementation and CI/CD pipeline automation.",
+			"I need help with Kubernetes implementation.",
 		);
 
 		// Submit form
@@ -147,13 +142,10 @@ test.describe("Contact Form", () => {
 		// Should show loading state
 		await expect(page.locator("text=/Casting Spell/i")).toBeVisible();
 
-		// Wait for submission to complete
-		await page.waitForTimeout(2500);
-
-		// Should show success message (SuccessAnimation)
-		// Form should be reset
+		// Wait for form to reset (indicates success)
 		await expect(page.locator('input[placeholder*="Your Name"]')).toHaveValue(
 			"",
+			{ timeout: 3000 },
 		);
 	});
 
@@ -238,7 +230,6 @@ test.describe("Accessibility", () => {
 
 		// Click should navigate to main content
 		await skipLink.click();
-		await page.waitForTimeout(500);
 
 		// Main content should be in view
 		const mainContent = page.locator("#main-content");
@@ -300,12 +291,12 @@ test.describe("Performance", () => {
 		const startTime = Date.now();
 
 		await page.goto("/");
-		await page.waitForLoadState("networkidle");
+		await page.waitForLoadState("domcontentloaded");
 
 		const loadTime = Date.now() - startTime;
 
-		// Should load within 3 seconds
-		expect(loadTime).toBeLessThan(3000);
+		// Should load within 2 seconds
+		expect(loadTime).toBeLessThan(2000);
 	});
 
 	test("animations do not block interaction", async ({ page }) => {
