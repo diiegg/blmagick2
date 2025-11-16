@@ -991,6 +991,9 @@ export default function Home() {
 						</MysticalCard>
 					</ScrollReveal>
 				</section>
+
+				{/* Invocation CTA */}
+				<InvocationCTA />
 			</main>
 
 			{/* Footer */}
