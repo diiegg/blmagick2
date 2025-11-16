@@ -1227,7 +1227,8 @@ export default function Home() {
 						</div>
 					</motion.div>
 				</div>
-			</footer>{" "}
+			</footer>
+
 			{/* Performance Monitor (Development only) */}
 			<PerformanceMonitor />
 		</>
