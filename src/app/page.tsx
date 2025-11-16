@@ -164,12 +164,10 @@ export default function Home() {
 		<>
 			{/* Web Vitals Monitoring */}
 			<WebVitals />
-
 			{/* Skip to main content link for keyboard navigation */}
 			<a href="#main-content" className="skip-link">
 				Skip to main content
 			</a>
-
 			<main
 				id="main-content"
 				ref={pageRef}
@@ -995,7 +993,6 @@ export default function Home() {
 				{/* Invocation CTA */}
 				<InvocationCTA />
 			</main>
-
 			{/* Footer */}
 			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-12">
 				<div className="section">
@@ -1216,9 +1213,21 @@ export default function Home() {
 							<ArrowRight className="w-4 h-4 -rotate-90" />
 						</button>
 					</motion.div>
-				</div>
-			</footer>
 
+					{/* Large Brand Banner with Scroll Effect */}
+					<motion.div
+						initial={{ opacity: 0, y: 100 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: false, amount: 0.3 }}
+						transition={{ duration: 1, ease: "easeOut" }}
+						className="relative mt-8 overflow-hidden"
+					>
+						<div className="text-[8rem] sm:text-[12rem] md:text-[16rem] lg:text-[20rem] xl:text-[24rem] font-black leading-none tracking-tighter text-[--color-accent] opacity-80 select-none pointer-events-none whitespace-nowrap">
+							BLACKMAGICKOPS
+						</div>
+					</motion.div>
+				</div>
+			</footer>{" "}
 			{/* Performance Monitor (Development only) */}
 			<PerformanceMonitor />
 		</>
