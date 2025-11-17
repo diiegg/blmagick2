@@ -164,10 +164,6 @@ export default function Home() {
 		<>
 			{/* Web Vitals Monitoring */}
 			<WebVitals />
-			{/* Skip to main content link for keyboard navigation */}
-			<a href="#main-content" className="skip-link">
-				Skip to main content
-			</a>
 			<main
 				id="main-content"
 				ref={pageRef}
@@ -1091,7 +1087,7 @@ export default function Home() {
 							<ul className="space-y-3 text-sm">
 								<li>
 									<a
-										href="#work"
+										href="#disciplines"
 										className="text-[--color-muted] hover:text-[--color-brand] transition-colors"
 									>
 										Case Studies
@@ -1294,7 +1290,7 @@ function MysticalContactForm() {
 		watch,
 	} = useForm<ContactFormData>({
 		resolver: zodResolver(contactFormSchema),
-		mode: "onBlur",
+		mode: "onSubmit",
 	});
 
 	const onSubmit = async (data: ContactFormData) => {

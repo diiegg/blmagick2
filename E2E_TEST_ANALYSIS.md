@@ -1,7 +1,7 @@
 # E2E Test Analysis & Roadmap
 
-**Date**: November 17, 2025  
-**Branch**: `feature/fix-e2e-tests`  
+**Date**: November 17, 2025
+**Branch**: `feature/fix-e2e-tests`
 **Test Results**: 16 passing / 22 failing (42% pass rate)
 
 ---
@@ -182,7 +182,7 @@ output: 'export'  // ← Forces static HTML generation
 )}
 ```
 
-**Pros**: Works in SSG, tests will pass  
+**Pros**: Works in SSG, tests will pass
 **Cons**: No exit animation on mobile
 
 #### Option B: Use CSS-only Animations (Recommended)
@@ -209,7 +209,7 @@ output: 'export'  // ← Forces static HTML generation
 }
 ```
 
-**Pros**: Works everywhere, better performance  
+**Pros**: Works everywhere, better performance
 **Cons**: Requires CSS refactor
 
 #### Option C: Client-Side Only Rendering
@@ -223,7 +223,7 @@ return (
   <>
     {/* Desktop nav - always render */}
     <nav className="hidden md:flex">...</nav>
-    
+
     {/* Mobile nav - only client side */}
     {mounted && (
       <AnimatePresence>
@@ -234,7 +234,7 @@ return (
 );
 ```
 
-**Pros**: Keeps AnimatePresence, tests pass  
+**Pros**: Keeps AnimatePresence, tests pass
 **Cons**: Flash of no-menu on mobile
 
 ---
@@ -393,7 +393,7 @@ CI=true pnpm test:e2e
 ## Recommended Approach
 
 ### Option 1: Comprehensive Fix (Recommended)
-**Timeline**: 1-2 days  
+**Timeline**: 1-2 days
 **Order**: Phase 1 → Phase 2 → Phase 3 → Phase 4 → Phase 5
 
 **Pros**:
@@ -406,7 +406,7 @@ CI=true pnpm test:e2e
 - Requires deeper changes
 
 ### Option 2: Quick Wins + Defer
-**Timeline**: 4-6 hours  
+**Timeline**: 4-6 hours
 **Order**: Phase 3 → Phase 4 → Phase 5 → Phase 1 (quick) → Defer Phase 2
 
 **Pros**:
@@ -420,7 +420,7 @@ CI=true pnpm test:e2e
 - Not production-ready
 
 ### Option 3: Disable Failing Tests
-**Timeline**: 30 minutes  
+**Timeline**: 30 minutes
 **Action**: Add `.skip` to failing tests
 
 **Pros**:
@@ -517,6 +517,6 @@ This would require infrastructure changes but would solve many issues permanentl
 
 ---
 
-**Document Author**: GitHub Copilot  
-**Last Updated**: November 17, 2025  
+**Document Author**: GitHub Copilot
+**Last Updated**: November 17, 2025
 **Status**: Ready for implementation

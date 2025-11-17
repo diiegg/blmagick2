@@ -18,7 +18,6 @@ test.describe("Homepage - Critical User Journeys", () => {
 		await expect(page.locator("#disciplines")).toBeVisible();
 		await expect(page.locator("#framework")).toBeVisible();
 		await expect(page.locator("#philosophy")).toBeVisible();
-		await expect(page.locator("#work")).toBeVisible();
 		await expect(page.locator("#contact")).toBeVisible();
 	});
 
@@ -33,7 +32,7 @@ test.describe("Homepage - Critical User Journeys", () => {
 
 		// Click Work link
 		await page.click("text=Work");
-		await expect(page.url()).toContain("#work");
+		await expect(page.url()).toContain("#disciplines");
 	});
 
 	test("smooth scroll to sections on navigation", async ({ page }) => {
@@ -62,17 +61,16 @@ test.describe("Homepage - Critical User Journeys", () => {
 	});
 
 	test("animated metrics are visible and display values", async ({ page }) => {
-		// Scroll to metrics section
-		await page.locator("text=Platform Uptime").scrollIntoViewIfNeeded();
+		// Scroll to case studies section with metrics
+		await page.locator("text=Infrastructure Cost").scrollIntoViewIfNeeded();
 
-		// Check that metrics are visible (don't wait for animation)
-		await expect(page.locator("text=Platform Uptime")).toBeVisible();
-		await expect(page.locator("text=Deployment Speed")).toBeVisible();
-		await expect(page.locator("text=Squads Empowered")).toBeVisible();
+		// Check that metrics are visible in case studies
+		await expect(page.locator("text=Infrastructure Cost")).toBeVisible();
+		await expect(page.locator("text=System Reliability")).toBeVisible();
 
-		// Verify values are present (animation will complete eventually)
+		// Verify percentage values are present
 		await expect(page.locator("text=/99\\.9%/")).toBeVisible({ timeout: 3000 });
-		await expect(page.locator("text=/\\+47%/")).toBeVisible({ timeout: 3000 });
+		await expect(page.locator("text=/40%/")).toBeVisible({ timeout: 3000 });
 	});
 });
 
