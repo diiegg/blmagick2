@@ -33,25 +33,24 @@ export default defineConfig({
 	},
 
 	// Configure projects for different browsers
-	// CI: Test only critical browsers for speed (chromium + mobile)
-	// Local: Add more browsers by uncommenting below
+	// Matrix testing in CI: chromium, firefox, webkit
 	projects: [
 		{
 			name: "chromium",
 			use: { ...devices["Desktop Chrome"] },
 		},
 		{
-			name: "mobile-chrome",
-			use: { ...devices["Pixel 5"] },
+			name: "firefox",
+			use: { ...devices["Desktop Firefox"] },
 		},
-		// Uncomment for comprehensive browser testing:
+		{
+			name: "webkit",
+			use: { ...devices["Desktop Safari"] },
+		},
+		// Mobile testing (not in CI matrix)
 		// {
-		// 	name: "firefox",
-		// 	use: { ...devices["Desktop Firefox"] },
-		// },
-		// {
-		// 	name: "webkit",
-		// 	use: { ...devices["Desktop Safari"] },
+		// 	name: "mobile-chrome",
+		// 	use: { ...devices["Pixel 5"] },
 		// },
 		// {
 		// 	name: "mobile-safari",

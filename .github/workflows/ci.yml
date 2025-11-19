@@ -203,11 +203,15 @@ jobs:
           echo "📄 Largest files:"
           find out -type f -exec du -h {} + | sort -rh | head -10
 
-  # E2E Tests with Playwright
+  # E2E Tests with Playwright - Matrix Strategy
   e2e:
     runs-on: ubuntu-latest
-    name: E2E Tests
+    name: E2E Tests (Playwright) (${{ matrix.browser }})
     needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     
     steps:
       - name: Checkout code
@@ -231,10 +235,10 @@ jobs:
           NODE_ENV: production
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm exec playwright install ${{ matrix.browser }} --with-deps
 
       - name: Run E2E tests
-        run: pnpm test:e2e
+        run: pnpm exec playwright test --project=${{ matrix.browser }}
         env:
           CI: true
 
@@ -242,7 +246,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.browser }}
           path: playwright-report/
           retention-days: 30
 
