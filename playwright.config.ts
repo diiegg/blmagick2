@@ -59,14 +59,12 @@ export default defineConfig({
 	],
 
 	// Run local dev server before tests (if not already running)
-	// Use npx serve for static export (output: 'export' in next.config.ts)
-	// Note: Build already done in CI workflow step, just serve the files
+	// Use npx serve for static export for faster and more reliable tests
 	webServer: {
-		command: process.env.CI ? "npx -y serve@14 out -l 3000 -n" : "pnpm dev",
+		command: "npx -y serve@14 out -l 3000 -n",
 		url: "http://localhost:3000",
-		reuseExistingServer: !process.env.CI,
-		timeout: 120 * 1000,
-		// Don't wait for console output pattern, just check URL
+		reuseExistingServer: true, // Allow reusing server for faster local testing
+		timeout: 60 * 1000,
 		stdout: "pipe",
 		stderr: "pipe",
 	},
