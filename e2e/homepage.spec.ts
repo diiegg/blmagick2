@@ -84,6 +84,9 @@ test.describe("Homepage - Critical User Journeys", () => {
 		await page.click(SELECTORS.nav.framework);
 		await expect(page).toHaveURL(/#framework/);
 
+		// Wait for the framework section to be in viewport (ensures scroll completed)
+		await expect(page.locator(SELECTORS.sections.framework)).toBeInViewport();
+
 		// Verify scroll position changed
 		const newScroll = await page.evaluate(() => window.scrollY);
 		expect(newScroll).toBeGreaterThan(initialScroll);
