@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 export function Header() {
@@ -50,7 +50,7 @@ export function Header() {
 							Philosophy
 						</a>
 						<a
-							href="#work"
+							href="#disciplines"
 							className="transition-colors hover:text-[--color-text]"
 						>
 							Work
@@ -82,39 +82,41 @@ export function Header() {
 				</div>
 
 				{/* Mobile menu */}
-				{mobileMenuOpen && (
-					<motion.nav
-						id="mobile-menu"
-						initial={{ opacity: 0, height: 0 }}
-						animate={{ opacity: 1, height: "auto" }}
-						exit={{ opacity: 0, height: 0 }}
-						className="border-t border-[--color-border]/60 bg-[--color-bg]/95 md:hidden"
-						aria-label="Mobile navigation"
-					>
-						<div className="section flex flex-col gap-4 py-6 text-[--color-muted]">
-							<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
-								Disciplines
-							</a>
-							<a href="#framework" onClick={() => setMobileMenuOpen(false)}>
-								Framework
-							</a>
-							<a href="#philosophy" onClick={() => setMobileMenuOpen(false)}>
-								Philosophy
-							</a>
-							<a href="#work" onClick={() => setMobileMenuOpen(false)}>
-								Work
-							</a>
-							<a
-								href="#contact"
-								onClick={() => setMobileMenuOpen(false)}
-								className="btn btn-primary px-6 py-3 text-center"
-								aria-label="Contact us to start a project"
-							>
-								Start a Project
-							</a>
-						</div>
-					</motion.nav>
-				)}
+				<AnimatePresence>
+					{mobileMenuOpen && (
+						<motion.nav
+							id="mobile-menu"
+							initial={{ opacity: 0, height: 0 }}
+							animate={{ opacity: 1, height: "auto" }}
+							exit={{ opacity: 0, height: 0 }}
+							className="border-t border-[--color-border]/60 bg-[--color-bg]/95 md:hidden"
+							aria-label="Mobile navigation"
+						>
+							<div className="section flex flex-col gap-4 py-6 text-[--color-muted]">
+								<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
+									Disciplines
+								</a>
+								<a href="#framework" onClick={() => setMobileMenuOpen(false)}>
+									Framework
+								</a>
+								<a href="#philosophy" onClick={() => setMobileMenuOpen(false)}>
+									Philosophy
+								</a>
+								<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
+									Work
+								</a>
+								<a
+									href="#contact"
+									onClick={() => setMobileMenuOpen(false)}
+									className="btn btn-primary px-6 py-3 text-center"
+									aria-label="Contact us to start a project"
+								>
+									Start a Project
+								</a>
+							</div>
+						</motion.nav>
+					)}
+				</AnimatePresence>
 			</header>
 		</>
 	);

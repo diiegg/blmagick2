@@ -33,25 +33,24 @@ export default defineConfig({
 	},
 
 	// Configure projects for different browsers
-	// CI: Test only critical browsers for speed (chromium + mobile)
-	// Local: Add more browsers by uncommenting below
+	// Matrix testing in CI: chromium, firefox, webkit
 	projects: [
 		{
 			name: "chromium",
 			use: { ...devices["Desktop Chrome"] },
 		},
 		{
-			name: "mobile-chrome",
-			use: { ...devices["Pixel 5"] },
+			name: "firefox",
+			use: { ...devices["Desktop Firefox"] },
 		},
-		// Uncomment for comprehensive browser testing:
+		{
+			name: "webkit",
+			use: { ...devices["Desktop Safari"] },
+		},
+		// Mobile testing (not in CI matrix)
 		// {
-		// 	name: "firefox",
-		// 	use: { ...devices["Desktop Firefox"] },
-		// },
-		// {
-		// 	name: "webkit",
-		// 	use: { ...devices["Desktop Safari"] },
+		// 	name: "mobile-chrome",
+		// 	use: { ...devices["Pixel 5"] },
 		// },
 		// {
 		// 	name: "mobile-safari",
@@ -60,12 +59,13 @@ export default defineConfig({
 	],
 
 	// Run local dev server before tests (if not already running)
-	// Use npx serve for static export (output: 'export' in next.config.ts)
-	// Note: Build already done in CI workflow step, just serve the files
+	// Use npx serve for static export for faster and more reliable tests
 	webServer: {
-		command: process.env.CI ? "npx serve@latest out -l 3000" : "pnpm dev",
+		command: "npx -y serve@14 out -l 3000 -n",
 		url: "http://localhost:3000",
-		reuseExistingServer: !process.env.CI,
-		timeout: 120 * 1000,
+		reuseExistingServer: true, // Allow reusing server for faster local testing
+		timeout: 60 * 1000,
+		stdout: "pipe",
+		stderr: "pipe",
 	},
 });

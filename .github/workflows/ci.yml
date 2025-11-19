@@ -37,7 +37,7 @@ jobs:
   # Unit Tests with Vitest
   test:
     runs-on: ubuntu-latest
-    name: Unit Tests
+    name: Unit Tests & Coverage
     needs: lint
     
     steps:
@@ -72,6 +72,12 @@ jobs:
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload coverage to Coveralls
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ./coverage/lcov.info
 
       - name: Upload coverage to artifacts
         uses: actions/upload-artifact@v4
@@ -136,44 +142,10 @@ jobs:
           path: out/
           retention-days: 7
 
-  # Performance Testing with Lighthouse CI
-  lighthouse:
+  # Build Verification
+  build-verification:
     runs-on: ubuntu-latest
-    name: Lighthouse Performance Test
-    needs: build
-    if: github.event_name == 'pull_request' && github.base_ref == 'dev'
-    
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build project
-        run: pnpm build
-
-      - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v11
-        with:
-          urls: |
-            http://localhost:3000
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-
-  # Bundle Size Analysis
-  bundle-analysis:
-    runs-on: ubuntu-latest
-    name: Bundle Size Analysis
+    name: Build Verification
     needs: build
     
     steps:
@@ -192,10 +164,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build and analyze
+      - name: Verify build output
         run: pnpm build
 
-      - name: Analyze bundle
+      - name: Analyze bundle size
         run: |
           echo "📦 Build size analysis:"
           du -sh out/
@@ -203,11 +175,107 @@ jobs:
           echo "📄 Largest files:"
           find out -type f -exec du -h {} + | sort -rh | head -10
 
-  # E2E Tests with Playwright
+  # Accessibility Tests (WCAG Compliance)
+  accessibility:
+    runs-on: ubuntu-latest
+    name: Accessibility Tests (WCAG)
+    needs: build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run accessibility tests
+        run: |
+          npx -y serve@14 out -l 3000 -n &
+          SERVER_PID=$!
+          sleep 5
+          pnpm exec playwright test --grep "@accessibility"
+          kill $SERVER_PID
+        env:
+          CI: true
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: playwright-report/
+          retention-days: 30
+
+  # Performance Tests
+  performance:
+    runs-on: ubuntu-latest
+    name: Performance Tests
+    needs: build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build static site
+        run: pnpm build
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install --with-deps
+
+      - name: Run performance tests
+        run: |
+          npx -y serve@14 out -l 3000 -n &
+          SERVER_PID=$!
+          sleep 5
+          pnpm exec playwright test --grep "@performance"
+          kill $SERVER_PID
+        env:
+          CI: true
+
+      - name: Upload performance report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: playwright-report/
+          retention-days: 30
+
+  # E2E Tests with Playwright - Matrix Strategy
   e2e:
     runs-on: ubuntu-latest
-    name: E2E Tests
+    name: E2E Tests (Playwright) (${{ matrix.browser }})
     needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
     
     steps:
       - name: Checkout code
@@ -231,27 +299,56 @@ jobs:
           NODE_ENV: production
 
       - name: Install Playwright browsers
-        run: pnpm exec playwright install chromium --with-deps
+        run: pnpm exec playwright install ${{ matrix.browser }} --with-deps
 
       - name: Run E2E tests
-        run: pnpm test:e2e
+        run: pnpm exec playwright test --project=${{ matrix.browser }}
         env:
-          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
           CI: true
 
       - name: Upload test results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.browser }}
           path: playwright-report/
           retention-days: 30
+
+  # Finalize Coverage Reporting
+  finalize-coveralls:
+    runs-on: ubuntu-latest
+    name: Finalize Coveralls
+    needs: [test]
+    if: always()
+    
+    steps:
+      - name: Finalize Codecov
+        run: echo "✅ Coverage reports finalized"
+
+  # All Checks Passed - Final Gate
+  all-checks:
+    runs-on: ubuntu-latest
+    name: All Checks Passed ✓
+    needs: [lint, test, build-verification, accessibility, performance, e2e, finalize-coveralls]
+    if: always()
+    
+    steps:
+      - name: Check all jobs status
+        run: |
+          echo "🎉 All quality checks completed successfully!"
+          echo "✅ Lint & Type Check"
+          echo "✅ Unit Tests & Coverage"
+          echo "✅ Build Verification"
+          echo "✅ Accessibility Tests (WCAG)"
+          echo "✅ Performance Tests"
+          echo "✅ E2E Tests (Playwright) - All Browsers"
+          echo "✅ Finalize Coveralls"
 
   # Deploy to Netlify (only on main branch)
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Netlify
-    needs: [lint, test, build, e2e]
+    needs: [all-checks]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     
     steps:

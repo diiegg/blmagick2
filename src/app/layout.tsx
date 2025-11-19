@@ -242,6 +242,13 @@ export default function RootLayout({
 			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
 		>
 			<head>
+				{/* Umami Analytics */}
+				<script
+					defer
+					src="https://cloud.umami.is/script.js"
+					data-website-id="8969449a-d5bd-4862-b747-acda531d2d29"
+				/>
+
 				{/* Structured Data */}
 				<script
 					type="application/ld+json"
@@ -274,14 +281,6 @@ export default function RootLayout({
 				/>
 			</head>
 			<body className="antialiased">
-				{/* Skip to main content link for accessibility */}
-				<a
-					href="#main-content"
-					className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[--color-brand] focus:text-white focus:rounded-lg focus:no-underline"
-				>
-					Skip to main content
-				</a>
-
 				<div id="main-content">{children}</div>
 			</body>
 		</html>

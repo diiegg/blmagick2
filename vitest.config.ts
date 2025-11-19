@@ -14,7 +14,7 @@ export default defineConfig({
 		reporters: ["default", ["junit", { outputFile: "test-report.junit.xml" }]],
 		coverage: {
 			provider: "v8",
-			reporter: ["text", "json", "html", "cobertura"],
+			reporter: ["text", "json", "html", "cobertura", "lcov"],
 			exclude: [
 				"node_modules/",
 				"vitest.setup.ts",
