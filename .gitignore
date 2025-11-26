@@ -53,3 +53,7 @@ next-env.d.ts
 
 # Sentry Config File
 .env.sentry-build-plugin
+
+# Claude Code configuration (use global config instead)
+.claude/
+.mcp.json

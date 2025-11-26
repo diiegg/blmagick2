@@ -1,4 +1,5 @@
 "use client";
+// Force rebuild
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -990,7 +991,7 @@ export default function Home() {
 				<InvocationCTA />
 			</main>
 			{/* Footer */}
-			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-12">
+			<footer className="relative overflow-hidden border-t border-[--color-border]/60 bg-[--color-bg] py-12">
 				<div className="section">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
@@ -1203,27 +1204,22 @@ export default function Home() {
 									window.scrollTo({ top: 0, behavior: "smooth" });
 								}
 							}}
-							className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
+							className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded-lg p-2"
+							aria-label="Scroll back to top of page"
 						>
 							<span>Back to top</span>
 							<ArrowRight className="w-4 h-4 -rotate-90" />
 						</button>
 					</motion.div>
-
-					{/* Large Brand Banner with Scroll Effect */}
-					<motion.div
-						initial={{ opacity: 0, y: 100 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: false, amount: 0.3 }}
-						transition={{ duration: 1, ease: "easeOut" }}
-						className="relative mt-16 left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen overflow-hidden bg-[--color-accent] py-8 sm:py-12 md:py-16"
-					>
-						<div className="text-[4rem] sm:text-[5rem] md:text-[6rem] lg:text-[7rem] xl:text-[8rem] font-black leading-none tracking-tighter text-black select-none pointer-events-none text-center px-4">
-							BlackMagickOps
-						</div>
-					</motion.div>
 				</div>
-			</footer>{" "}
+
+				{/* Large Text Effect - Resend Style */}
+				<div className="absolute bottom-0 left-0 right-0 flex justify-center overflow-hidden pointer-events-none select-none opacity-20">
+					<span className="text-[18vw] font-bold leading-[0.8] tracking-tighter text-[--color-brand] bg-clip-text text-transparent bg-gradient-to-b from-[--color-brand] to-transparent transform translate-y-[20%]">
+						BlackMagickOps
+					</span>
+				</div>
+			</footer>
 			{/* Performance Monitor (Development only) */}
 			<PerformanceMonitor />
 		</>
