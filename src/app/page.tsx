@@ -1,5 +1,4 @@
 "use client";
-// Force rebuild
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -991,8 +990,8 @@ export default function Home() {
 				<InvocationCTA />
 			</main>
 			{/* Footer */}
-			<footer className="relative overflow-hidden border-t border-[--color-border]/60 bg-[--color-bg] py-12">
-				<div className="section">
+			<footer className="border-t border-[--color-border]/60 bg-[--color-bg] py-12">
+				<div className="section relative">
 					<motion.div
 						initial={{ opacity: 0, y: 20 }}
 						whileInView={{ opacity: 1, y: 0 }}
@@ -1204,20 +1203,86 @@ export default function Home() {
 									window.scrollTo({ top: 0, behavior: "smooth" });
 								}
 							}}
-							className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded-lg p-2"
-							aria-label="Scroll back to top of page"
+							className="flex items-center gap-2 text-sm text-[--color-muted] hover:text-[--color-brand] transition-colors"
 						>
 							<span>Back to top</span>
 							<ArrowRight className="w-4 h-4 -rotate-90" />
 						</button>
 					</motion.div>
-				</div>
 
-				{/* Large Text Effect - Resend Style */}
-				<div className="absolute bottom-0 left-0 right-0 flex justify-center overflow-hidden pointer-events-none select-none opacity-20">
-					<span className="text-[18vw] font-bold leading-[0.8] tracking-tighter text-[--color-brand] bg-clip-text text-transparent bg-gradient-to-b from-[--color-brand] to-transparent transform translate-y-[20%]">
-						BlackMagickOps
-					</span>
+					{/* Large Text Effect - Per-Letter Glowing Edge */}
+					<div
+						className="mt-16 w-full flex justify-center items-center pointer-events-auto select-none relative"
+						onMouseMove={(e) => {
+							const letters =
+								e.currentTarget.querySelectorAll(".spotlight-letter");
+							letters.forEach((letter) => {
+								const rect = letter.getBoundingClientRect();
+								const centerX = rect.left + rect.width / 2;
+								const centerY = rect.top + rect.height / 2;
+								const distance = Math.sqrt(
+									Math.pow(e.clientX - centerX, 2) +
+										Math.pow(e.clientY - centerY, 2),
+								);
+								const radius = 80;
+								if (distance < radius) {
+									const intensity = 1 - distance / radius;
+									(letter as HTMLElement).style.webkitTextStroke =
+										`${2 * intensity}px rgba(91, 227, 193, ${intensity * 0.9})`;
+									(letter as HTMLElement).style.filter =
+										`drop-shadow(0 0 ${12 * intensity}px rgba(91, 227, 193, ${intensity * 0.7}))`;
+								} else {
+									(letter as HTMLElement).style.webkitTextStroke =
+										"0px transparent";
+									(letter as HTMLElement).style.filter = "none";
+								}
+							});
+						}}
+						onMouseLeave={(e) => {
+							const letters =
+								e.currentTarget.querySelectorAll(".spotlight-letter");
+							letters.forEach((letter) => {
+								(letter as HTMLElement).style.webkitTextStroke =
+									"0px transparent";
+								(letter as HTMLElement).style.filter = "none";
+							});
+						}}
+					>
+						<div className="text-[7vw] sm:text-[6.5vw] md:text-[6vw] lg:text-[5.5vw] xl:text-[5vw] font-bold leading-none tracking-tighter relative cursor-pointer flex">
+							{[
+								"B",
+								"l",
+								"a",
+								"c",
+								"k",
+								"M",
+								"a",
+								"g",
+								"i",
+								"c",
+								"k",
+								"O",
+								"p",
+								"s",
+							].map((letter, i) => (
+								<span
+									key={i}
+									className="spotlight-letter"
+									style={{
+										background:
+											"linear-gradient(to bottom, rgba(110, 142, 248, 0.4) 0%, rgba(110, 142, 248, 0.1) 100%)",
+										WebkitBackgroundClip: "text",
+										WebkitTextFillColor: "transparent",
+										backgroundClip: "text",
+										transition: "all 0.15s ease-out",
+										display: "inline-block",
+									}}
+								>
+									{letter}
+								</span>
+							))}
+						</div>
+					</div>
 				</div>
 			</footer>
 			{/* Performance Monitor (Development only) */}
