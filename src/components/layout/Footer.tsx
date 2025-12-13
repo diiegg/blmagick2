@@ -6,7 +6,7 @@ import { ArrowRight, Globe } from "lucide-react";
 export function Footer() {
 	return (
 		<footer
-			className="border-t border-[--color-border]/60 bg-[--color-bg] py-16"
+			className="border-t border-[--color-border]/60 bg-[--color-bg] py-16 overflow-hidden"
 			role="contentinfo"
 		>
 			<div className="section">
@@ -233,6 +233,83 @@ export function Footer() {
 						<ArrowRight className="w-4 h-4 -rotate-90" aria-hidden="true" />
 					</button>
 				</motion.div>
+			</div>
+
+			{/* Large Text Effect - Per-Letter Glowing Edge */}
+			{/* Large Text Effect - Per-Letter Glowing Edge */}
+			<div
+				className="w-full mt-12 flex justify-center items-center w-full select-none pointer-events-auto relative z-10 py-24 px-4 overflow-visible"
+				onMouseMove={(e) => {
+					const letters = e.currentTarget.querySelectorAll(".spotlight-letter");
+					letters.forEach((letter) => {
+						const rect = letter.getBoundingClientRect();
+						const centerX = rect.left + rect.width / 2;
+						const centerY = rect.top + rect.height / 2;
+						const distance = Math.sqrt(
+							Math.pow(e.clientX - centerX, 2) +
+								Math.pow(e.clientY - centerY, 2),
+						);
+						const radius = 80;
+						if (distance < radius) {
+							const intensity = 1 - distance / radius;
+							(letter as HTMLElement).style.webkitTextStroke = `${
+								2 * intensity
+							}px rgba(91, 227, 193, ${intensity * 0.9})`;
+							(letter as HTMLElement).style.filter = `drop-shadow(0 0 ${
+								12 * intensity
+							}px rgba(91, 227, 193, ${intensity * 0.7}))`;
+						} else {
+							(letter as HTMLElement).style.webkitTextStroke =
+								"0px transparent";
+							(letter as HTMLElement).style.filter = "none";
+						}
+					});
+				}}
+				onMouseLeave={(e) => {
+					const letters = e.currentTarget.querySelectorAll(".spotlight-letter");
+					letters.forEach((letter) => {
+						(letter as HTMLElement).style.webkitTextStroke = "0px transparent";
+						(letter as HTMLElement).style.filter = "none";
+					});
+				}}
+			>
+				<div
+					style={{ fontSize: "10vw" }}
+					className="font-bold leading-tight tracking-tighter whitespace-nowrap text-[--color-text] flex cursor-pointer"
+				>
+					{[
+						"B",
+						"l",
+						"a",
+						"c",
+						"k",
+						"M",
+						"a",
+						"g",
+						"i",
+						"c",
+						"k",
+						"O",
+						"p",
+						"s",
+					].map((letter, i) => (
+						<span
+							key={i}
+							className="spotlight-letter"
+							style={{
+								background:
+									"linear-gradient(to bottom, rgba(110, 142, 248, 0.4) 0%, rgba(110, 142, 248, 0.1) 100%)",
+								WebkitBackgroundClip: "text",
+								WebkitTextFillColor: "transparent",
+								backgroundClip: "text",
+								transition: "all 0.15s ease-out",
+								display: "inline-block",
+							}}
+						>
+							{letter}
+						</span>
+					))}
+				</div>
 			</div>
 		</footer>
 	);
