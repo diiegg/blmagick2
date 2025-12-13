@@ -57,3 +57,10 @@ next-env.d.ts
 # Claude Code configuration (use global config instead)
 .claude/
 .mcp.json
+
+# Temporary working files
+*.py
+*.bak
+*.bak2
+*.backup
+new_footer.txt
