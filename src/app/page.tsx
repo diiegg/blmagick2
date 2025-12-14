@@ -232,18 +232,25 @@ export default function Home() {
 								{/* Main Headline */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
-										Precision. Discipline.
+										Autonomous Infrastructure.
 									</span>
 									<br />
-									<span className="text-[--color-brand]">Magic.</span>
+									<span className="text-[--color-brand]">
+										Engineered with Magic.
+									</span>
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-									Engineering the invisible — we build{" "}
+									We build{" "}
 									<strong className="font-semibold text-[--color-text]">
-										cloud-native platforms
+										Agentic Platforms
 									</strong>{" "}
-									that move with reliability, efficiency, and intent.
+									that think, heal, and scale. Move beyond DevOps into the age
+									of{" "}
+									<strong className="font-semibold text-[--color-text]">
+										AI-Driven Engineering
+									</strong>
+									.
 								</p>
 								{/* Primary CTAs */}
 								<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
@@ -403,29 +410,28 @@ export default function Home() {
 							<TabbedInterface
 								tabs={[
 									{
-										label: "Platform Engineering",
+										label: "Cognitive IDP",
 										icon: <Shield className="w-4 h-4 icon-pulse" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-float">🏗️</div>
+															<div className="text-5xl icon-float">🧠</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
-																	Platform Engineering
+																	Cognitive IDP
 																</h3>
 																<p className="text-[--color-muted]">
-																	Developer platforms with golden paths and
-																	strong guardrails
+																	Backstage on steroids — powered by LLMs
 																</p>
 															</div>
 														</div>
 														<CascadingList
 															items={[
-																"Backstage IDP · Templates & golden paths",
-																"Multi-tenant Kubernetes with OPA guardrails",
-																"Observability-as-a-Product (SLOs, error budgets)",
+																"AI-Drafted Infrastructure Code",
+																"Architectural Query Engines",
+																"Instant Microservice Scaffolding",
 															]}
 															delay={0.1}
 														/>
@@ -433,14 +439,14 @@ export default function Home() {
 												</div>
 												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
 													<h4 className="text-lg font-semibold mb-4">
-														Key Technologies
+														The AI Stack
 													</h4>
 													<div className="grid grid-cols-2 gap-4">
 														{[
+															"Backstage + AI",
+															"Vector Ops",
 															"Kubernetes",
-															"Backstage",
-															"OPA",
-															"Prometheus",
+															"LangChain",
 														].map((tech, i) => (
 															<div
 																key={tech}
@@ -455,28 +461,28 @@ export default function Home() {
 										),
 									},
 									{
-										label: "DevOps Acceleration",
+										label: "Agentic Workflows",
 										icon: <Cog className="w-4 h-4 icon-rotate" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-pulse">⚙️</div>
+															<div className="text-5xl icon-pulse">🤖</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
-																	DevOps Acceleration
+																	Agentic Workflows
 																</h3>
 																<p className="text-[--color-muted]">
-																	CI/CD at scale with supply chain security
+																	L1 Support & Triage by Autonomous Agents
 																</p>
 															</div>
 														</div>
 														<CascadingList
 															items={[
-																"Trunk-based, canary/blue-green, DORA focus",
-																"SBOM, provenance, SLSA-aligned controls",
-																"Dagger · GitHub Actions/GitLab CI",
+																"Auto-Remediation Agents",
+																"Incident Triage Bots",
+																"Self-Healing Pipelines",
 															]}
 															delay={0.1}
 														/>
@@ -484,14 +490,14 @@ export default function Home() {
 												</div>
 												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
 													<h4 className="text-lg font-semibold mb-4">
-														Deployment Strategies
+														Agent Capabilities
 													</h4>
 													<div className="space-y-3">
 														{[
-															"Blue-Green",
-															"Canary",
-															"Rolling",
-															"Feature Flags",
+															"Log Analysis",
+															"Root Cause ID",
+															"Auto-Rollback",
+															"Security Patching",
 														].map((strategy, i) => (
 															<div
 																key={strategy}
@@ -507,28 +513,28 @@ export default function Home() {
 										),
 									},
 									{
-										label: "Automation & FinOps",
+										label: "Eco-FinOps",
 										icon: <Target className="w-4 h-4 icon-float" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-rotate">🜲</div>
+															<div className="text-5xl icon-rotate">🌱</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
-																	Automation & FinOps
+																	Eco-FinOps
 																</h3>
 																<p className="text-[--color-muted]">
-																	Self-healing ops with cost control
+																	Resource Autonomy & Profitability
 																</p>
 															</div>
 														</div>
 														<CascadingList
 															items={[
-																"Event-driven ops · KEDA · ChatOps",
-																"Unified cost + reliability dashboards",
-																"Rightsizing policies · budget alerts",
+																"Predictive Scaling",
+																"Carbon-Aware Scheduling",
+																"Automated Rightsizing",
 															]}
 															delay={0.1}
 														/>
@@ -536,25 +542,25 @@ export default function Home() {
 												</div>
 												<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
 													<h4 className="text-lg font-semibold mb-4">
-														Cost Optimization
+														Optimization Impact
 													</h4>
 													<div className="space-y-4">
 														<div className="flex justify-between items-center">
-															<span>Infrastructure Cost</span>
+															<span>Cloud Waste</span>
+															<span className="text-[--color-success]">
+																-60%
+															</span>
+														</div>
+														<div className="flex justify-between items-center">
+															<span>Carbon Footprint</span>
 															<span className="text-[--color-success]">
 																-40%
 															</span>
 														</div>
 														<div className="flex justify-between items-center">
-															<span>Deployment Time</span>
+															<span>ROI</span>
 															<span className="text-[--color-success]">
-																-75%
-															</span>
-														</div>
-														<div className="flex justify-between items-center">
-															<span>Manual Processes</span>
-															<span className="text-[--color-success]">
-																-90%
+																+300%
 															</span>
 														</div>
 													</div>
@@ -590,24 +596,25 @@ export default function Home() {
 										{
 											title: "Discover",
 											description:
-												"Stakeholders, constraints, SLOs, current-state mapping.",
+												"Map system constraints and train context models.",
 											icon: <Eye className="w-6 h-6" />,
 										},
 										{
-											title: "Design",
+											title: "Architect",
 											description:
-												"Reference architecture, guardrails, golden paths.",
+												"Design self-healing topologies and agent swarms.",
 											icon: <Code className="w-6 h-6" />,
 										},
 										{
 											title: "Automate",
 											description:
-												"IaC, pipelines, policies, runbooks, paved roads.",
+												"Deploy agentic guardrails and autonomous pipelines.",
 											icon: <Cog className="w-6 h-6" />,
 										},
 										{
-											title: "Optimize",
-											description: "SLOs, cost KPIs, continuous improvement.",
+											title: "Evolve",
+											description:
+												"Continuous model tuning and system optimization.",
 											icon: <Target className="w-6 h-6" />,
 										},
 									]}
