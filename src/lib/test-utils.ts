@@ -9,7 +9,7 @@ import { vi } from "vitest";
 import type { Mock } from "vitest";
 
 export interface ConsoleSpyResult {
-	spy: Mock;
+	spy: any; // Using any to avoid complex Vitest type mismatch
 	restore: () => void;
 	getErrors: () => string[];
 	getWarnings: () => string[];
