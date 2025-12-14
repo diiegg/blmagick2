@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Linkedin } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
 	return (
@@ -199,24 +200,24 @@ export function Footer() {
 							© {new Date().getFullYear()} BlackMagickOps. All rights reserved.
 						</p>
 						<nav className="flex items-center gap-6" aria-label="Legal">
-							<a
+							<Link
 								href="/privacy"
 								className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 							>
 								Privacy Policy
-							</a>
-							<a
+							</Link>
+							<Link
 								href="/terms"
 								className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 							>
 								Terms of Service
-							</a>
-							<a
+							</Link>
+							<Link
 								href="/cookies"
 								className="hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 							>
 								Cookie Policy
-							</a>
+							</Link>
 						</nav>
 					</div>
 
