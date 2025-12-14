@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Globe } from "lucide-react";
+import { ArrowRight, Linkedin } from "lucide-react";
 
 export function Footer() {
 	return (
@@ -37,31 +37,31 @@ export function Footer() {
 							aria-label="Social media links"
 						>
 							<a
-								href="https://github.com/blackmagickops"
+								href="https://x.com/blackmagickops"
 								className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
-								aria-label="Visit our GitHub profile"
+								aria-label="Follow us on X"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<Globe className="w-4 h-4" aria-hidden="true" />
+								{/* X (Twitter) Icon (Simple SVG) */}
+								<svg
+									role="img"
+									viewBox="0 0 24 24"
+									className="w-4 h-4 fill-current"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<title>X</title>
+									<path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" />
+								</svg>
 							</a>
 							<a
 								href="https://linkedin.com/company/blackmagickops"
 								className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
-								aria-label="Visit our LinkedIn profile"
+								aria-label="Connect on LinkedIn"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								<Globe className="w-4 h-4" aria-hidden="true" />
-							</a>
-							<a
-								href="https://twitter.com/blackmagickops"
-								className="w-8 h-8 rounded-lg bg-[--color-surface] border border-[--color-border] flex items-center justify-center hover:border-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand]"
-								aria-label="Visit our Twitter profile"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								<Globe className="w-4 h-4" aria-hidden="true" />
+								<Linkedin className="w-4 h-4" />
 							</a>
 						</div>
 					</div>

@@ -30,8 +30,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
 	title: {
-		default:
-			"BlackMagickOps - Autonomous Infrastructure & AI-Driven Engineering",
+		default: "BlackMagickOps - Engineering the invisible",
 		template: "%s | BlackMagickOps",
 	},
 	description:
@@ -65,7 +64,7 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: "https://blackmagickops.com",
-		title: "BlackMagickOps - Autonomous Infrastructure & AI-Driven Engineering",
+		title: "BlackMagickOps - Engineering the invisible",
 		description:
 			"We build Agentic Platforms that think, heal, and scale. Move beyond DevOps into the age of AI-Driven Engineering.",
 		siteName: "BlackMagickOps",
@@ -74,13 +73,13 @@ export const metadata: Metadata = {
 				url: "/og-image.png",
 				width: 1200,
 				height: 630,
-				alt: "BlackMagickOps - Autonomous Infrastructure",
+				alt: "BlackMagickOps - Engineering the invisible",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "BlackMagickOps - Autonomous Infrastructure",
+		title: "BlackMagickOps - Engineering the invisible",
 		description:
 			"We build Agentic Platforms that think, heal, and scale. Move beyond DevOps.",
 		images: ["/twitter-image.png"],
