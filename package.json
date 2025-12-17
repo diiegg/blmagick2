@@ -3,6 +3,10 @@
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
+	"engines": {
+		"node": ">=20.0.0",
+		"pnpm": ">=9.0.0"
+	},
 	"scripts": {
 		"dev": "next dev -H 0.0.0.0 --turbopack",
 		"build": "next build",
@@ -19,7 +23,9 @@
 		"test:e2e": "playwright test",
 		"test:e2e:ui": "playwright test --ui",
 		"test:e2e:debug": "playwright test --debug",
-		"test:all": "pnpm test:run && pnpm test:e2e"
+		"test:all": "pnpm test:run && pnpm test:e2e",
+		"validate:deployment": "node scripts/validate-deployment.js",
+		"prebuild": "node scripts/validate-deployment.js"
 	},
 	"dependencies": {
 		"@hookform/resolvers": "^5.2.2",
