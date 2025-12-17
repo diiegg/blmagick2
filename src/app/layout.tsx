@@ -280,7 +280,10 @@ export default function RootLayout({
 					}}
 				/>
 			</head>
-			<body className="antialiased">
+			<body
+				className="antialiased"
+				style={{ backgroundColor: "#020203", color: "#FAFAFA" }}
+			>
 				<div id="main-content">{children}</div>
 			</body>
 		</html>

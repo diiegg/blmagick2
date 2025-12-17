@@ -1,22 +1,19 @@
 [build]
-  # Build command
-  command = "npm run build"
+  # Build command - using pnpm
+  command = "pnpm install && pnpm build"
   # Directory to publish (Next.js static export)
   publish = "out"
 
 [build.environment]
   # Node version
-  NODE_VERSION = "18"
-  # Skip npm install if lock file is present
+  NODE_VERSION = "20"
+  # Use pnpm instead of npm
   NPM_FLAGS = "--prefer-offline --no-audit"
 
-# Redirect all requests for client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Next.js static export - no redirects needed
+# Static exports handle routing differently
 
-# Optional: Set custom headers for better performance
+# Security and performance headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -24,6 +21,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https:; font-src 'self' data:;"
 
 # Cache static assets
 [[headers]]
