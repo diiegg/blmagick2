@@ -220,7 +220,7 @@ export default function Home() {
 						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
 							{/* Left Column - Main Content */}
 							<motion.div
-								initial={{ opacity: 0, x: -40 }}
+								initial={{ opacity: 1, x: 0 }}
 								animate={{ opacity: 1, x: 0 }}
 								transition={{ duration: 1.2, ease: "easeOut" }}
 								className="lg:col-span-3 space-y-8"
