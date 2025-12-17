@@ -2,6 +2,9 @@
 export { Header } from "./layout/Header";
 export { Footer } from "./layout/Footer";
 
+// Analytics components
+export { WebVitals } from "./analytics/WebVitals";
+
 // Animation components
 export { EnergyGrid } from "./animations/EnergyGrid";
 export { MysticalPattern } from "./animations/MysticalPattern";
@@ -13,6 +16,14 @@ export { RitualFramework, CaseSigils, Alliances, InvocationCTA } from "./section
 // UI components
 export { AnimatedMetrics } from "./ui/AnimatedMetrics";
 export { ErrorBoundary } from "./ui/ErrorBoundary";
+export {
+  Skeleton,
+  CardSkeleton,
+  MetricsSkeleton,
+  HeroSkeleton,
+  FormSkeleton,
+} from "./ui/Skeleton";
+export { EnhancedCTA, CTAGroup } from "./ui/EnhancedCTA";
 export {
   TypewriterText,
   MysticalCard,
