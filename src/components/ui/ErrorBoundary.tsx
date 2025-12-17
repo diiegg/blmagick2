@@ -4,59 +4,69 @@ import { Component, ReactNode } from "react";
 import * as Sentry from "@sentry/nextjs";
 
 interface ErrorBoundaryProps {
-  children: ReactNode;
-  fallback?: ReactNode;
-  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
+	children: ReactNode;
+	fallback?: ReactNode;
+	onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
 }
 
 interface ErrorBoundaryState {
-  hasError: boolean;
-  error?: Error;
+	hasError: boolean;
+	error?: Error;
 }
 
 /**
  * ErrorBoundary - Catches React errors and displays fallback UI
  * Prevents animations from crashing the entire page
  */
-export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
+export class ErrorBoundary extends Component<
+	ErrorBoundaryProps,
+	ErrorBoundaryState
+> {
+	constructor(props: ErrorBoundaryProps) {
+		super(props);
+		this.state = { hasError: false };
+	}
 
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error };
-  }
+	static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+		return { hasError: true, error };
+	}
 
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    // Send error to Sentry
-    Sentry.captureException(error, {
-      contexts: {
-        react: {
-          componentStack: errorInfo.componentStack,
-        },
-      },
-    });
+	componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+		// Send error to Sentry
+		Sentry.captureException(error, {
+			contexts: {
+				react: {
+					componentStack: errorInfo.componentStack,
+				},
+			},
+		});
 
-    // Log error to console in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('ErrorBoundary caught an error:', error, errorInfo);
-    }
+		// Log error to console in development
+		if (process.env.NODE_ENV === "development") {
+			console.error("ErrorBoundary caught an error:", error, errorInfo);
+		}
 
-    // Call optional error handler
-    this.props.onError?.(error, errorInfo);
-  }
+		// Call optional error handler
+		this.props.onError?.(error, errorInfo);
+	}
 
-  render() {
-    if (this.state.hasError) {
-      // Render fallback UI or default message
-      return this.props.fallback || (
-        <div className="text-[--color-muted] text-sm italic">
-          {/* Silent failure in production, component hidden */}
-        </div>
-      );
-    }
+	render() {
+		if (this.state.hasError) {
+			// Render fallback UI or default message
+			return (
+				this.props.fallback || (
+					<div className="p-4 m-4 border border-[--color-danger] rounded bg-[--color-surface] text-[--color-danger]">
+						<p className="font-bold">Something went wrong in this section.</p>
+						{process.env.NODE_ENV === "development" && (
+							<p className="text-xs mt-2 font-mono">
+								{this.state.error?.message}
+							</p>
+						)}
+					</div>
+				)
+			);
+		}
 
-    return this.props.children;
-  }
+		return this.props.children;
+	}
 }
