@@ -219,12 +219,7 @@ export default function Home() {
 					<div className="section relative z-10 min-h-screen flex items-center">
 						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
 							{/* Left Column - Main Content */}
-							<motion.div
-								initial={{ opacity: 0, x: -40 }}
-								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 1.2, ease: "easeOut" }}
-								className="lg:col-span-3 space-y-8"
-							>
+							<div className="lg:col-span-3 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
 								{/* Brand Logo */}
 								<div className="flex items-center gap-3 mb-6">
 									<span className="text-2xl font-semibold">BlackMagickOps</span>
@@ -272,15 +267,10 @@ export default function Home() {
 										Explore Capabilities
 									</EnhancedCTA>
 								</div>
-							</motion.div>
+							</div>
 
 							{/* Right Column - Supporting Content & Mystical Effects */}
-							<motion.div
-								initial={{ opacity: 0, x: 40 }}
-								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
-								className="lg:col-span-2 relative"
-							>
+							<div className="hidden lg:block lg:col-span-2 relative z-10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
 								{/* Additional mystical elements for right column */}
 								<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
 									<div className="absolute top-1/4 right-1/4 w-32 h-32">
@@ -384,7 +374,7 @@ export default function Home() {
 										</motion.div>
 									</motion.div>
 								</div>
-							</motion.div>
+							</div>
 						</div>
 					</div>
 				</section>
