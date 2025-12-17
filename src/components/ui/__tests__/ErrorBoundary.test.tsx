@@ -64,9 +64,12 @@ describe("ErrorBoundary", () => {
 				</ErrorBoundary>,
 			);
 
-			// Default fallback is a muted text div (silent failure)
-			const fallback = container.querySelector(".text-\\[--color-muted\\]");
+			// Default fallback shows error with danger styling
+			const fallback = container.querySelector(".text-\\[--color-danger\\]");
 			expect(fallback).toBeInTheDocument();
+			expect(
+				screen.getByText("Something went wrong in this section."),
+			).toBeInTheDocument();
 		});
 
 		it("displays custom fallback UI when provided", () => {
@@ -191,7 +194,7 @@ describe("ErrorBoundary", () => {
 			);
 
 			// Fallback UI should be rendered (state.hasError = true)
-			const fallback = container.querySelector(".text-\\[--color-muted\\]");
+			const fallback = container.querySelector(".text-\\[--color-danger\\]");
 			expect(fallback).toBeInTheDocument();
 		});
 
@@ -204,7 +207,7 @@ describe("ErrorBoundary", () => {
 			);
 
 			expect(
-				container.querySelector(".text-\\[--color-muted\\]"),
+				container.querySelector(".text-\\[--color-danger\\]"),
 			).toBeInTheDocument();
 		});
 	});
@@ -258,21 +261,24 @@ describe("ErrorBoundary", () => {
 
 			// Should render fallback instead of crashing
 			expect(
-				container.querySelector(".text-\\[--color-muted\\]"),
+				container.querySelector(".text-\\[--color-danger\\]"),
 			).toBeInTheDocument();
 		});
 	});
 
 	describe("Accessibility", () => {
-		it("fallback UI is not disruptive (silent failure)", () => {
+		it("fallback UI is visible for debugging", () => {
 			const { container } = render(
 				<ErrorBoundary>
 					<ThrowError shouldThrow={true} />
 				</ErrorBoundary>,
 			);
 
-			const fallback = container.querySelector(".text-\\[--color-muted\\]");
-			expect(fallback).toHaveClass("text-sm", "italic");
+			const fallback = container.querySelector(".text-\\[--color-danger\\]");
+			expect(fallback).toBeInTheDocument();
+			expect(
+				screen.getByText("Something went wrong in this section."),
+			).toBeInTheDocument();
 		});
 
 		it("custom fallback can include proper ARIA labels", () => {
