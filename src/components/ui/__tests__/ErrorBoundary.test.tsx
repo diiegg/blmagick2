@@ -113,6 +113,7 @@ describe("ErrorBoundary", () => {
 
 			function ThrowSpecificError() {
 				throw testError;
+				return null;
 			}
 
 			render(
@@ -162,7 +163,7 @@ describe("ErrorBoundary", () => {
 	describe("Development vs Production", () => {
 		it("logs error to console in development", () => {
 			const originalEnv = process.env.NODE_ENV;
-			process.env.NODE_ENV = "development";
+			vi.stubEnv("NODE_ENV", "development");
 
 			const consoleErrorSpy = vi
 				.spyOn(console, "error")
@@ -177,7 +178,7 @@ describe("ErrorBoundary", () => {
 			// In development, should log to console
 			expect(consoleErrorSpy).toHaveBeenCalled();
 
-			process.env.NODE_ENV = originalEnv;
+			vi.stubEnv("NODE_ENV", originalEnv);
 		});
 	});
 
@@ -246,6 +247,7 @@ describe("ErrorBoundary", () => {
 		it("prevents animation crashes from breaking the page", () => {
 			function BrokenAnimation() {
 				throw new Error("Animation frame error");
+				return null;
 			}
 
 			const { container } = render(

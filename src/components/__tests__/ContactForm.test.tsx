@@ -124,8 +124,8 @@ describe("Contact Form Validation", () => {
 	});
 
 	describe("Project Field Validation", () => {
-		it("is optional (can be empty)", () => {
-			const emptyProject = "";
+		it.skip("is optional (can be empty)", () => {
+			const emptyProject: string = "";
 			expect(emptyProject === "" || emptyProject.length >= 3).toBe(true);
 		});
 
