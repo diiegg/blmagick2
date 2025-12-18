@@ -64,3 +64,6 @@ next-env.d.ts
 *.bak2
 *.backup
 new_footer.txt
+
+# Local Netlify folder
+.netlify

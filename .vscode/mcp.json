@@ -3,6 +3,12 @@
 		"Sentry": {
 			"url": "https://mcp.sentry.dev/mcp/personal-2kq/javascript-nextjs",
 			"type": "http"
+		},
+		"netlify": {
+			"command": "npx",
+			"args": ["-y", "@netlify/mcp"],
+			"type": "stdio"
 		}
-	}
+	},
+	"inputs": []
 }
