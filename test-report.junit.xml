@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuites name="vitest tests" tests="96" failures="0" errors="0" time="0.512897208">
-    <testsuite name="src/components/__tests__/ContactForm.test.tsx" timestamp="2025-11-15T20:56:28.170Z" hostname="Mac.home" tests="25" failures="0" errors="0" skipped="4" time="0.106821708">
+<testsuites name="vitest tests" tests="112" failures="0" errors="0" time="0.356140542">
+    <testsuite name="src/components/__tests__/ContactForm.test.tsx" timestamp="2025-12-17T20:21:13.519Z" hostname="Mac.home" tests="25" failures="0" errors="0" skipped="5" time="0.105578334">
         <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; validates minimum length (2 characters)" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; validates maximum length (50 characters)" time="0.000820959">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; validates maximum length (50 characters)" time="0.000706584">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; accepts valid name formats" time="0.00026525">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; accepts valid name formats" time="0.000261375">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; rejects names with invalid characters" time="0.000316208">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Name Field Validation &gt; rejects names with invalid characters" time="0.000149834">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; validates email format" time="0.0001455">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; validates email format" time="0.000153834">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; rejects invalid email formats" time="0.000163958">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; rejects invalid email formats" time="0.000104584">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; validates maximum length (100 characters)" time="0.00006675">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Email Field Validation &gt; validates maximum length (100 characters)" time="0.000083583">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; is optional (can be empty)" time="0.000051708">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; is optional (can be empty)" time="0">
+            <skipped/>
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; validates minimum length when provided (3 characters)" time="0.000047333">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; validates minimum length when provided (3 characters)" time="0.000058125">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; validates maximum length (100 characters)" time="0.000051416">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Project Field Validation &gt; validates maximum length (100 characters)" time="0.000050667">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Message Field Validation &gt; validates minimum length (10 characters)" time="0.00015">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Message Field Validation &gt; validates minimum length (10 characters)" time="0.00008325">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Message Field Validation &gt; validates maximum length (1000 characters)" time="0.000051334">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Message Field Validation &gt; validates maximum length (1000 characters)" time="0.000067333">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; sanitizes input to prevent XSS" time="0.000177334">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; sanitizes input to prevent XSS" time="0.000174708">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; detects SQL injection patterns" time="0.000248958">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; detects SQL injection patterns" time="0.000192208">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; validates CSRF token presence" time="0.000335875">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; validates CSRF token presence" time="0.000074667">
         </testcase>
         <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Security Features &gt; implements honeypot field for bot detection" time="0">
             <skipped/>
@@ -38,100 +39,137 @@
         <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Rate Limiting &gt; enforces maximum submission attempts" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Rate Limiting &gt; displays error message when rate limit exceeded" time="0.000074625">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Rate Limiting &gt; displays error message when rate limit exceeded" time="0.000054958">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; validates all fields before submission" time="0.000113417">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; validates all fields before submission" time="0.00006075">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; shows success message after valid submission" time="0.100783416">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; shows success message after valid submission" time="0.100824083">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; resets form after successful submission" time="0.000095458">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; resets form after successful submission" time="0.000107209">
         </testcase>
         <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Form Submission Flow &gt; generates new CSRF token after submission" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; provides error messages with role=&quot;alert&quot;" time="0.00088525">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; provides error messages with role=&quot;alert&quot;" time="0.000769625">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; has proper aria-labels on form fields" time="0.00026475">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; has proper aria-labels on form fields" time="0.000241667">
         </testcase>
-        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; disables submit button while submitting" time="0.000357917">
+        <testcase classname="src/components/__tests__/ContactForm.test.tsx" name="Contact Form Validation &gt; Accessibility &gt; disables submit button while submitting" time="0.00035925">
         </testcase>
     </testsuite>
-    <testsuite name="src/lib/__tests__/testUtils.test.ts" timestamp="2025-11-15T20:56:28.175Z" hostname="Mac.home" tests="19" failures="0" errors="0" skipped="0" time="0.008040875">
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should capture console errors" time="0.001898">
+    <testsuite name="src/lib/__tests__/formSecurity.test.ts" timestamp="2025-12-17T20:21:13.522Z" hostname="Mac.home" tests="16" failures="0" errors="0" skipped="0" time="0.026525">
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; generates a new token and stores it in sessionStorage" time="0.011582">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should capture console warnings" time="0.00033275">
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; retrieves an existing valid token" time="0.000234666">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should detect React key warnings" time="0.00055975">
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; returns null if token does not exist" time="0.000111042">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should restore console after use" time="0.001082291">
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; returns null and clears storage if token is expired" time="0.00033275">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; validates a correct token" time="0.000107125">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; CSRFProtection &gt; rejects an incorrect token" time="0.00011">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; RateLimiter &gt; allows requests within the limit" time="0.000133334">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; RateLimiter &gt; blocks requests exceeding the limit" time="0.000076792">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; RateLimiter &gt; resets limit after window expires" time="0.000940792">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; RateLimiter &gt; calculates remaining time correctly" time="0.000209334">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; InputSanitizer &gt; sanitizes HTML input" time="0.0043645">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; InputSanitizer &gt; sanitizes email input" time="0.000121208">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; InputSanitizer &gt; sanitizes text input (removes null bytes)" time="0.000078833">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; InputSanitizer &gt; detects SQL injection" time="0.000231459">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; useHoneypot &gt; generates field name on client side (useEffect)" time="0.005934333">
+        </testcase>
+        <testcase classname="src/lib/__tests__/formSecurity.test.ts" name="Form Security Utilities &gt; useHoneypot &gt; validates empty value correctly" time="0.000785708">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/lib/__tests__/testUtils.test.ts" timestamp="2025-12-17T20:21:13.524Z" hostname="Mac.home" tests="19" failures="0" errors="0" skipped="0" time="0.005855">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should capture console errors" time="0.0012985">
+        </testcase>
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should capture console warnings" time="0.000214709">
+        </testcase>
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should detect React key warnings" time="0.000148584">
+        </testcase>
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createConsoleSpy &gt; should restore console after use" time="0.000660833">
             <system-err>
+This should not be captured
+
+⚠️  Console errors in test:
 This should not be captured
 
             </system-err>
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should validate unique keys" time="0.000280833">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should validate unique keys" time="0.000159167">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should detect duplicate keys" time="0.000253208">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should detect duplicate keys" time="0.000181625">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should count undefined keys" time="0.000076125">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should count undefined keys" time="0.00009525">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should detect multiple issues" time="0.000099584">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; validateUniqueKeys &gt; should detect multiple issues" time="0.000105208">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createKeyMatcher &gt; should match valid key patterns" time="0.00021875">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createKeyMatcher &gt; should match valid key patterns" time="0.000148625">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createKeyMatcher &gt; should work with complex patterns" time="0.000135042">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createKeyMatcher &gt; should work with complex patterns" time="0.000148833">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoKeyWarnings &gt; should pass when no key warnings" time="0.000531084">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoKeyWarnings &gt; should pass when no key warnings" time="0.0004855">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoKeyWarnings &gt; should fail when key warnings are present" time="0.000357959">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoKeyWarnings &gt; should fail when key warnings are present" time="0.000371292">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoConsoleErrors &gt; should pass when no console errors" time="0.000119917">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoConsoleErrors &gt; should pass when no console errors" time="0.000121083">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoConsoleErrors &gt; should fail when console errors are present" time="0.0003525">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; expectNoConsoleErrors &gt; should fail when console errors are present" time="0.000139041">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect React key warnings" time="0.000250084">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect React key warnings" time="0.000154">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect unrecognized props" time="0.000135209">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect unrecognized props" time="0.000081792">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect memory leak warnings" time="0.000087">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect memory leak warnings" time="0.000117792">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect prop type warnings" time="0.0000795">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should detect prop type warnings" time="0.000084708">
         </testcase>
-        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should handle multiple warning types" time="0.000195875">
-        </testcase>
-    </testsuite>
-    <testsuite name="src/components/layout/__tests__/Header.test.tsx" timestamp="2025-11-15T20:56:28.179Z" hostname="Mac.home" tests="14" failures="0" errors="0" skipped="0" time="0.107788625">
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders the logo and brand name" time="0.022087708">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders all navigation links" time="0.028475">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders &quot;Start a Project&quot; CTA button" time="0.00454425">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; has skip link for keyboard navigation" time="0.010012834">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; mobile menu is initially closed" time="0.002280666">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; opens mobile menu when hamburger button is clicked" time="0.008699542">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; closes mobile menu when X button is clicked" time="0.0083845">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; closes mobile menu when navigation link is clicked" time="0.004864125">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; toggles aria-expanded attribute on menu button" time="0.004739875">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; has proper ARIA labels on navigation" time="0.003957375">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; has descriptive aria-label on CTA button" time="0.001496833">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; mobile menu button has proper aria-controls" time="0.0011055">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Styling &gt; header has fixed positioning and backdrop blur" time="0.003277625">
-        </testcase>
-        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Styling &gt; navigation links have hover transitions" time="0.001885709">
+        <testcase classname="src/lib/__tests__/testUtils.test.ts" name="Test Utilities &gt; createReactWarningChecker &gt; should handle multiple warning types" time="0.000238208">
         </testcase>
     </testsuite>
-    <testsuite name="src/components/ui/__tests__/AnimatedMetrics.test.tsx" timestamp="2025-11-15T20:56:28.181Z" hostname="Mac.home" tests="20" failures="0" errors="0" skipped="5" time="0.152075125">
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; renders all 4 metrics" time="0.095672667">
+    <testsuite name="src/components/layout/__tests__/Header.test.tsx" timestamp="2025-12-17T20:21:13.525Z" hostname="Mac.home" tests="14" failures="0" errors="0" skipped="0" time="0.073361542">
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders the logo and brand name" time="0.01702925">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders all navigation links" time="0.02589675">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; renders &quot;Start a Project&quot; CTA button" time="0.002170333">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; has skip link for keyboard navigation" time="0.001614459">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; mobile menu is initially closed" time="0.001617833">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; opens mobile menu when hamburger button is clicked" time="0.00478975">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; closes mobile menu when X button is clicked" time="0.003832125">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; closes mobile menu when navigation link is clicked" time="0.003697333">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Mobile Menu &gt; toggles aria-expanded attribute on menu button" time="0.001782917">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; has proper ARIA labels on navigation" time="0.003502167">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; has descriptive aria-label on CTA button" time="0.001119416">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Accessibility &gt; mobile menu button has proper aria-controls" time="0.001136875">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Styling &gt; header has fixed positioning and backdrop blur" time="0.002532042">
+        </testcase>
+        <testcase classname="src/components/layout/__tests__/Header.test.tsx" name="Header &gt; Styling &gt; navigation links have hover transitions" time="0.00164775">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/components/ui/__tests__/AnimatedMetrics.test.tsx" timestamp="2025-12-17T20:21:13.526Z" hostname="Mac.home" tests="20" failures="0" errors="0" skipped="5" time="0.070850583">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; renders all 4 metrics" time="0.0239485">
             <system-err>
 Warning: React does not recognize the `whileInView` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `whileinview` instead. If you accidentally passed it from a parent component, remove it from the DOM element.
     at div
@@ -140,13 +178,21 @@ Warning: React does not recognize the `whileInView` prop on a DOM element. If yo
     at section
     at AnimatedMetrics
 
+⚠️  Console errors in test:
+Warning: React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element.%s whileInView whileinview 
+    at div
+    at div
+    at div
+    at section
+    at AnimatedMetrics
+
             </system-err>
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; renders metrics in a grid layout" time="0.004402083">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; renders metrics in a grid layout" time="0.002749542">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; applies glass morphism styling to metric cards" time="0.002466333">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Rendering &gt; applies glass morphism styling to metric cards" time="0.001607125">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Count-Up Animation Logic &gt; starts count from 0" time="0.001756625">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Count-Up Animation Logic &gt; starts count from 0" time="0.001265">
         </testcase>
         <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Count-Up Animation Logic &gt; counts up to target value (99.9)" time="0">
             <skipped/>
@@ -163,65 +209,65 @@ Warning: React does not recognize the `whileInView` prop on a DOM element. If yo
         <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Animation Duration &gt; completes animation in 2000ms" time="0">
             <skipped/>
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Easing Function &gt; uses easeOutQuart for smooth animation" time="0.000235792">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Easing Function &gt; uses easeOutQuart for smooth animation" time="0.000168875">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Easing Function &gt; accelerates quickly at the start" time="0.000110291">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Easing Function &gt; accelerates quickly at the start" time="0.000122334">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Viewport Detection &gt; only animates when scrolled into view" time="0.005421208">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Viewport Detection &gt; only animates when scrolled into view" time="0.001744916">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Viewport Detection &gt; animates only once (not on every scroll)" time="0.002863584">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Viewport Detection &gt; animates only once (not on every scroll)" time="0.001019125">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Responsive Design &gt; shows 2 columns on mobile" time="0.003508667">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Responsive Design &gt; shows 2 columns on mobile" time="0.001113291">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Responsive Design &gt; shows 4 columns on desktop" time="0.001346584">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Responsive Design &gt; shows 4 columns on desktop" time="0.002265875">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Hover Effects &gt; applies hover styles to metric cards" time="0.001515">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Hover Effects &gt; applies hover styles to metric cards" time="0.001573084">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Hover Effects &gt; changes label color on hover" time="0.001307083">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Hover Effects &gt; changes label color on hover" time="0.001345709">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Accessibility &gt; has semantic section element" time="0.001364708">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Accessibility &gt; has semantic section element" time="0.001072125">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Accessibility &gt; displays readable metric labels" time="0.027401">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Accessibility &gt; displays readable metric labels" time="0.028257042">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Performance &gt; uses requestAnimationFrame for smooth animation" time="0.001613416">
+        <testcase classname="src/components/ui/__tests__/AnimatedMetrics.test.tsx" name="AnimatedMetrics &gt; Performance &gt; uses requestAnimationFrame for smooth animation" time="0.001554292">
         </testcase>
     </testsuite>
-    <testsuite name="src/components/ui/__tests__/ErrorBoundary.test.tsx" timestamp="2025-11-15T20:56:28.186Z" hostname="Mac.home" tests="18" failures="0" errors="0" skipped="0" time="0.138170875">
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Normal Operation &gt; renders children when no error occurs" time="0.013750042">
+    <testsuite name="src/components/ui/__tests__/ErrorBoundary.test.tsx" timestamp="2025-12-17T20:21:13.529Z" hostname="Mac.home" tests="18" failures="0" errors="0" skipped="0" time="0.073970083">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Normal Operation &gt; renders children when no error occurs" time="0.01340475">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Normal Operation &gt; passes props to children correctly" time="0.001675834">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Normal Operation &gt; passes props to children correctly" time="0.001297667">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; catches errors from child components" time="0.065847334">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; catches errors from child components" time="0.013615917">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; displays default fallback UI when error occurs" time="0.002272958">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; displays default fallback UI when error occurs" time="0.002399375">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; displays custom fallback UI when provided" time="0.002148667">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Handling &gt; displays custom fallback UI when provided" time="0.001295">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; sends error to Sentry when error occurs" time="0.001786167">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; sends error to Sentry when error occurs" time="0.001370084">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; sends error with React component stack context" time="0.004624042">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; sends error with React component stack context" time="0.004058417">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; captures the correct error instance" time="0.00597775">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Sentry Integration &gt; captures the correct error instance" time="0.001732625">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Callback &gt; calls onError callback when provided" time="0.0019225">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Callback &gt; calls onError callback when provided" time="0.001532584">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Callback &gt; receives error and errorInfo in callback" time="0.001672417">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Error Callback &gt; receives error and errorInfo in callback" time="0.001237792">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Development vs Production &gt; logs error to console in development" time="0.001420208">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Development vs Production &gt; logs error to console in development" time="0.001014292">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; State Management &gt; updates hasError state when error occurs" time="0.001491417">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; State Management &gt; updates hasError state when error occurs" time="0.001018125">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; State Management &gt; stores error in component state" time="0.00377625">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; State Management &gt; stores error in component state" time="0.000949375">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Multiple Errors &gt; handles multiple child errors independently" time="0.002755">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Multiple Errors &gt; handles multiple child errors independently" time="0.001587083">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Multiple Errors &gt; isolates errors to specific boundaries" time="0.001625292">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Multiple Errors &gt; isolates errors to specific boundaries" time="0.001127292">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Animation Protection &gt; prevents animation crashes from breaking the page" time="0.001217292">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Animation Protection &gt; prevents animation crashes from breaking the page" time="0.001764583">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Accessibility &gt; fallback UI is not disruptive (silent failure)" time="0.001038625">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Accessibility &gt; fallback UI is visible for debugging" time="0.002801583">
         </testcase>
-        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Accessibility &gt; custom fallback can include proper ARIA labels" time="0.02212425">
+        <testcase classname="src/components/ui/__tests__/ErrorBoundary.test.tsx" name="ErrorBoundary &gt; Accessibility &gt; custom fallback can include proper ARIA labels" time="0.020544542">
         </testcase>
     </testsuite>
 </testsuites>

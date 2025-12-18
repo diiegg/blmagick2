@@ -4,6 +4,9 @@
 
 import * as Sentry from "@sentry/nextjs";
 
+// Disabled to prevent duplicate Sentry initialization
+// Use sentry.client.config.ts instead
+/*
 Sentry.init({
 	dsn: "https://645d327fd4a8bbf1e30c15a2cdfeac89@o4510370089926656.ingest.de.sentry.io/4510370182463568",
 
@@ -27,5 +30,6 @@ Sentry.init({
 	// https://docs.sentry.io/platforms/javascript/guides/nextjs/configuration/options/#sendDefaultPii
 	sendDefaultPii: true,
 });
+*/
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

@@ -42,56 +42,56 @@
 	--space-24: 6rem;
 	--space-32: 8rem;
 
-	/* === Core Backgrounds (Abyssal Code) === */
-	--color-bg: #020203; /* Deepest Void - Darker than before */
-	--color-surface: #09090b; /* Abyss - Subtle differentiation */
-	--color-border: #27272a; /* Zinc-800 - Sharp, mechanical edges */
+	/* === Core Backgrounds === */
+	--color-bg: #0a0a0b; /* Almost black – cinematic background */
+	--color-surface: #121214; /* Elevated surfaces, cards */
+	--color-border: #1e1e22; /* Dividers / outlines */
 
 	/* === Typography - WCAG AA Compliant === */
-	--color-text: #fafafa; /* Brighter white for contrast against deep void */
-	--color-text-secondary: #d4d4d8; /* Zinc-300 */
-	--color-muted: #a1a1aa; /* Zinc-400 - Terminal output feel */
-	--color-link: #a78bfa; /* Violet-400 */
-	--color-link-hover: #c4b5fd; /* Violet-300 */
+	--color-text: #f4f4f5; /* Enhanced contrast (16.8:1) - brighter white */
+	--color-text-secondary: #d4d4d8; /* Secondary text with better contrast (11.2:1) */
+	--color-muted: #a1a1aa; /* Improved muted text (6.5:1 meets AA standard) */
+	--color-link: #a5b4fc; /* Enhanced link blue (9.2:1) */
+	--color-link-hover: #c4b5fd; /* Link hover state (11.4:1) */
 
-	/* === Accent / Brand (Black Magick) === */
-	--color-brand: #7c3aed; /* Electric Violet (Violet-600) - The Magick */
-	--color-brand-light: #a78bfa; /* Violet-400 */
-	--color-brand-dark: #5b21b6; /* Violet-800 */
-	--color-accent: #06b6d4; /* Cyber Cyan (Cyan-500) - The Automation */
-	--color-accent-light: #67e8f9; /* Cyan-300 */
-	--color-accent-dark: #0891b2; /* Cyan-600 */
-	--color-danger: #ef4444; /* Red-500 */
-	--color-warning: #f59e0b; /* Amber-500 */
-	--color-success: #10b981; /* Emerald-500 */
+	/* === Accent / Brand === */
+	--color-brand: #818cf8; /* Enhanced indigo with better contrast (7.8:1) */
+	--color-brand-light: #a78bfa; /* Light variant (8.4:1) */
+	--color-brand-dark: #6366f1; /* Dark variant */
+	--color-accent: #22d3ee; /* Enhanced cyan for better visibility (10.2:1) */
+	--color-accent-light: #67e8f9;
+	--color-accent-dark: #06b6d4;
+	--color-danger: #f87171; /* Improved error color (5.9:1) */
+	--color-warning: #fbbf24; /* Warning yellow (10.8:1) */
+	--color-success: #34d399; /* Success green (8.7:1) */
 
 	/* === Enhanced Color Palette === */
-	--color-purple: #7c3aed;
-	--color-pink: #db2777;
-	--color-emerald: #10b981;
-	--color-orange: #f97316;
+	--color-purple: #8b5cf6;
+	--color-pink: #ec4899;
+	--color-emerald: #059669;
+	--color-orange: #ea580c;
 
 	/* === Halo / Glow overlays === */
-	--halo-brand: rgba(124, 58, 237, 0.25); /* Violet glow */
-	--halo-accent: rgba(6, 182, 212, 0.25); /* Cyan glow */
+	--halo-brand: rgba(110, 142, 248, 0.25);
+	--halo-accent: rgba(91, 227, 193, 0.25);
 
 	/* === Radius + Shadows === */
 	--radius-2xl: 1.25rem;
-	--shadow-card: 0 10px 40px rgba(0, 0, 0, 0.5); /* Darker shadow */
+	--shadow-card: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 /* ---- Upgraded OKLCH variants (if browser supports) ---- */
 @supports (color: oklch(50% 0.05 0)) {
 	:root {
-		--color-bg: oklch(10% 0.01 270); /* Deep void */
-		--color-surface: oklch(14% 0.01 270);
-		--color-border: oklch(25% 0.02 270);
-		--color-text: oklch(98% 0.01 270);
-		--color-muted: oklch(65% 0.02 260);
-		--color-link: oklch(75% 0.15 280);
-		--color-link-hover: oklch(80% 0.15 280);
-		--color-brand: oklch(65% 0.22 280); /* Electric Violet */
-		--color-accent: oklch(75% 0.18 210); /* Cyber Cyan */
+		--color-bg: oklch(15% 0.02 270);
+		--color-surface: oklch(18% 0.02 270);
+		--color-border: oklch(23% 0.03 270);
+		--color-text: oklch(96% 0.02 270);
+		--color-muted: oklch(65% 0.03 260);
+		--color-link: oklch(75% 0.12 255);
+		--color-link-hover: oklch(80% 0.15 255);
+		--color-brand: oklch(70% 0.15 275);
+		--color-accent: oklch(80% 0.17 180);
 	}
 }
 

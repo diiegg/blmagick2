@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [dev, main]
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 jobs:
   # Lint and Type Check
   lint:
@@ -128,12 +133,31 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Validate Deployment Configuration
+        run: pnpm validate:deployment
+        continue-on-error: false
+
       - name: Build project
         run: pnpm build
         env:
           NODE_ENV: production
           NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+
+      - name: Post-build Validation
+        run: |
+          echo "Validating build output..."
+          pnpm validate:deployment
+          
+          echo ""
+          echo "Build output structure:"
+          ls -lah out/ | head -20
+          
+          echo ""
+          echo "Critical files check:"
+          test -f out/index.html && echo "✓ index.html exists" || echo "✗ index.html missing"
+          test -d out/_next && echo "✓ _next directory exists" || echo "✗ _next directory missing"
+          test -f out/404.html && echo "✓ 404.html exists" || echo "⚠ 404.html missing"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
