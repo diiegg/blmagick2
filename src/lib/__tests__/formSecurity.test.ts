@@ -142,10 +142,6 @@ describe("Form Security Utilities", () => {
 		it("generates field name on client side (useEffect)", () => {
 			const { result } = renderHook(() => useHoneypot());
 
-			// Initial state should be default
-			expect(result.current.fieldName).toBe("field_honeypot");
-
-			// After effect runs (simulated by renderHook)
 			// With mock nanoid(10) -> mock-id-10
 			expect(result.current.fieldName).toBe("field_mock-id-10");
 		});

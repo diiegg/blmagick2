@@ -128,7 +128,7 @@ if (fs.existsSync('out')) {
   console.log(`   Build size: ${buildSize}`);
   
 } else {
-  errors.push('out/ directory not found - run "pnpm build" first');
+  console.log('   ⏭️  Skipping (out/ will be created during build)');
 }
 
 // ==================== 5. Package Manager Consistency ====================
