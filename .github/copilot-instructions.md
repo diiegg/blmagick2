@@ -1,5 +1,53 @@
 # BlackMagickOps Web - AI Coding Agent Instructions
 
+## 🚨 GLOBAL CHAT RULES - READ FIRST
+
+### Git Workflow (MANDATORY)
+**Never merge directly to `dev` or `main`. Always use this workflow:**
+
+1. **Feature/Fix Development**:
+   ```bash
+   git checkout -b feature/your-feature-name  # or fix/issue-name
+   # Make changes, commit work
+   git push origin feature/your-feature-name
+   ```
+
+2. **Create PR to Dev**:
+   ```bash
+   gh pr create --title "feat: Your feature" --body "Description" --base dev
+   ```
+
+3. **After PR merge to Dev, create Production Release**:
+   ```bash
+   git checkout dev && git pull origin dev
+   gh pr create --title "Release: Description" --base main --head dev
+   ```
+
+**Branch Strategy:**
+- `feature/*` or `fix/*` → `dev` → `main`
+- `main` = production (blackmagickops.com)
+- `dev` = staging integration branch
+- Never push directly to `dev` or `main`
+
+### Critical Deployment Notes
+- **Netlify Deploy**: Automatic on merge to `main`
+- **Static Export**: Uses Next.js `output: 'export'` to `out/` directory
+- **CSP Headers**: Defined in `netlify.toml` - update CSP when adding external scripts
+- **Sentry**: Avoid duplicate initialization (check `src/instrumentation-client.ts`)
+
+### Package Management Rules
+- **Use pnpm ONLY**: `pnpm install`, `pnpm dev`, `pnpm build`
+- **Node >= 20**: Required by `engines` in package.json
+- **Frozen Lockfile**: Always use `pnpm install --frozen-lockfile` in CI
+
+### Testing & Quality Gates
+```bash
+pnpm test:run          # Unit tests (required before PRs)
+pnpm test:coverage     # Coverage reports to Codecov
+pnpm build            # Must pass before deployment
+pnpm validate:deployment  # Custom pre-deploy validation
+```
+
 ## Project Overview
 
 This is a **DevOps consultancy marketing website** built with Next.js 15 App Router, featuring a mystical/magical theme with precision engineering aesthetics. The site showcases platform engineering, automation, and DevOps capabilities.
@@ -8,7 +56,7 @@ This is a **DevOps consultancy marketing website** built with Next.js 15 App Rou
 
 ### Tech Stack
 - **Framework**: Next.js 15 with App Router (`src/app/`)
-- **Styling**: Tailwind CSS with custom design system 
+- **Styling**: Tailwind CSS with custom design system
 - **Animation**: Framer Motion for sophisticated UI animations
 - **Icons**: Lucide React
 - **Package Manager**: pnpm (lock file present)
@@ -50,7 +98,7 @@ pnpm format          # Biome formatter
 ### Single-File Components
 All UI is in `src/app/page.tsx` with **embedded component functions** at the bottom:
 - `SigilDivider`: Animated section separators with mystical lines
-- `RitualFramework`: Process visualization with floating elements  
+- `RitualFramework`: Process visualization with floating elements
 - `AnimatedMetrics`: Count-up animations for statistics
 - `MysticalPattern`: Background geometric animations
 
@@ -104,7 +152,7 @@ All UI is in `src/app/page.tsx` with **embedded component functions** at the bot
 5. **Contact**: Lead generation form
 
 ### SEO/Metadata
-- Title: "BlackMagickOps" 
+- Title: "BlackMagickOps"
 - Description: "Precision. Discipline. Magic."
 - Favicon: Custom magic wand emoji
 
@@ -121,10 +169,29 @@ All UI is in `src/app/page.tsx` with **embedded component functions** at the bot
 - **Animation**: `framer-motion` v12
 - **Utils**: `same-runtime` for consistency
 
+## Deployment & CI Integration
+
+### Netlify Configuration (`netlify.toml`)
+- **Build Command**: `pnpm install && pnpm build`
+- **Publish Directory**: `out/` (Next.js static export)
+- **Functions**: `netlify/functions/` for serverless functions
+- **Headers**: CSP, caching, security headers pre-configured
+
+### MCP Server Integration (`.vscode/mcp.json`)
+- **Netlify MCP**: `npx -y @netlify/mcp` for deployment management
+- **Sentry MCP**: HTTP-based for error monitoring
+- Use Netlify MCP tools for deploy management and site operations
+
+### Quality Assurance Workflow
+1. **Pre-commit**: Husky runs lint + type check
+2. **PR Checks**: CI runs lint, test, build, e2e, performance audits
+3. **Deploy Validation**: `scripts/validate-deployment.js` checks build output
+4. **Coverage**: Automatic Codecov reports on PRs
+
 ## Common Tasks
 
 ### Adding New Sections
-1. Create component function in `page.tsx` 
+1. Create component function in `page.tsx`
 2. Use `motion.div` with `whileInView` animations
 3. Apply `.section` wrapper for consistent layout
 4. Add to main JSX and navigation if needed
@@ -139,3 +206,9 @@ All UI is in `src/app/page.tsx` with **embedded component functions** at the bot
 1. Marketing copy lives in component objects/arrays
 2. Tech stack mentions should align with real DevOps tools
 3. Maintain mystical metaphor consistency in messaging
+
+### Debug Production Issues
+1. **Check Netlify Deploy Logs**: Use MCP tools or `netlify api listSiteDeploys`
+2. **Console Errors**: Often CSP violations or duplicate script initialization
+3. **Build Failures**: Check Node version, pnpm lockfile, and validate script
+4. **Sentry**: Monitor error reports but avoid duplicate Session Replay instances
