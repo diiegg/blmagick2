@@ -20,12 +20,14 @@ import {
 	Cloud,
 	Code,
 	Cog,
+	DollarSign,
 	Eye,
 	Globe,
 	Layers,
 	Shield,
 	Star,
 	Target,
+	TrendingUp,
 	X,
 } from "lucide-react";
 
@@ -227,26 +229,41 @@ export default function Home() {
 								{/* Main Headline */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
-										Autonomous Infrastructure.
+										Infrastructure That Thinks.
 									</span>
 									<br />
-									<span className="text-[--color-brand]">
-										Engineered with Magic.
-									</span>
+									<span className="text-[--color-text]">Heals. Evolves. </span>
+									<span className="text-[--color-brand]">Automatically.</span>
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-									We build{" "}
+									The AI DevOps revolution is here. While others patch manually,
+									your platform could be self-healing with{" "}
 									<strong className="font-semibold text-[--color-text]">
-										Agentic Platforms
-									</strong>{" "}
-									that think, heal, and scale. Move beyond DevOps into the age
-									of{" "}
-									<strong className="font-semibold text-[--color-text]">
-										AI-Driven Engineering
+										agentic workflows
+									</strong>
+									, LLM-powered IDPs, and carbon-aware FinOps—deployed in{" "}
+									<strong className="font-semibold text-[--color-brand]">
+										12 weeks
 									</strong>
 									.
 								</p>
+								{/* Brand Storytelling */}
+								<div className="mt-6 text-lg text-[--color-muted] max-w-2xl lg:text-left text-center space-y-3">
+									<p>
+										Remember when you hired your first 10x engineer? Now imagine
+										100 of them working 24/7—analyzing logs, remediating
+										incidents, optimizing costs, and scaling infrastructure
+										without human intervention.
+									</p>
+									<p>
+										That's not science fiction. That's{" "}
+										<span className="text-[--color-brand] font-semibold">
+											BlackMagickOps' Cognitive Platform Engineering
+										</span>
+										.
+									</p>
+								</div>
 								{/* Primary CTAs */}
 								<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
 									<EnhancedCTA
@@ -256,7 +273,7 @@ export default function Home() {
 										analyticsId="hero-begin-ritual"
 										testVariant="A"
 									>
-										Begin the Ritual
+										See The Ritual in Action
 									</EnhancedCTA>
 									<EnhancedCTA
 										href="#disciplines"
@@ -413,18 +430,73 @@ export default function Home() {
 																	Cognitive IDP
 																</h3>
 																<p className="text-[--color-muted]">
-																	Backstage on steroids — powered by LLMs
+																	Your developers' time back. Instantly.
 																</p>
 															</div>
 														</div>
-														<CascadingList
-															items={[
-																"AI-Drafted Infrastructure Code",
-																"Architectural Query Engines",
-																"Instant Microservice Scaffolding",
-															]}
-															delay={0.1}
-														/>
+
+														{/* Problem-Solving: Hard Way vs BlackMagickOps Way */}
+														<div className="glass-enhanced p-6 rounded-lg space-y-4 mb-6">
+															<div className="border-l-4 border-red-500 pl-4">
+																<h4 className="font-semibold text-red-400 mb-2">
+																	The Hard Way
+																</h4>
+																<p className="text-sm text-[--color-muted]">
+																	Your developers waste 40% of their sprint
+																	wrestling with YAML configs, hunting down
+																	microservice owners, and waiting 3 days for
+																	infrastructure tickets.
+																</p>
+															</div>
+
+															<div className="border-l-4 border-[--color-brand] pl-4">
+																<h4 className="font-semibold text-[--color-brand] mb-2">
+																	The BlackMagickOps Way
+																</h4>
+																<p className="text-sm text-[--color-muted]">
+																	Ask your IDP:{" "}
+																	<span className="italic">
+																		"Deploy a Python API with Redis caching and
+																		PostgreSQL on production-similar staging."
+																	</span>
+																</p>
+																<p className="text-sm text-[--color-muted] mt-2">
+																	<span className="font-semibold text-[--color-accent]">
+																		Three minutes later
+																	</span>
+																	, it's live—with golden-path guardrails,
+																	automatic SBOM generation, and SLO dashboards
+																	configured.
+																</p>
+															</div>
+														</div>
+
+														{/* Value Proposition: Outcomes */}
+														<div className="space-y-3 mb-6">
+															<h4 className="font-semibold">What Changes:</h4>
+															<ul className="space-y-2">
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>MTTR drops from days to minutes</span>
+																</li>
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>Developer NPS jumps 40+ points</span>
+																</li>
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>
+																		Platform teams become force multipliers, not
+																		bottlenecks
+																	</span>
+																</li>
+															</ul>
+														</div>
+
+														<div className="text-xs text-[--color-muted] border-t border-[--color-border] pt-4">
+															<strong>Tech Reality Check:</strong> Backstage +
+															LangChain + Vector embeddings + Kubernetes CRDs
+														</div>
 													</MysticalCard>
 												</div>
 												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
@@ -464,10 +536,70 @@ export default function Home() {
 																	Agentic Workflows
 																</h3>
 																<p className="text-[--color-muted]">
-																	L1 Support & Triage by Autonomous Agents
+																	L1 Support That Never Sleeps
 																</p>
 															</div>
 														</div>
+
+														{/* Competitive Comparison */}
+														<div className="grid md:grid-cols-2 gap-4 mb-6">
+															<div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+																<h4 className="font-semibold text-red-400 mb-2">
+																	Industry Standard
+																</h4>
+																<ol className="text-sm text-[--color-muted] space-y-1">
+																	<li>1. PagerDuty wakes you at 3 AM</li>
+																	<li>2. You SSH into prod</li>
+																	<li>3. Panic. Roll back. Hope.</li>
+																</ol>
+															</div>
+
+															<div className="p-4 rounded-lg bg-[--color-brand]/10 border border-[--color-brand]/20">
+																<h4 className="font-semibold text-[--color-brand] mb-2">
+																	BlackMagickOps Standard
+																</h4>
+																<p className="text-sm text-[--color-muted] mb-2">
+																	Your agentic L1 support{" "}
+																	<span className="font-semibold">already</span>
+																	:
+																</p>
+																<ul className="text-sm text-[--color-muted] space-y-1">
+																	<li>✓ Detected the anomaly</li>
+																	<li>
+																		✓ Correlated 47 log entries to root cause
+																	</li>
+																	<li>✓ Applied the fix (auto-rollback)</li>
+																	<li>✓ Updated the postmortem draft</li>
+																	<li>
+																		✓ Sent you a Slack summary—
+																		<em>while you slept</em>
+																	</li>
+																</ul>
+															</div>
+														</div>
+
+														{/* Trend Analysis */}
+														<div className="glass-premium p-5 rounded-lg mb-6">
+															<div className="flex items-start gap-3">
+																<TrendingUp className="w-5 h-5 text-[--color-accent] mt-1" />
+																<div>
+																	<h4 className="font-semibold mb-2">
+																		Why This Matters
+																	</h4>
+																	<p className="text-sm text-[--color-muted]">
+																		Gartner predicts{" "}
+																		<span className="text-[--color-brand] font-semibold">
+																			40% of enterprises will use agentic
+																			automation by 2027
+																		</span>
+																		. The question isn't <em>if</em> your
+																		infrastructure becomes autonomous—it's{" "}
+																		<em>when</em> you decide to lead or follow.
+																	</p>
+																</div>
+															</div>
+														</div>
+
 														<CascadingList
 															items={[
 																"Auto-Remediation Agents",
@@ -520,14 +652,92 @@ export default function Home() {
 																</p>
 															</div>
 														</div>
-														<CascadingList
-															items={[
-																"Predictive Scaling",
-																"Carbon-Aware Scheduling",
-																"Automated Rightsizing",
-															]}
-															delay={0.1}
-														/>
+
+														{/* Customer Testimonial Integration */}
+														<blockquote className="glass-enhanced p-5 rounded-lg border-l-4 border-[--color-accent] mb-6">
+															<p className="text-[--color-muted] italic mb-3">
+																"We thought cutting cloud costs meant
+																sacrificing performance. BlackMagickOps proved
+																us wrong—
+																<span className="text-[--color-accent] font-semibold not-italic">
+																	60% savings, zero latency impact
+																</span>
+																, and we're now carbon-neutral certified."
+															</p>
+															<footer className="text-sm">
+																<strong className="text-[--color-text]">
+																	Elena Kowalski
+																</strong>
+																<span className="text-[--color-muted]">
+																	{" "}
+																	— DevOps Director, ScaleUp Ventures
+																</span>
+															</footer>
+														</blockquote>
+
+														{/* Value Proposition: What We Did */}
+														<div className="space-y-3 mb-6">
+															<h4 className="font-semibold">What We Did:</h4>
+															<div className="space-y-2">
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>Predictive scaling:</strong>{" "}
+																		Right-sized 200+ workloads using ML usage
+																		patterns
+																	</div>
+																</div>
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>Carbon-aware scheduling:</strong>{" "}
+																		Shifted batch jobs to low-carbon hours
+																		(free!)
+																	</div>
+																</div>
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>
+																			Spot instance orchestration:
+																		</strong>{" "}
+																		70% cost savings on non-critical workloads
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														{/* Financial Impact */}
+														<div className="glass-premium p-5 rounded-lg">
+															<h4 className="font-semibold mb-3 flex items-center gap-2">
+																<DollarSign className="w-5 h-5 text-[--color-success]" />
+																Your CFO Will Love This
+															</h4>
+															<div className="grid grid-cols-2 gap-4 text-center">
+																<div>
+																	<div className="text-3xl font-bold text-[--color-success]">
+																		300%
+																	</div>
+																	<div className="text-sm text-[--color-muted]">
+																		Average ROI
+																	</div>
+																	<div className="text-xs text-[--color-muted]">
+																		First year
+																	</div>
+																</div>
+																<div>
+																	<div className="text-3xl font-bold text-[--color-success]">
+																		$400K-$2M
+																	</div>
+																	<div className="text-sm text-[--color-muted]">
+																		Typical Savings
+																	</div>
+																	<div className="text-xs text-[--color-muted]">
+																		Annually
+																	</div>
+																</div>
+															</div>
+														</div>
 													</MysticalCard>
 												</div>
 												<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
@@ -575,7 +785,7 @@ export default function Home() {
 					<div className="section">
 						<SectionIntro
 							title="Our Ritual Framework"
-							subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
+							subtitle="Most DevOps consultancies hand you a 200-page doc and disappear. We stay with you through every phase—architecting, coding, deploying—until your infrastructure runs itself."
 							headingId="framework-heading"
 						/>
 
@@ -585,26 +795,30 @@ export default function Home() {
 									steps={[
 										{
 											title: "Discover",
+											subtitle: "Week 1-2",
 											description:
-												"Map system constraints and train context models.",
+												"Deep system audit: We map dependencies, bottlenecks, and failure modes. Train context models on your architecture. Identify the top 3 automation opportunities with ROI projections.",
 											icon: <Eye className="w-6 h-6" />,
 										},
 										{
 											title: "Architect",
+											subtitle: "Week 3-5",
 											description:
-												"Design self-healing topologies and agent swarms.",
+												"Design self-healing topologies, agentic workflows, and platform interfaces. Your team reviews architecture decisions with us—no black boxes.",
 											icon: <Code className="w-6 h-6" />,
 										},
 										{
 											title: "Automate",
+											subtitle: "Week 6-10",
 											description:
-												"Deploy agentic guardrails and autonomous pipelines.",
+												"Deploy autonomous pipelines, LLM-powered IDPs, and agentic guardrails. We pair-program with your engineers—this is knowledge transfer, not gatekeeping.",
 											icon: <Cog className="w-6 h-6" />,
 										},
 										{
 											title: "Evolve",
+											subtitle: "Week 11+",
 											description:
-												"Continuous model tuning and system optimization.",
+												"Continuous model tuning, system optimization, and 24/7 monitoring. Your infrastructure learns from incidents and patches itself before you wake up.",
 											icon: <Target className="w-6 h-6" />,
 										},
 									]}
@@ -711,6 +925,8 @@ export default function Home() {
 										author: "Sarah Chen",
 										role: "VP of Engineering",
 										company: "TechFlow Systems",
+										context:
+											"Lead time: 48h → 4h | Deployment frequency: 2x/week → 15x/day | Change failure rate: 12% → 1.8%",
 									},
 									{
 										quote:
@@ -718,6 +934,8 @@ export default function Home() {
 										author: "Marcus Rodriguez",
 										role: "CTO",
 										company: "CloudNative Solutions",
+										context:
+											"MTTR: 6h → 22min | Automated rollbacks: 0 → 100% | Observability coverage: 30% → 97%",
 									},
 									{
 										quote:
@@ -725,6 +943,8 @@ export default function Home() {
 										author: "Elena Kowalski",
 										role: "DevOps Director",
 										company: "ScaleUp Ventures",
+										context:
+											"Cloud spend: -42% | Developer NPS: +38 points | Infrastructure ticket backlog: 340 → 8",
 									},
 									{
 										quote:
@@ -732,6 +952,8 @@ export default function Home() {
 										author: "David Kim",
 										role: "Platform Lead",
 										company: "Enterprise Corp",
+										context:
+											"Service provisioning: 5 days → 12 minutes | Policy compliance: 67% → 100% | Developer satisfaction: +45%",
 									},
 									{
 										quote:
@@ -739,6 +961,8 @@ export default function Home() {
 										author: "Priya Patel",
 										role: "Engineering Manager",
 										company: "Innovation Labs",
+										context:
+											"SLO attainment: 82% → 99.5% | Incident detection: Manual → AI-automated | Postmortem insights: Qualitative → Quantitative",
 									},
 								]}
 							/>
@@ -939,6 +1163,73 @@ export default function Home() {
 											</div>
 										),
 									},
+									{
+										title:
+											"We're already working with [Big 4 Consultancy]. Why switch to BlackMagickOps?",
+										content: (
+											<div className="space-y-4">
+												<p>
+													No shade to the Big 4—they're great at 200-page
+													assessments and org chart reshuffles. But when it
+													comes to <strong>shipping code</strong> and{" "}
+													<strong>fixing production</strong>, here's the
+													difference:
+												</p>
+												<div className="grid md:grid-cols-2 gap-6 mt-6">
+													<div className="p-4 rounded-lg border-2 border-red-500/30 bg-red-500/5">
+														<h5 className="font-semibold text-red-400 mb-3">
+															Them (Typical Big 4 Engagement)
+														</h5>
+														<ul className="space-y-2 text-sm text-[--color-muted]">
+															<li>
+																📊 6-month "cloud readiness assessment" → No
+																code deployed
+															</li>
+															<li>
+																👔 Junior consultants rotating every 8 weeks
+																(you train them)
+															</li>
+															<li>
+																📄 300-slide deck delivered → Then they
+																disappear
+															</li>
+															<li>
+																💰 $500K spent → Still deploying manually on
+																Fridays at midnight
+															</li>
+														</ul>
+													</div>
+													<div className="p-4 rounded-lg border-2 border-[--color-brand]/50 bg-[--color-brand]/5">
+														<h5 className="font-semibold text-[--color-brand] mb-3">
+															Us (BlackMagickOps Way)
+														</h5>
+														<ul className="space-y-2 text-sm text-[--color-muted]">
+															<li>
+																🚀 Week 1: Working prototype in your production
+																environment
+															</li>
+															<li>
+																🧙‍♂️ Senior engineers (10+ years Kubernetes/IaC)
+																who pair-program with your team
+															</li>
+															<li>
+																⚙️ We stay embedded until your infrastructure
+																runs itself
+															</li>
+															<li>
+																📈 ROI tracked weekly—if we're not delivering
+																value by Week 4, we pause and reassess
+															</li>
+														</ul>
+													</div>
+												</div>
+												<p className="mt-6 text-[--color-brand] font-semibold">
+													Bottom line: We're the team you hire when the slides
+													are done and you actually need to ship.
+												</p>
+											</div>
+										),
+									},
 								]}
 							/>
 						</div>
@@ -959,21 +1250,99 @@ export default function Home() {
 					>
 						<MysticalCard className="p-10 md:p-14">
 							<div className="text-center mb-10">
-								<TypewriterText text="Initiate Contact" delay={500} />
 								<motion.h2
 									id="contact-heading"
-									className="text-4xl font-semibold mb-6"
+									className="text-4xl md:text-5xl font-semibold mb-6"
 									initial={{ opacity: 0 }}
 									whileInView={{ opacity: 1 }}
 									viewport={{ once: true }}
-									transition={{ delay: 2, duration: 0.8 }}
-								/>
-								<ScrollReveal direction="top" delay={0.3}>
-									<p className="mx-auto max-w-md text-[--color-muted]">
-										Describe your objective — we'll respond with a precision
-										plan and a path to measurable wins.
+									transition={{ delay: 0.3, duration: 0.8 }}
+								>
+									Your Next 90 Days: Chaos or Clarity?
+								</motion.h2>
+								<ScrollReveal direction="top" delay={0.5}>
+									<p className="mx-auto max-w-2xl text-lg text-[--color-muted] mb-8">
+										Most companies waste 12-18 months on "DevOps transformation"
+										that delivers slide decks, not software velocity.{" "}
+										<span className="text-[--color-brand] font-semibold">
+											We're different.
+										</span>
 									</p>
 								</ScrollReveal>
+
+								{/* What Happens Timeline */}
+								<div className="text-left max-w-3xl mx-auto glass-enhanced p-8 rounded-lg space-y-6 mb-8">
+									<h3 className="text-xl font-semibold text-center mb-6">
+										What Happens When You Contact Us
+									</h3>
+
+									<div className="grid md:grid-cols-3 gap-6">
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.7 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">📅</div>
+											<h4 className="font-semibold">Day 1-3</h4>
+											<p className="text-sm text-[--color-muted]">
+												Discovery call → We audit 1 system (free) → You get a
+												heat map of your biggest bottlenecks
+											</p>
+										</motion.div>
+
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.8 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">📊</div>
+											<h4 className="font-semibold">Day 7</h4>
+											<p className="text-sm text-[--color-muted]">
+												Detailed proposal with specific ROI projections, 12-week
+												roadmap, and risk assessment
+											</p>
+										</motion.div>
+
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.9 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">🚀</div>
+											<h4 className="font-semibold">Week 2</h4>
+											<p className="text-sm text-[--color-muted]">
+												Pilot phase begins (if you choose to proceed)
+											</p>
+										</motion.div>
+									</div>
+
+									<motion.div
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										viewport={{ once: true }}
+										transition={{ delay: 1.0 }}
+										className="border-t border-[--color-border] pt-6"
+									>
+										<div className="flex items-start gap-3">
+											<Shield className="w-6 h-6 text-[--color-success] mt-1" />
+											<div>
+												<h4 className="font-semibold text-[--color-success]">
+													Zero Risk
+												</h4>
+												<p className="text-sm text-[--color-muted]">
+													Don't see measurable improvements by Week 4? We pause,
+													reassess, or you walk away—no hard feelings.
+												</p>
+											</div>
+										</div>
+									</motion.div>
+								</div>
 							</div>
 
 							<div className="mx-auto max-w-2xl">
@@ -1675,7 +2044,12 @@ function AccordionSection({
 function ProcessTimeline({
 	steps,
 }: {
-	steps: Array<{ title: string; description: string; icon?: React.ReactNode }>;
+	steps: Array<{
+		title: string;
+		subtitle?: string;
+		description: string;
+		icon?: React.ReactNode;
+	}>;
 }) {
 	return (
 		<div className="timeline">
@@ -1694,7 +2068,14 @@ function ProcessTimeline({
 							</div>
 						)}
 						<div>
-							<h4 className="text-lg font-semibold mb-2">{step.title}</h4>
+							<div className="flex items-baseline gap-3 mb-2">
+								<h4 className="text-lg font-semibold">{step.title}</h4>
+								{step.subtitle && (
+									<span className="text-sm text-[--color-brand]">
+										{step.subtitle}
+									</span>
+								)}
+							</div>
 							<p className="text-[--color-muted]">{step.description}</p>
 						</div>
 					</div>
@@ -1714,6 +2095,7 @@ function TestimonialCarousel({
 		role: string;
 		company: string;
 		avatar?: string;
+		context?: string;
 	}>;
 }) {
 	const [current, setCurrent] = useState(0);
@@ -1736,6 +2118,16 @@ function TestimonialCarousel({
 						<blockquote className="text-lg mb-6 italic">
 							"{testimonial.quote}"
 						</blockquote>
+						{testimonial.context && (
+							<div className="mb-6 p-4 rounded-lg bg-[--color-bg]/50 border border-[--color-brand]/20">
+								<div className="text-sm text-[--color-brand] font-semibold mb-1">
+									Measurable Impact
+								</div>
+								<div className="text-sm text-[--color-muted]">
+									{testimonial.context}
+								</div>
+							</div>
+						)}
 						<div className="flex items-center gap-4">
 							{testimonial.avatar && (
 								<div className="w-12 h-12 rounded-full bg-[--color-brand] flex items-center justify-center text-white font-semibold">

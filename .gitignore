@@ -54,16 +54,5 @@ next-env.d.ts
 # Sentry Config File
 .env.sentry-build-plugin
 
-# Claude Code configuration (use global config instead)
-.claude/
-.mcp.json
-
-# Temporary working files
-*.py
-*.bak
-*.bak2
-*.backup
-new_footer.txt
-
-# Local Netlify folder
-.netlify
+# Netlify
+.netlify/
