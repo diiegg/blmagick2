@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import {
+	Inter,
+	Space_Grotesk,
+	JetBrains_Mono,
+	DM_Sans,
+} from "next/font/google";
 import { GeistSans, GeistMono } from "geist/font";
 import "./globals.css";
 
@@ -16,6 +21,15 @@ const spaceGrotesk = Space_Grotesk({
 	variable: "--font-space-grotesk",
 	display: "swap",
 	preload: true,
+	weight: ["400", "500", "600", "700"],
+});
+
+const dmSans = DM_Sans({
+	subsets: ["latin"],
+	variable: "--font-dm-sans",
+	display: "swap",
+	preload: true,
+	weight: ["400", "500", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -239,7 +253,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${dmSans.variable}`}
 		>
 			<head>
 				{/* Umami Analytics */}

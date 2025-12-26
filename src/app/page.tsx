@@ -20,6 +20,7 @@ import {
 	Cloud,
 	Code,
 	Cog,
+	Cpu,
 	DollarSign,
 	Eye,
 	Globe,
@@ -499,24 +500,77 @@ export default function Home() {
 														</div>
 													</MysticalCard>
 												</div>
-												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-6 glass-enhanced cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<Cpu className="w-5 h-5 text-[--color-brand]" />
 														The AI Stack
 													</h4>
-													<div className="grid grid-cols-2 gap-4">
-														{[
-															"Backstage + AI",
-															"Vector Ops",
-															"Kubernetes",
-															"LangChain",
-														].map((tech, i) => (
-															<div
-																key={tech}
-																className="chip icon-hover text-center"
-															>
-																{tech}
+													<div className="space-y-6">
+														{/* Core Platform */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Core Platform
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"Backstage IDP",
+																	"Kubernetes",
+																	"ArgoCD",
+																	"Crossplane",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
 															</div>
-														))}
+														</div>
+
+														{/* AI & LLM Layer */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																AI & LLM Layer
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"LangChain",
+																	"Vector DB",
+																	"OpenAI",
+																	"Anthropic",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
+															</div>
+														</div>
+
+														{/* Observability */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Observability
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"Prometheus",
+																	"Grafana",
+																	"OpenTelemetry",
+																	"Jaeger",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -610,25 +664,80 @@ export default function Home() {
 														/>
 													</MysticalCard>
 												</div>
-												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-6 glass-enhanced cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<Cpu className="w-5 h-5 text-[--color-brand]" />
 														Agent Capabilities
 													</h4>
-													<div className="space-y-3">
-														{[
-															"Log Analysis",
-															"Root Cause ID",
-															"Auto-Rollback",
-															"Security Patching",
-														].map((strategy, i) => (
-															<div
-																key={strategy}
-																className="flex items-center gap-3"
-															>
-																<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
-																<span>{strategy}</span>
+													<div className="space-y-6">
+														{/* Autonomous Actions */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Autonomous Actions
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Auto-Rollback on Failure",
+																	"Self-Healing Infrastructure",
+																	"Predictive Scaling",
+																	"Zero-Touch Deployments",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
 															</div>
-														))}
+														</div>
+
+														{/* Intelligence & Analysis */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																Intelligence & Analysis
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Real-Time Log Analysis",
+																	"Root Cause Identification",
+																	"Anomaly Detection",
+																	"Performance Optimization",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-accent] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
+															</div>
+														</div>
+
+														{/* Security & Compliance */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Security & Compliance
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Automated Security Patching",
+																	"Vulnerability Scanning",
+																	"Policy Enforcement",
+																	"Compliance Monitoring",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-muted] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -740,28 +849,109 @@ export default function Home() {
 														</div>
 													</MysticalCard>
 												</div>
-												<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="tech-grid bg-opacity-20 rounded-2xl p-6 glass-premium cursor-pointer hover:bg-opacity-40 hover:shadow-[0_0_30px_rgba(129,140,248,0.3)] transition-all duration-300 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<TrendingUp className="w-5 h-5 text-[--color-accent]" />
 														Optimization Impact
 													</h4>
-													<div className="space-y-4">
-														<div className="flex justify-between items-center">
-															<span>Cloud Waste</span>
-															<span className="text-[--color-success]">
-																-60%
-															</span>
+													<div className="space-y-6">
+														{/* Cost Efficiency */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Cost Efficiency
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Cloud Waste Reduction
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-60%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Infrastructure Costs
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-45%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Operational ROI
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+300%
+																	</span>
+																</div>
+															</div>
 														</div>
-														<div className="flex justify-between items-center">
-															<span>Carbon Footprint</span>
-															<span className="text-[--color-success]">
-																-40%
-															</span>
+
+														{/* Environmental Impact */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																Environmental Impact
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Carbon Footprint
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-40%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Energy Efficiency
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+55%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Green Computing Score
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		A+
+																	</span>
+																</div>
+															</div>
 														</div>
-														<div className="flex justify-between items-center">
-															<span>ROI</span>
-															<span className="text-[--color-success]">
-																+300%
-															</span>
+
+														{/* Performance Gains */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Performance Gains
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Resource Utilization
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+75%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Auto-Scaling Efficiency
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+90%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Idle Resource Elimination
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-80%
+																	</span>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -1872,18 +2062,29 @@ function TouchCarousel({
 			</div>
 
 			{/* Navigation */}
-			<div className="flex justify-center mt-4 space-x-2">
+			<div
+				className="flex justify-center mt-4 space-x-2"
+				role="group"
+				aria-label="Carousel navigation"
+			>
 				{items.map((_, index) => (
 					<button
 						key={index}
 						onClick={() => setCurrentIndex(index)}
-						className={`btn-touch w-3 h-3 rounded-full transition-colors ${
+						className={`btn-touch min-w-[44px] min-h-[44px] w-12 h-12 rounded-full transition-all duration-200 flex items-center justify-center ${
 							index === currentIndex
-								? "bg-[--color-brand]"
-								: "bg-[--color-muted]"
+								? "bg-[--color-brand] shadow-[0_0_20px_rgba(129,140,248,0.4)]"
+								: "bg-[--color-surface] border border-[--color-border] hover:border-[--color-brand]"
 						}`}
-						aria-label={`Go to slide ${index + 1}`}
-					/>
+						aria-label={`Go to slide ${index + 1} of ${items.length}`}
+						aria-current={index === currentIndex ? "true" : "false"}
+					>
+						<span
+							className={`w-2 h-2 rounded-full ${
+								index === currentIndex ? "bg-white" : "bg-[--color-muted]"
+							}`}
+						/>
+					</button>
 				))}
 			</div>
 
@@ -1980,21 +2181,55 @@ function TabbedInterface({
 }) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
+	// Keyboard navigation handler
+	const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+		if (e.key === "ArrowRight") {
+			e.preventDefault();
+			setActiveTab((index + 1) % tabs.length);
+		} else if (e.key === "ArrowLeft") {
+			e.preventDefault();
+			setActiveTab((index - 1 + tabs.length) % tabs.length);
+		} else if (e.key === "Home") {
+			e.preventDefault();
+			setActiveTab(0);
+		} else if (e.key === "End") {
+			e.preventDefault();
+			setActiveTab(tabs.length - 1);
+		}
+	};
+
 	return (
 		<div className="tab-container">
-			<div className="tab-list">
+			<div className="tab-list" role="tablist" aria-label="Navigation tabs">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
-						className={`tab-button ${activeTab === index ? "active" : ""}`}
+						role="tab"
+						aria-selected={activeTab === index}
+						aria-controls={`tabpanel-${index}`}
+						id={`tab-${index}`}
+						tabIndex={activeTab === index ? 0 : -1}
+						className={`tab-button ${activeTab === index ? "active" : ""} 
+							${activeTab === index ? "text-[--color-brand]" : "text-[--color-muted]"}
+							hover:text-[--color-text] transition-all duration-200
+							${activeTab === index ? "shadow-[0_0_20px_rgba(129,140,248,0.3)]" : ""}
+							focus-visible:outline-[--color-brand] focus-visible:outline-offset-2`}
 						onClick={() => setActiveTab(index)}
+						onKeyDown={(e) => handleKeyDown(e, index)}
 					>
 						{tab.icon && <span className="icon mr-2">{tab.icon}</span>}
 						{tab.label}
 					</button>
 				))}
 			</div>
-			<div className="tab-content">{tabs[activeTab]?.content}</div>
+			<div
+				role="tabpanel"
+				id={`tabpanel-${activeTab}`}
+				aria-labelledby={`tab-${activeTab}`}
+				className="tab-content"
+			>
+				{tabs[activeTab]?.content}
+			</div>
 		</div>
 	);
 }
@@ -2013,29 +2248,53 @@ function AccordionSection({
 		);
 	};
 
+	// Keyboard navigation handler
+	const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+		if (e.key === " " || e.key === "Enter") {
+			e.preventDefault();
+			toggleItem(index);
+		}
+	};
+
 	return (
-		<div className="space-y-2">
-			{items.map((item, index) => (
-				<div
-					key={index}
-					className={`accordion-item ${openItems.includes(index) ? "open" : ""}`}
-				>
-					<button
-						className="accordion-header"
-						onClick={() => toggleItem(index)}
-					>
-						<span className="font-medium">{item.title}</span>
-						<ChevronDown
-							className={`accordion-icon w-5 h-5 ${openItems.includes(index) ? "rotate-180" : ""}`}
-						/>
-					</button>
-					<div
-						className={`accordion-content ${openItems.includes(index) ? "open" : "closed"}`}
-					>
-						<div className="accordion-body">{item.content}</div>
+		<div
+			className="space-y-2"
+			role="region"
+			aria-label="Expandable content sections"
+		>
+			{items.map((item, index) => {
+				const isOpen = openItems.includes(index);
+				const contentId = `accordion-content-${index}`;
+				const headerId = `accordion-header-${index}`;
+
+				return (
+					<div key={index} className={`accordion-item ${isOpen ? "open" : ""}`}>
+						<button
+							id={headerId}
+							className="accordion-header min-h-[44px] w-full flex items-center justify-between text-left px-4 py-3 focus-visible:ring-2 focus-visible:ring-[--color-brand] focus-visible:outline-none rounded-lg transition-all"
+							onClick={() => toggleItem(index)}
+							onKeyDown={(e) => handleKeyDown(e, index)}
+							aria-expanded={isOpen}
+							aria-controls={contentId}
+						>
+							<span className="font-medium">{item.title}</span>
+							<ChevronDown
+								className={`accordion-icon w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+								aria-hidden="true"
+							/>
+						</button>
+						<div
+							id={contentId}
+							role="region"
+							aria-labelledby={headerId}
+							className={`accordion-content ${isOpen ? "open" : "closed"}`}
+							hidden={!isOpen}
+						>
+							<div className="accordion-body">{item.content}</div>
+						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 }
@@ -2052,7 +2311,7 @@ function ProcessTimeline({
 	}>;
 }) {
 	return (
-		<div className="timeline">
+		<div className="timeline" role="list" aria-label="Process timeline steps">
 			{steps.map((step, index) => (
 				<motion.div
 					key={index}
@@ -2060,6 +2319,7 @@ function ProcessTimeline({
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: index * 0.1 }}
 					className="timeline-item"
+					role="listitem"
 				>
 					<div className="flex items-start gap-4">
 						{step.icon && (
