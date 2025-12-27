@@ -223,10 +223,6 @@ export default function Home() {
 						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
 							{/* Left Column - Main Content */}
 							<div className="lg:col-span-3 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-								{/* Brand Logo */}
-								<div className="flex items-center gap-3 mb-6">
-									<span className="text-2xl font-semibold">BlackMagickOps</span>
-								</div>{" "}
 								{/* Main Headline */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
@@ -238,51 +234,49 @@ export default function Home() {
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-									The AI DevOps revolution is here. While others patch manually,
-									your platform could be self-healing with{" "}
+									Platform engineering and DevOps automation that scales with
+									your ambition.{" "}
 									<strong className="font-semibold text-[--color-text]">
-										agentic workflows
+										Self-healing infrastructure, AI-powered IDPs, and
+										carbon-aware FinOps
 									</strong>
-									, LLM-powered IDPs, and carbon-aware FinOps—deployed in{" "}
+									—deployed in{" "}
 									<strong className="font-semibold text-[--color-brand]">
 										12 weeks
 									</strong>
 									.
 								</p>
-								{/* Brand Storytelling */}
-								<div className="mt-6 text-lg text-[--color-muted] max-w-2xl lg:text-left text-center space-y-3">
-									<p>
-										Remember when you hired your first 10x engineer? Now imagine
-										100 of them working 24/7—analyzing logs, remediating
-										incidents, optimizing costs, and scaling infrastructure
-										without human intervention.
+								{/* Early Social Proof */}
+								<blockquote className="glass-enhanced p-4 rounded-lg border-l-4 border-[--color-accent] mt-6">
+									<p className="text-base italic text-[--color-muted]">
+										"60% cloud cost reduction, zero latency impact. We're now
+										carbon-neutral certified."
 									</p>
-									<p>
-										That's not science fiction. That's{" "}
-										<span className="text-[--color-brand] font-semibold">
-											BlackMagickOps' Cognitive Platform Engineering
-										</span>
-										.
-									</p>
-								</div>
+									<footer className="text-sm mt-2 text-[--color-muted]">
+										<strong className="text-[--color-text]">
+											Elena Kowalski
+										</strong>
+										, DevOps Director @ ScaleUp Ventures
+									</footer>
+								</blockquote>
 								{/* Primary CTAs */}
-								<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
+								<div className="flex flex-wrap gap-4 lg:justify-start justify-center mt-8">
 									<EnhancedCTA
 										href="#contact"
 										className="px-8 py-4 text-lg"
 										variant="primary"
-										analyticsId="hero-begin-ritual"
+										analyticsId="hero-get-roadmap"
 										testVariant="A"
 									>
-										See The Ritual in Action
+										Get Your 12-Week Roadmap
 									</EnhancedCTA>
 									<EnhancedCTA
 										href="#disciplines"
 										className="px-8 py-4 text-lg"
 										variant="ghost"
-										analyticsId="hero-explore-capabilities"
+										analyticsId="hero-see-how-it-works"
 									>
-										Explore Capabilities
+										See How It Works
 									</EnhancedCTA>
 								</div>
 							</div>
@@ -1448,14 +1442,18 @@ export default function Home() {
 									viewport={{ once: true }}
 									transition={{ delay: 0.3, duration: 0.8 }}
 								>
-									Your Next 90 Days: Chaos or Clarity?
+									Ready to Stop Firefighting?
 								</motion.h2>
 								<ScrollReveal direction="top" delay={0.5}>
 									<p className="mx-auto max-w-2xl text-lg text-[--color-muted] mb-8">
-										Most companies waste 12-18 months on "DevOps transformation"
-										that delivers slide decks, not software velocity.{" "}
+										Most companies spend{" "}
+										<span className="text-red-400 font-semibold">
+											12-18 months
+										</span>{" "}
+										on "DevOps transformation" that delivers slide decks, not
+										software velocity.{" "}
 										<span className="text-[--color-brand] font-semibold">
-											We're different.
+											We ship production infrastructure in 12 weeks.
 										</span>
 									</p>
 								</ScrollReveal>
