@@ -408,6 +408,54 @@ export default function Home() {
 							subtitle="Each engagement blends infrastructure mastery, automation, and disciplined execution."
 							headingId="disciplines-heading"
 						/>
+
+						{/* Executive Summary - 3 bullets max */}
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
+							transition={{ duration: 0.8 }}
+							className="mt-12 max-w-4xl mx-auto"
+						>
+							<div className="glass-premium p-8 rounded-2xl">
+								<h3 className="text-xl font-semibold mb-6 text-center">
+									What We Actually Do
+								</h3>
+								<div className="grid md:grid-cols-3 gap-6">
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-brand]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We build{" "}
+											<strong className="text-[--color-text]">
+												internal platforms
+											</strong>{" "}
+											so developers self-serve
+										</p>
+									</div>
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-accent]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We automate{" "}
+											<strong className="text-[--color-text]">
+												incident response
+											</strong>{" "}
+											so you sleep through alerts
+										</p>
+									</div>
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-success]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We cut{" "}
+											<strong className="text-[--color-text]">
+												cloud costs 40-60%
+											</strong>{" "}
+											without sacrificing performance
+										</p>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+
 						<div className="mt-16">
 							<TabbedInterface
 								tabs={[
@@ -438,9 +486,13 @@ export default function Home() {
 																</h4>
 																<p className="text-sm text-[--color-muted]">
 																	Your developers waste 40% of their sprint
-																	wrestling with YAML configs, hunting down
-																	microservice owners, and waiting 3 days for
-																	infrastructure tickets.
+																	wrestling with{" "}
+																	<TechTerm
+																		term="YAML"
+																		definition="YAML Ain't Markup Language - config file format"
+																	/>{" "}
+																	configs, hunting down microservice owners, and
+																	waiting 3 days for infrastructure tickets.
 																</p>
 															</div>
 
@@ -449,7 +501,12 @@ export default function Home() {
 																	The BlackMagickOps Way
 																</h4>
 																<p className="text-sm text-[--color-muted]">
-																	Ask your IDP:{" "}
+																	Ask your{" "}
+																	<TechTerm
+																		term="IDP"
+																		definition="Internal Developer Platform - self-service portal for devs"
+																	/>
+																	:{" "}
 																	<span className="italic">
 																		"Deploy a Python API with Redis caching and
 																		PostgreSQL on production-similar staging."
@@ -460,8 +517,12 @@ export default function Home() {
 																		Three minutes later
 																	</span>
 																	, it's live—with golden-path guardrails,
-																	automatic SBOM generation, and SLO dashboards
-																	configured.
+																	automatic SBOM generation, and{" "}
+																	<TechTerm
+																		term="SLO"
+																		definition="Service Level Objective - reliability targets"
+																	/>{" "}
+																	dashboards configured.
 																</p>
 															</div>
 														</div>
@@ -490,7 +551,11 @@ export default function Home() {
 
 														<div className="text-xs text-[--color-muted] border-t border-[--color-border] pt-4">
 															<strong>Tech Reality Check:</strong> Backstage +
-															LangChain + Vector embeddings + Kubernetes CRDs
+															LangChain + Vector embeddings +{" "}
+															<TechTerm
+																term="Kubernetes CRDs"
+																definition="Custom Resource Definitions - extend K8s with custom objects"
+															/>
 														</div>
 													</MysticalCard>
 												</div>
@@ -1798,16 +1863,25 @@ function MysticalContactForm() {
 							className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
 						/>
 					) : null}
-					{isSubmitting ? "Casting Spell..." : "Begin the Ritual →"}
+					{isSubmitting ? "Sending Message..." : "Begin the Ritual →"}
 				</button>
 			</form>
-
 			<SuccessAnimation show={showSuccess} />
 		</>
 	);
 }
 
 /* ---------- Enhanced Technical Components ---------- */
+
+// Technical Term Tooltip Component - for acronyms and jargon
+function TechTerm({ term, definition }: { term: string; definition: string }) {
+	return (
+		<span className="tech-term">
+			{term}
+			<span className="tooltip">{definition}</span>
+		</span>
+	);
+}
 
 // Lazy Loading Image Component
 function LazyImage({
