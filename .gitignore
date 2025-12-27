@@ -56,3 +56,9 @@ next-env.d.ts
 
 # Netlify
 .netlify/
+# PM2
+logs/
+*.pm2
+.pm2/
+pm2-*.log
+dev-server.pid
