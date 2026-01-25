@@ -10,9 +10,8 @@
 /* ---- Base font + setup ---- */
 :root {
 	/* Optimized Variable Fonts via Next.js + Geist (Aeonik alternative) */
-	--font-sans: var(--font-dm-sans), var(--font-geist-sans), var(--font-inter),
-		system-ui, sans-serif;
-	--font-display: var(--font-space-grotesk), var(--font-geist-sans), system-ui,
+	--font-sans: var(--font-geist-sans), var(--font-inter), system-ui, sans-serif;
+	--font-display: var(--font-geist-sans), var(--font-space-grotesk), system-ui,
 		sans-serif;
 	--font-mono: var(--font-geist-mono), var(--font-jetbrains-mono), "SF Mono",
 		monospace;
@@ -120,65 +119,6 @@ body {
 	color: var(--color-text);
 	font-family: var(--font-sans);
 	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-rendering: optimizeLegibility;
-}
-
-/* Typography - Headings with Space Grotesk */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-family: var(--font-display);
-	font-weight: 600;
-	letter-spacing: -0.02em;
-	color: var(--color-text);
-	line-height: 1.2;
-}
-
-h1 {
-	font-size: var(--text-5xl);
-	font-weight: 700;
-}
-
-h2 {
-	font-size: var(--text-4xl);
-}
-
-h3 {
-	font-size: var(--text-3xl);
-}
-
-h4 {
-	font-size: var(--text-2xl);
-}
-
-h5 {
-	font-size: var(--text-xl);
-}
-
-h6 {
-	font-size: var(--text-lg);
-}
-
-/* Body text with DM Sans */
-p,
-li,
-span,
-label {
-	font-family: var(--font-sans);
-	line-height: 1.6;
-	letter-spacing: -0.01em;
-}
-
-/* Code blocks with monospace */
-code,
-pre,
-kbd,
-samp {
-	font-family: var(--font-mono);
 }
 
 /* Selection highlight */

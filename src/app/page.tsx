@@ -226,11 +226,12 @@ export default function Home() {
 								{/* Main Headline */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
-										Infrastructure That Thinks.
+										Autonomous Infrastructure.
 									</span>
 									<br />
-									<span className="text-[--color-text]">Heals. Evolves. </span>
-									<span className="text-[--color-brand]">Automatically.</span>
+									<span className="text-[--color-brand]">
+										Engineered with Magic.
+									</span>
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
