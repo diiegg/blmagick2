@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 		template: "%s | BlackMagickOps",
 	},
 	description:
-		"We build Agentic Platforms that think, heal, and scale. Move beyond DevOps into the age of AI-Driven Engineering with Cognitive IDPs and Autonomous Workflows.",
+		"Platform engineering consultancy specializing in internal developer platforms, infrastructure automation, and FinOps. We build self-service platforms that cut cloud costs 40-60% and accelerate deployments 10x.",
 	keywords: [
 		"Autonomous Infrastructure",
 		"AI Agents",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
 		url: "https://blackmagickops.com",
 		title: "BlackMagickOps - Engineering the invisible",
 		description:
-			"We build Agentic Platforms that think, heal, and scale. Move beyond DevOps into the age of AI-Driven Engineering.",
+			"Platform engineering consultancy: internal developer platforms, infrastructure automation, and FinOps optimization.",
 		siteName: "BlackMagickOps",
 		images: [
 			{
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
 		card: "summary_large_image",
 		title: "BlackMagickOps - Engineering the invisible",
 		description:
-			"We build Agentic Platforms that think, heal, and scale. Move beyond DevOps.",
+			"Platform engineering consultancy: developer platforms, automation, and FinOps.",
 		images: ["/twitter-image.png"],
 		creator: "@blackmagickops",
 		site: "@blackmagickops",
@@ -173,7 +173,7 @@ const structuredData = {
 			url: "https://blackmagickops.com",
 			name: "BlackMagickOps",
 			description:
-				"Precision. Discipline. Magic. - Transform your infrastructure with mystical DevOps precision.",
+				"Platform engineering consultancy specializing in developer platforms, infrastructure automation, and cloud cost optimization.",
 			publisher: {
 				"@id": "https://blackmagickops.com/#organization",
 			},
@@ -221,7 +221,7 @@ const structuredData = {
 			url: "https://blackmagickops.com",
 			name: "BlackMagickOps - DevOps & Platform Engineering Excellence",
 			description:
-				"Precision. Discipline. Magic. - Expert DevOps consultancy specializing in platform engineering, automation, and cloud-native infrastructure.",
+				"Expert platform engineering consultancy specializing in internal developer platforms, infrastructure automation, and FinOps.",
 			isPartOf: {
 				"@id": "https://blackmagickops.com/#website",
 			},

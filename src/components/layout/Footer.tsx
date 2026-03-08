@@ -117,15 +117,15 @@ export function Footer() {
 									href="#work"
 									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 								>
-									Case Studies
+									What We Deliver
 								</a>
 							</li>
 							<li>
 								<a
-									href="#testimonials"
+									href="#framework"
 									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 								>
-									Testimonials
+									How We Work
 								</a>
 							</li>
 							<li>
@@ -134,14 +134,6 @@ export function Footer() {
 									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 								>
 									FAQ
-								</a>
-							</li>
-							<li>
-								<a
-									href="/blog"
-									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
-								>
-									Blog
 								</a>
 							</li>
 						</ul>
@@ -153,7 +145,7 @@ export function Footer() {
 						<ul className="space-y-3 text-sm">
 							<li>
 								<a
-									href="#philosophy"
+									href="#about"
 									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 								>
 									About
@@ -165,22 +157,6 @@ export function Footer() {
 									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
 								>
 									Contact
-								</a>
-							</li>
-							<li>
-								<a
-									href="/careers"
-									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
-								>
-									Careers
-								</a>
-							</li>
-							<li>
-								<a
-									href="/partners"
-									className="text-[--color-muted] hover:text-[--color-brand] transition-colors focus-visible:ring-2 focus-visible:ring-[--color-brand] rounded"
-								>
-									Partners
 								</a>
 							</li>
 						</ul>
@@ -239,7 +215,7 @@ export function Footer() {
 			{/* Large Text Effect - Per-Letter Glowing Edge */}
 			{/* Large Text Effect - Per-Letter Glowing Edge */}
 			<div
-				className="w-full mt-12 flex justify-center items-center w-full select-none pointer-events-auto relative z-10 py-24 px-4 overflow-visible"
+				className="w-full mt-12 flex justify-center items-center select-none pointer-events-auto relative z-10 py-24 px-4 overflow-visible"
 				onMouseMove={(e) => {
 					const letters = e.currentTarget.querySelectorAll(".spotlight-letter");
 					letters.forEach((letter) => {
