@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { Clock, Zap, CheckCircle } from "lucide-react";
+// Icons removed — urgency cards removed
 
 /**
  * AnimatedMetrics - Displays key performance metrics with count-up animations
@@ -16,121 +16,15 @@ import { Clock, Zap, CheckCircle } from "lucide-react";
  */
 export function AnimatedMetrics() {
 	const metrics = [
-		{ value: 99.9, suffix: "%", label: "Platform Uptime", prefix: "" },
-		{ value: 47, suffix: "%", label: "Deployment Speed ↑", prefix: "+" },
-		{ value: 120, suffix: "+", label: "Squads Empowered", prefix: "" },
-		{ value: 2.3, suffix: "M", label: "Cost Optimized", prefix: "$" },
+		{ value: 12, suffix: "", label: "Week Engagements", prefix: "" },
+		{ value: 40, suffix: "%+", label: "Cost Reduction Target", prefix: "" },
+		{ value: 10, suffix: "x", label: "Deploy Frequency Goal", prefix: "" },
+		{ value: 99.9, suffix: "%", label: "SLO Attainment Target", prefix: "" },
 	];
 
 	return (
 		<section className="py-20">
 			<div className="section">
-				{/* Gradient Card Timeline - Narrative Cards */}
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true, amount: 0.3 }}
-					transition={{ duration: 0.6 }}
-					className="max-w-6xl mx-auto mb-24 space-y-6"
-				>
-					{/* Card 1: Urgency */}
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: 0.2 }}
-						className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-red-900/20 to-orange-900/20 border border-red-500/20 p-8 cursor-pointer hover:border-red-500/40 transition-all duration-300"
-					>
-						<div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl group-hover:bg-red-500/20 transition-all duration-500" />
-						<div className="relative z-10 flex items-start gap-6">
-							<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-red-500/20 flex items-center justify-center">
-								<Clock className="w-6 h-6 text-red-400" />
-							</div>
-							<div>
-								<div className="text-sm font-semibold text-red-400 mb-2">
-									The 2027 Deadline
-								</div>
-								<p className="text-lg text-gray-200 leading-relaxed">
-									The 2027 deadline is real:{" "}
-									<span className="text-white font-semibold">
-										Gartner says 40% of enterprises will deploy agentic
-										automation.
-									</span>{" "}
-									Will you lead or play catch-up? Get{" "}
-									<span className="text-[--color-brand]">
-										self-healing infrastructure
-									</span>
-									,{" "}
-									<span className="text-[--color-accent]">AI-powered IDPs</span>
-									, and carbon-aware FinOps—
-									<span className="font-semibold">live in 12 weeks</span>.
-								</p>
-							</div>
-						</div>
-					</motion.div>
-
-					{/* Card 2: Vision */}
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: 0.4 }}
-						className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/20 to-blue-900/20 border border-purple-500/20 p-8 cursor-pointer hover:border-purple-500/40 transition-all duration-300"
-					>
-						<div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl group-hover:bg-purple-500/20 transition-all duration-500" />
-						<div className="relative z-10 flex items-start gap-6">
-							<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
-								<Zap className="w-6 h-6 text-purple-400" />
-							</div>
-							<div>
-								<div className="text-sm font-semibold text-purple-400 mb-2">
-									The 10x Multiplier
-								</div>
-								<p className="text-lg text-gray-200 leading-relaxed">
-									Remember when you hired your first 10x engineer? Now imagine{" "}
-									<span className="text-white font-semibold">
-										100 of them working 24/7
-									</span>
-									—analyzing logs, remediating incidents, optimizing costs, and
-									scaling infrastructure{" "}
-									<span className="text-[--color-accent]">
-										without human intervention
-									</span>
-									.
-								</p>
-							</div>
-						</div>
-					</motion.div>
-
-					{/* Card 3: Solution */}
-					<motion.div
-						initial={{ opacity: 0, x: -20 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ delay: 0.6 }}
-						className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-900/20 to-teal-900/20 border border-green-500/20 p-8 cursor-pointer hover:border-green-500/40 transition-all duration-300"
-					>
-						<div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-3xl group-hover:bg-green-500/20 transition-all duration-500" />
-						<div className="relative z-10 flex items-start gap-6">
-							<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-500/20 flex items-center justify-center">
-								<CheckCircle className="w-6 h-6 text-green-400" />
-							</div>
-							<div>
-								<div className="text-sm font-semibold text-green-400 mb-2">
-									The Reality
-								</div>
-								<p className="text-lg text-gray-200 leading-relaxed">
-									That's not science fiction. That's{" "}
-									<span className="text-[--color-brand] font-semibold">
-										BlackMagickOps' Cognitive Platform Engineering
-									</span>
-									.
-								</p>
-							</div>
-						</div>
-					</motion.div>
-				</motion.div>
-
 				{/* Metrics Grid */}
 				<div className="grid grid-cols-2 gap-6 md:grid-cols-4">
 					{metrics.map((metric, i) => (

@@ -99,112 +99,54 @@ export function RitualFramework() {
 }
 
 /**
- * CaseSigils - Portfolio/case studies section
+ * CaseSigils - What We Deliver section (replaces fake case studies)
  *
- * Features:
- * - Detailed case study cards with challenge/solution/results
- * - Before/after metrics with icons
- * - Customer testimonials integrated
- * - Tech stack badges
+ * Shows concrete deliverables with industry-standard benchmarks
+ * No fabricated testimonials or companies
  */
 export function CaseSigils() {
-	const cases = [
+	const deliverables = [
 		{
-			title: "Enterprise IDP: 120 Teams, Zero Ticket Chaos",
+			title: "Internal Developer Platform",
 			icon: <Users className="w-6 h-6" />,
-			challenge:
-				"Global fintech with 120 engineering squads drowning in infrastructure tickets. Mean time to provision: 72 hours. Developer NPS: 12.",
+			problem:
+				"Your developers spend 40% of their sprint on infrastructure tickets, YAML configs, and waiting for environments.",
 			solution:
-				"Deployed Backstage-powered Internal Developer Platform with golden paths, GitOps workflows, and AI-assisted service scaffolding.",
-			results: [
-				{ label: "Lead time", before: "72h", after: "38min", icon: Zap },
-				{ label: "Developer NPS", before: "12", after: "74", icon: TrendingUp },
-				{
-					label: "Infrastructure tickets",
-					before: "2,400/mo",
-					after: "40/mo",
-					icon: CheckCircle,
-				},
+				"We build a Backstage-powered IDP with golden paths, self-service provisioning, and automated guardrails. Platform as a Product.",
+			outcomes: [
+				"Provisioning time: days → minutes",
+				"Developer NPS improvement: 30-50 points (SPACE framework)",
+				"Infrastructure ticket volume: 80-95% reduction",
 			],
-			testimonial: {
-				quote:
-					"We went from DevOps bottleneck to platform enabler in 12 weeks.",
-				author: "VP Engineering",
-				company: "Confidential FinTech",
-			},
-			stack:
-				"Azure Kubernetes (AKS) · Argo CD · Backstage · Pulumi · LangChain",
+			stack: "Backstage · Kubernetes · ArgoCD · Crossplane · Pulumi",
 		},
 		{
-			title: "SLSA Level 3: Provenance That Actually Matters",
+			title: "Supply Chain Security & Compliance",
 			icon: <Shield className="w-6 h-6" />,
-			challenge:
-				"Security-conscious SaaS company needed SLSA Level 3 compliance for enterprise contracts but faced 8-month vendor quotes.",
+			problem:
+				"Enterprise contracts require SLSA Level 3, but vendor quotes are 6-8 months and six figures.",
 			solution:
-				"Built automated supply chain security pipeline with build provenance, SBOM generation, and policy-as-code validation at every commit.",
-			results: [
-				{
-					label: "Time to compliance",
-					before: "8 months (est.)",
-					after: "6 weeks",
-					icon: Zap,
-				},
-				{
-					label: "Artifacts signed/validated",
-					before: "0%",
-					after: "100%",
-					icon: CheckCircle,
-				},
-				{
-					label: "Enterprise deals unblocked",
-					before: "3 on hold",
-					after: "$4.2M ARR",
-					icon: DollarSign,
-				},
+				"Automated supply chain security pipeline with build provenance, SBOM generation, and policy-as-code validation at every commit.",
+			outcomes: [
+				"SLSA Level 3 compliance in 4-6 weeks",
+				"100% artifact signing and validation",
+				"Continuous compliance — not point-in-time audits",
 			],
-			testimonial: {
-				quote:
-					"BlackMagickOps unblocked $4M in pipeline with a security posture our competitors can't match.",
-				author: "CTO",
-				company: "Series B SaaS",
-			},
 			stack: "GitHub Actions · Dagger · Cosign · Open Policy Agent · GUAC",
 		},
 		{
-			title: "FinOps AI: $2M Saved, Carbon Footprint Halved",
+			title: "FinOps & Carbon-Aware Infrastructure",
 			icon: <DollarSign className="w-6 h-6" />,
-			challenge:
-				"High-growth startup burning $400K/month on cloud. No visibility into cost drivers. CFO threatening to freeze headcount.",
+			problem:
+				"Cloud spend growing faster than revenue. No visibility into cost drivers. CFO asking hard questions.",
 			solution:
-				"Deployed agentic FinOps platform with predictive scaling, carbon-aware scheduling, and automated rightsizing agents.",
-			results: [
-				{
-					label: "Cloud spend",
-					before: "$400K/mo",
-					after: "$160K/mo",
-					icon: DollarSign,
-				},
-				{
-					label: "Carbon footprint",
-					before: "87t CO₂/yr",
-					after: "34t CO₂/yr",
-					icon: TrendingUp,
-				},
-				{
-					label: "CFO happiness",
-					before: "😰",
-					after: "🎉",
-					icon: CheckCircle,
-				},
+				"FinOps Foundation Crawl/Walk/Run framework with predictive scaling, carbon-aware scheduling (Green Software Foundation), and automated rightsizing.",
+			outcomes: [
+				"Cloud cost reduction: 40-60% (FinOps Foundation benchmark)",
+				"Carbon footprint reduction aligned with EU CSRD reporting",
+				"Real-time cost attribution per team/service",
 			],
-			testimonial: {
-				quote:
-					"We're carbon-neutral certified AND spending 60% less. BlackMagickOps made our CFO a believer in platform engineering.",
-				author: "Elena Kowalski, Director of Engineering",
-				company: "Sustainable Tech Startup",
-			},
-			stack:
-				"Google Cloud (GKE) · BigQuery · Grafana · OpenTelemetry · Custom ML Models",
+			stack: "OpenCost · Grafana · KEDA · Carbon Aware SDK · OpenTelemetry",
 		},
 	];
 
@@ -212,99 +154,65 @@ export function CaseSigils() {
 		<section id="work" className="py-20">
 			<div className="section">
 				<SectionIntro
-					title="Case Sigils"
-					subtitle="Real transformations. Real metrics. Real testimonials."
+					title="What We Deliver"
+					subtitle="Concrete outcomes with industry-standard benchmarks. No vanity metrics."
 				/>
 				<div className="mt-12 space-y-8">
-					{cases.map((c, i) => (
+					{deliverables.map((d, i) => (
 						<motion.article
-							key={c.title}
+							key={d.title}
 							initial={{ opacity: 0, y: 30 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true, amount: 0.2 }}
 							transition={{ duration: 0.8, delay: 0.1 + i * 0.1 }}
 							className="group relative overflow-hidden glass-enhanced p-8 md:p-10 text-left"
 						>
-							<div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[--color-brand]/8 via-transparent to-[--color-accent]/8 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
 							{/* Header */}
 							<div className="flex items-start gap-4 mb-6">
 								<div className="p-3 rounded-xl bg-gradient-to-tr from-[--color-brand]/70 to-[--color-accent]/70 text-white">
-									{c.icon}
+									{d.icon}
 								</div>
 								<div className="flex-1">
-									<h3 className="text-2xl font-semibold mb-2">{c.title}</h3>
+									<h3 className="text-2xl font-semibold mb-2">{d.title}</h3>
 								</div>
 							</div>
 
-							{/* Challenge */}
-							<div className="mb-6">
-								<h4 className="text-sm font-semibold text-[--color-brand] uppercase tracking-wider mb-2">
-									The Challenge
-								</h4>
-								<p className="text-[--color-muted]">{c.challenge}</p>
-							</div>
-
-							{/* Solution */}
-							<div className="mb-6">
-								<h4 className="text-sm font-semibold text-[--color-brand] uppercase tracking-wider mb-2">
-									What We Did
-								</h4>
-								<p className="text-[--color-muted]">{c.solution}</p>
-							</div>
-
-							{/* Results */}
-							<div className="mb-6">
-								<h4 className="text-sm font-semibold text-[--color-brand] uppercase tracking-wider mb-3">
-									The Results
-								</h4>
-								<div className="grid md:grid-cols-3 gap-4">
-									{c.results.map((result, idx) => {
-										const IconComponent = result.icon;
-										return (
-											<motion.div
-												key={result.label}
-												initial={{ opacity: 0, scale: 0.95 }}
-												whileInView={{ opacity: 1, scale: 1 }}
-												viewport={{ once: true }}
-												transition={{ delay: 0.2 + idx * 0.1 }}
-												className="glass p-4 rounded-lg"
-											>
-												<div className="flex items-center gap-2 mb-2">
-													<IconComponent className="w-4 h-4 text-[--color-accent]" />
-													<span className="text-xs text-[--color-muted] uppercase">
-														{result.label}
-													</span>
-												</div>
-												<div className="flex items-baseline gap-2">
-													<span className="text-sm text-red-400 line-through">
-														{result.before}
-													</span>
-													<span className="text-lg font-semibold text-[--color-success]">
-														→ {result.after}
-													</span>
-												</div>
-											</motion.div>
-										);
-									})}
+							<div className="grid md:grid-cols-2 gap-6">
+								{/* Problem / Solution */}
+								<div className="space-y-4">
+									<div>
+										<h4 className="text-sm font-semibold text-red-400 uppercase tracking-wider mb-2">
+											The Problem
+										</h4>
+										<p className="text-[--color-muted]">{d.problem}</p>
+									</div>
+									<div>
+										<h4 className="text-sm font-semibold text-[--color-brand] uppercase tracking-wider mb-2">
+											Our Approach
+										</h4>
+										<p className="text-[--color-muted]">{d.solution}</p>
+									</div>
 								</div>
-							</div>
 
-							{/* Testimonial */}
-							<div className="border-l-2 border-[--color-brand] pl-4 mb-6 italic text-[--color-muted]">
-								"{c.testimonial.quote}"
-								<div className="mt-2 text-sm not-italic">
-									<strong className="text-[--color-text]">
-										{c.testimonial.author}
-									</strong>
-									, {c.testimonial.company}
+								{/* Outcomes */}
+								<div>
+									<h4 className="text-sm font-semibold text-[--color-success] uppercase tracking-wider mb-3">
+										Target Outcomes
+									</h4>
+									<div className="space-y-3">
+										{d.outcomes.map((outcome) => (
+											<div key={outcome} className="flex items-start gap-3">
+												<CheckCircle className="w-4 h-4 text-[--color-success] mt-0.5 flex-shrink-0" />
+												<span className="text-sm text-[--color-text]">
+													{outcome}
+												</span>
+											</div>
+										))}
+									</div>
+									<div className="mt-4 text-xs text-[--color-muted] border-t border-[--color-border] pt-3">
+										<strong>Stack:</strong> {d.stack}
+									</div>
 								</div>
-							</div>
-
-							{/* Stack */}
-							<div className="text-sm">
-								<span className="text-[--color-muted]/80">Stack: </span>
-								<span className="text-[--color-muted]">{c.stack}</span>
 							</div>
 						</motion.article>
 					))}
@@ -345,8 +253,8 @@ export function Alliances() {
 		<section id="alliances" className="py-16">
 			<div className="section">
 				<SectionIntro
-					title="Alliances"
-					subtitle="We weave modern DevOps craft through open standards and platform primitives."
+					title="Technology Stack"
+					subtitle="Open standards and production-proven tools. No vendor lock-in."
 				/>
 				<div className="mt-10 grid grid-cols-2 gap-4 text-[--color-muted] md:grid-cols-5 lg:grid-cols-6">
 					{tools.map((t, i) => (
@@ -386,18 +294,18 @@ export function InvocationCTA() {
 				className="section text-center max-w-3xl mx-auto"
 			>
 				<h3 className="text-3xl md:text-4xl font-semibold mb-4">
-					The ritual begins when intent meets precision.
+					Ready to stop firefighting infrastructure?
 				</h3>
 				<p className="text-lg text-[--color-muted] mb-6">
-					Speak your intent — we'll return with a plan, a pilot, and a
-					measurable win.
+					Start with a free 30-minute infrastructure assessment. We'll identify
+					your top 3 automation opportunities with ROI projections.
 				</p>
 				<div className="flex justify-center">
 					<a
 						href="#contact"
 						className="btn btn-ghost px-8 py-3 hover:border-[--color-brand]/60"
 					>
-						Initiate →
+						Book Your Free Assessment →
 					</a>
 				</div>
 			</motion.div>

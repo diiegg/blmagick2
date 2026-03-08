@@ -44,16 +44,16 @@ export function Header() {
 							Framework
 						</a>
 						<a
-							href="#philosophy"
+							href="#about"
 							className="transition-colors hover:text-[--color-text]"
 						>
-							Philosophy
+							About
 						</a>
 						<a
-							href="#disciplines"
+							href="#work"
 							className="transition-colors hover:text-[--color-text]"
 						>
-							Work
+							Results
 						</a>
 						<a
 							href="#contact"
@@ -93,17 +93,17 @@ export function Header() {
 							aria-label="Mobile navigation"
 						>
 							<div className="section flex flex-col gap-4 py-6 text-[--color-muted]">
-								<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
+								<a href="#work" onClick={() => setMobileMenuOpen(false)}>
 									Disciplines
 								</a>
 								<a href="#framework" onClick={() => setMobileMenuOpen(false)}>
 									Framework
 								</a>
-								<a href="#philosophy" onClick={() => setMobileMenuOpen(false)}>
-									Philosophy
+								<a href="#about" onClick={() => setMobileMenuOpen(false)}>
+									About
 								</a>
-								<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
-									Work
+								<a href="#work" onClick={() => setMobileMenuOpen(false)}>
+									Results
 								</a>
 								<a
 									href="#contact"

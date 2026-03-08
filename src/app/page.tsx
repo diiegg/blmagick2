@@ -158,6 +158,52 @@ const EtherealSpiritOrbs = dynamic(
 	},
 );
 
+/** Terminal line animation for hero section */
+function TerminalLine({
+	delay,
+	prompt,
+	command,
+	result,
+	success,
+	subtle,
+	highlight,
+}: {
+	delay: number;
+	prompt: string;
+	command: string;
+	result?: string;
+	success?: boolean;
+	subtle?: boolean;
+	highlight?: boolean;
+}) {
+	return (
+		<motion.div
+			initial={{ opacity: 0, x: -10 }}
+			animate={{ opacity: 1, x: 0 }}
+			transition={{ duration: 0.4, delay }}
+			className={`flex items-center gap-2 ${subtle ? "text-[--color-muted]/60" : ""} ${highlight ? "text-[--color-accent] font-semibold" : ""}`}
+		>
+			{prompt && (
+				<span
+					className={
+						success ? "text-[--color-success]" : "text-[--color-muted]"
+					}
+				>
+					{prompt}
+				</span>
+			)}
+			{command && (
+				<span
+					className={success ? "text-[--color-success]" : "text-[--color-text]"}
+				>
+					{command}
+				</span>
+			)}
+			{result && <span>{result}</span>}
+		</motion.div>
+	);
+}
+
 export default function Home() {
 	const pageRef = useRef<HTMLDivElement>(null);
 	const { scrollY } = useScroll({ container: undefined });
@@ -223,53 +269,71 @@ export default function Home() {
 						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
 							{/* Left Column - Main Content */}
 							<div className="lg:col-span-3 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-								{/* Main Headline */}
+								{/* Main Headline - Pain-led */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
-										Autonomous Infrastructure.
+										Your Infrastructure
 									</span>
 									<br />
-									<span className="text-[--color-brand]">
-										Engineered with Magic.
+									<span className="text-[--color-text]">
+										Is Holding You Back.
 									</span>
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-									Platform engineering and DevOps automation that scales with
-									your ambition.{" "}
+									Slow deploys. Runaway cloud costs. Engineers stuck writing
+									YAML instead of features.{" "}
 									<strong className="font-semibold text-[--color-text]">
-										Self-healing infrastructure, AI-powered IDPs, and
-										carbon-aware FinOps
+										We build internal platforms that fix all three
 									</strong>
-									—deployed in{" "}
+									—with self-healing infrastructure, developer self-service, and
+									FinOps automation.{" "}
 									<strong className="font-semibold text-[--color-brand]">
-										12 weeks
+										Delivered in 12 weeks.
 									</strong>
-									.
 								</p>
-								{/* Early Social Proof */}
-								<blockquote className="glass-enhanced p-4 rounded-lg border-l-4 border-[--color-accent] mt-6">
-									<p className="text-base italic text-[--color-muted]">
-										"60% cloud cost reduction, zero latency impact. We're now
-										carbon-neutral certified."
+								{/* Industry benchmarks instead of fake testimonial */}
+								<div className="glass-enhanced p-4 rounded-lg border-l-4 border-[--color-accent] mt-6">
+									<p className="text-sm font-semibold text-[--color-accent] mb-2">
+										Industry benchmarks we target (DORA / FinOps Foundation)
 									</p>
-									<footer className="text-sm mt-2 text-[--color-muted]">
-										<strong className="text-[--color-text]">
-											Elena Kowalski
-										</strong>
-										, DevOps Director @ ScaleUp Ventures
-									</footer>
-								</blockquote>
+									<div className="grid grid-cols-3 gap-4 text-center">
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												10x
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Deploy Frequency
+											</div>
+										</div>
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												40-60%
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Cloud Cost Reduction
+											</div>
+										</div>
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												&lt;1hr
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Lead Time for Changes
+											</div>
+										</div>
+									</div>
+								</div>
 								{/* Primary CTAs */}
 								<div className="flex flex-wrap gap-4 lg:justify-start justify-center mt-8">
 									<EnhancedCTA
 										href="#contact"
 										className="px-8 py-4 text-lg"
 										variant="primary"
-										analyticsId="hero-get-roadmap"
+										analyticsId="hero-free-assessment"
 										testVariant="A"
 									>
-										Get Your 12-Week Roadmap
+										Free Infrastructure Assessment
 									</EnhancedCTA>
 									<EnhancedCTA
 										href="#disciplines"
@@ -282,110 +346,64 @@ export default function Home() {
 								</div>
 							</div>
 
-							{/* Right Column - Supporting Content & Mystical Effects */}
+							{/* Right Column - Terminal Animation */}
 							<div className="hidden lg:block lg:col-span-2 relative z-10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
-								{/* Additional mystical elements for right column */}
-								<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-									<div className="absolute top-1/4 right-1/4 w-32 h-32">
-										<motion.div
-											className="w-full h-full rounded-full border border-[--color-accent]/30"
-											animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-											transition={{
-												rotate: {
-													duration: 20,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "linear",
-												},
-												scale: {
-													duration: 4,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "easeInOut",
-												},
-											}}
+								<div className="glass p-0 relative z-10 backdrop-blur-md rounded-xl overflow-hidden border border-[--color-border]">
+									{/* Terminal header */}
+									<div className="flex items-center gap-2 px-4 py-3 bg-[--color-surface] border-b border-[--color-border]">
+										<div className="w-3 h-3 rounded-full bg-red-500/60" />
+										<div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+										<div className="w-3 h-3 rounded-full bg-green-500/60" />
+										<span className="ml-2 text-xs text-[--color-muted] font-mono">
+											blackmagickops ~ platform
+										</span>
+									</div>
+									{/* Terminal body */}
+									<div className="p-6 font-mono text-sm space-y-3">
+										<TerminalLine
+											delay={0.5}
+											prompt="$"
+											command="bmops deploy --env staging --stack python-api"
+										/>
+										<TerminalLine
+											delay={1.5}
+											prompt=""
+											command=""
+											result="Provisioning infrastructure..."
+											subtle
+										/>
+										<TerminalLine
+											delay={2.5}
+											prompt="✓"
+											command="Infrastructure ready (38s)"
+											success
+										/>
+										<TerminalLine
+											delay={3.2}
+											prompt="✓"
+											command="Security scan passed — SLSA Level 3"
+											success
+										/>
+										<TerminalLine
+											delay={3.9}
+											prompt="✓"
+											command="SLO dashboard configured"
+											success
+										/>
+										<TerminalLine
+											delay={4.6}
+											prompt="✓"
+											command="Monitoring & alerts active"
+											success
+										/>
+										<TerminalLine
+											delay={5.3}
+											prompt=""
+											command=""
+											result="→ staging.your-app.com is live"
+											highlight
 										/>
 									</div>
-
-									<div className="absolute bottom-1/3 left-1/4 w-24 h-24">
-										<motion.div
-											className="w-full h-full rounded-full border-2 border-[--color-brand]/20"
-											animate={{ rotate: -360, scale: [0.8, 1.2, 0.8] }}
-											transition={{
-												rotate: {
-													duration: 15,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "linear",
-												},
-												scale: {
-													duration: 6,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "easeInOut",
-												},
-											}}
-										/>
-									</div>
-								</div>
-
-								{/* Supporting Content Card */}
-								<div className="glass p-8 relative z-10 backdrop-blur-md">
-									<motion.div
-										initial={{ opacity: 0, y: 20 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{ duration: 1, delay: 0.6 }}
-										className="space-y-6"
-									>
-										{/* Tagline */}
-										<h3 className="text-2xl font-semibold text-[--color-brand]">
-											Understand. Execute. Deliver.
-										</h3>
-
-										{/* Supporting Description */}
-										<p className="text-[--color-muted] leading-relaxed">
-											BlackMagickOps is your{" "}
-											<strong className="text-[--color-text]">
-												10x DevOps Engineer
-											</strong>{" "}
-											who can independently build, optimize, and secure your
-											entire platform infrastructure.
-										</p>
-
-										{/* Key Benefits */}
-										<div className="space-y-3">
-											{[
-												"Platform Engineering Excellence",
-												"Automated DevOps Pipelines",
-												"FinOps & Cost Optimization",
-											].map((benefit, i) => (
-												<motion.div
-													key={benefit}
-													initial={{ opacity: 0, x: 20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
-													className="flex items-center gap-3"
-												>
-													<div className="w-2 h-2 rounded-full bg-[--color-accent]" />
-													<span className="text-sm text-[--color-text]">
-														{benefit}
-													</span>
-												</motion.div>
-											))}
-										</div>
-
-										{/* Secondary CTA */}
-										<motion.div
-											initial={{ opacity: 0, y: 20 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{ duration: 0.8, delay: 1.2 }}
-											className="pt-4"
-										>
-											<a
-												href="#contact"
-												className="inline-flex items-center gap-2 text-[--color-brand] hover:text-[--color-accent] transition-colors font-medium"
-											>
-												Start a Project
-												<ArrowRight className="w-4 h-4" />
-											</a>
-										</motion.div>
-									</motion.div>
 								</div>
 							</div>
 						</div>
@@ -462,13 +480,13 @@ export default function Home() {
 								tabs={[
 									{
 										label: "Cognitive IDP",
-										icon: <Shield className="w-4 h-4 icon-pulse" />,
+										icon: <Shield className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-float">🧠</div>
+															<div className="text-5xl">🧠</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Cognitive IDP
@@ -638,13 +656,13 @@ export default function Home() {
 									},
 									{
 										label: "Agentic Workflows",
-										icon: <Cog className="w-4 h-4 icon-rotate" />,
+										icon: <Cog className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-pulse">🤖</div>
+															<div className="text-5xl">🤖</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Agentic Workflows
@@ -805,13 +823,13 @@ export default function Home() {
 									},
 									{
 										label: "Eco-FinOps",
-										icon: <Target className="w-4 h-4 icon-float" />,
+										icon: <Target className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-rotate">🌱</div>
+															<div className="text-5xl">🌱</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Eco-FinOps
@@ -822,31 +840,26 @@ export default function Home() {
 															</div>
 														</div>
 
-														{/* Customer Testimonial Integration */}
-														<blockquote className="glass-enhanced p-5 rounded-lg border-l-4 border-[--color-accent] mb-6">
-															<p className="text-[--color-muted] italic mb-3">
-																"We thought cutting cloud costs meant
-																sacrificing performance. BlackMagickOps proved
-																us wrong—
-																<span className="text-[--color-accent] font-semibold not-italic">
-																	60% savings, zero latency impact
-																</span>
-																, and we're now carbon-neutral certified."
+														{/* Industry Context */}
+														<div className="glass-enhanced p-5 rounded-lg border-l-4 border-[--color-accent] mb-6">
+															<p className="text-sm text-[--color-muted]">
+																<strong className="text-[--color-accent]">
+																	Industry benchmark:
+																</strong>{" "}
+																Organizations following the FinOps Foundation
+																Crawl/Walk/Run framework typically achieve
+																30-60% cloud cost reduction. Green Software
+																Foundation carbon-aware scheduling can shift
+																batch workloads to low-carbon hours at zero
+																additional cost.
 															</p>
-															<footer className="text-sm">
-																<strong className="text-[--color-text]">
-																	Elena Kowalski
-																</strong>
-																<span className="text-[--color-muted]">
-																	{" "}
-																	— DevOps Director, ScaleUp Ventures
-																</span>
-															</footer>
-														</blockquote>
+														</div>
 
-														{/* Value Proposition: What We Did */}
+														{/* Value Proposition: What We Deliver */}
 														<div className="space-y-3 mb-6">
-															<h4 className="font-semibold">What We Did:</h4>
+															<h4 className="font-semibold">
+																What We Deliver:
+															</h4>
 															<div className="space-y-2">
 																<div className="flex items-start gap-3">
 																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
@@ -1034,8 +1047,8 @@ export default function Home() {
 				>
 					<div className="section">
 						<SectionIntro
-							title="Our Ritual Framework"
-							subtitle="Most DevOps consultancies hand you a 200-page doc and disappear. We stay with you through every phase—architecting, coding, deploying—until your infrastructure runs itself."
+							title="How We Work"
+							subtitle="No 200-page docs. No drive-by consulting. We pair-program with your team through every phase until your infrastructure runs itself."
 							headingId="framework-heading"
 						/>
 
@@ -1121,31 +1134,74 @@ export default function Home() {
 
 				<SigilDivider />
 
-				{/* Philosophy */}
-				<section
-					id="philosophy"
-					className="py-32"
-					aria-labelledby="philosophy-heading"
-				>
-					<motion.div
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						viewport={{ once: true, amount: 0.4 }}
-						transition={{ duration: 1.4 }}
-						className="section text-center max-w-3xl mx-auto"
-					>
-						<h2
-							id="philosophy-heading"
-							className="text-4xl md:text-5xl font-semibold mb-8"
+				{/* About */}
+				<section id="about" className="py-28" aria-labelledby="about-heading">
+					<div className="section max-w-4xl mx-auto">
+						<motion.div
+							initial={{ opacity: 0 }}
+							whileInView={{ opacity: 1 }}
+							viewport={{ once: true, amount: 0.4 }}
+							transition={{ duration: 1 }}
 						>
-							Our Philosophy
-						</h2>
-						<p className="text-xl leading-relaxed text-[--color-muted]">
-							We treat engineering as a sacred craft — where precision is
-							devotion, and automation is ritual. Our mission: to summon order
-							from chaos through deliberate design and disciplined execution.
-						</p>
-					</motion.div>
+							<h2
+								id="about-heading"
+								className="text-4xl md:text-5xl font-semibold mb-8 text-center"
+							>
+								Who We Are
+							</h2>
+							<div className="glass-premium p-8 md:p-10 rounded-2xl space-y-6">
+								<p className="text-lg leading-relaxed text-[--color-muted]">
+									BlackMagickOps is a platform engineering consultancy founded
+									by infrastructure engineers who've spent years building and
+									scaling cloud-native systems. We've seen the same problems
+									repeat across organizations — manual deployments, runaway
+									costs, developer friction — and we built a practice around
+									solving them systematically.
+								</p>
+								<p className="text-lg leading-relaxed text-[--color-muted]">
+									We treat engineering as a craft where{" "}
+									<strong className="text-[--color-text]">
+										precision is discipline
+									</strong>{" "}
+									and{" "}
+									<strong className="text-[--color-text]">
+										automation is leverage
+									</strong>
+									. Our mission: turn your infrastructure from a cost center
+									into a competitive advantage.
+								</p>
+								<div className="grid md:grid-cols-3 gap-6 pt-4 border-t border-[--color-border]">
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Methodology
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											DORA metrics, SPACE framework, FinOps Foundation
+											Crawl/Walk/Run
+										</p>
+									</div>
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Approach
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											Pair programming, knowledge transfer, your team owns
+											everything we build
+										</p>
+									</div>
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Philosophy
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											Platform as a Product. Open standards. No vendor lock-in.
+											No black boxes.
+										</p>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+					</div>
 				</section>
 
 				<SigilDivider />
@@ -1158,326 +1214,82 @@ export default function Home() {
 
 				<SigilDivider />
 
-				{/* Testimonials */}
-				<section id="testimonials" className="py-20">
-					<div className="section">
-						<SectionIntro
-							title="Client Testimonials"
-							subtitle="What our clients say about the mystical transformation of their infrastructure."
-						/>
-
-						<div className="mt-16">
-							<TestimonialCarousel
-								testimonials={[
-									{
-										quote:
-											"BlackMagickOps transformed our deployment pipeline from chaos to precision. Their platform engineering approach reduced our time-to-market by 70% while improving reliability dramatically.",
-										author: "Sarah Chen",
-										role: "VP of Engineering",
-										company: "TechFlow Systems",
-										context:
-											"Lead time: 48h → 4h | Deployment frequency: 2x/week → 15x/day | Change failure rate: 12% → 1.8%",
-									},
-									{
-										quote:
-											"The mystical precision they brought to our infrastructure was remarkable. We went from manual deployments to fully automated CI/CD with comprehensive monitoring in just 12 weeks.",
-										author: "Marcus Rodriguez",
-										role: "CTO",
-										company: "CloudNative Solutions",
-										context:
-											"MTTR: 6h → 22min | Automated rollbacks: 0 → 100% | Observability coverage: 30% → 97%",
-									},
-									{
-										quote:
-											"Their FinOps integration saved us 40% on cloud costs while doubling our deployment frequency. The golden paths they created made our developers incredibly productive.",
-										author: "Elena Kowalski",
-										role: "DevOps Director",
-										company: "ScaleUp Ventures",
-										context:
-											"Cloud spend: -42% | Developer NPS: +38 points | Infrastructure ticket backlog: 340 → 8",
-									},
-									{
-										quote:
-											"The Backstage IDP implementation was game-changing. Our development teams now have self-service capabilities with proper guardrails. Security and compliance are baked in.",
-										author: "David Kim",
-										role: "Platform Lead",
-										company: "Enterprise Corp",
-										context:
-											"Service provisioning: 5 days → 12 minutes | Policy compliance: 67% → 100% | Developer satisfaction: +45%",
-									},
-									{
-										quote:
-											"BlackMagickOps doesn't just implement tools, they create a culture of excellence. The observability and SLO framework they built transformed how we think about reliability.",
-										author: "Priya Patel",
-										role: "Engineering Manager",
-										company: "Innovation Labs",
-										context:
-											"SLO attainment: 82% → 99.5% | Incident detection: Manual → AI-automated | Postmortem insights: Qualitative → Quantitative",
-									},
-								]}
-							/>
-						</div>
-					</div>
-				</section>
-
-				<SigilDivider />
-
 				{/* FAQ Section */}
 				<section id="faq" className="py-20">
 					<div className="section">
 						<SectionIntro
 							title="Frequently Asked Questions"
-							subtitle="Everything you need to know about our mystical DevOps practices."
+							subtitle="Straight answers. No jargon."
 						/>
 
 						<div className="mt-16 max-w-4xl mx-auto">
 							<AccordionSection
 								items={[
 									{
-										title:
-											"What makes BlackMagickOps different from other DevOps consultancies?",
+										title: "What exactly does BlackMagickOps do?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													We combine mystical precision with modern engineering
-													practices. Our approach integrates platform
-													engineering, automation, and FinOps into a unified
-													ritual framework that delivers measurable results.
-												</p>
-												<ul className="space-y-2 text-[--color-muted]">
-													<li>
-														• Mystical framework with proven methodologies
-													</li>
-													<li>
-														• Focus on developer experience and platform
-														engineering
-													</li>
-													<li>
-														• Integration of cost optimization from day one
-													</li>
-													<li>
-														• Comprehensive automation and self-healing systems
-													</li>
-												</ul>
-											</div>
+											<p>
+												We build internal developer platforms, automate
+												infrastructure operations, and optimize cloud costs.
+												Think of us as the team that turns your infrastructure
+												from a bottleneck into a competitive advantage. We use
+												industry-standard frameworks (DORA metrics, FinOps
+												Foundation, Platform as a Product) and open-source tools
+												— no proprietary lock-in.
+											</p>
 										),
 									},
 									{
 										title: "How long does a typical engagement take?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													Our ritual framework typically spans 12-16 weeks,
-													broken into four phases:
-												</p>
-												<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Discover (2-3 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Assessment and planning
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Design (3-4 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Architecture and strategy
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Automate (6-8 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Implementation and deployment
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Optimize (1-2 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Monitoring and refinement
-														</p>
-													</div>
-												</div>
-											</div>
-										),
-									},
-									{
-										title: "What technologies do you specialize in?",
-										content: (
-											<div className="space-y-4">
-												<p>
-													We work with cutting-edge cloud-native technologies
-													and proven enterprise solutions:
-												</p>
-												<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
-													{[
-														"Kubernetes",
-														"Backstage",
-														"Terraform",
-														"GitHub Actions",
-														"Prometheus",
-														"Grafana",
-														"ArgoCD",
-														"OPA",
-														"KEDA",
-														"Istio",
-													].map((tech) => (
-														<div
-															key={tech}
-															className="chip text-center bg-[--color-brand]/10 text-[--color-brand]"
-														>
-															{tech}
-														</div>
-													))}
-												</div>
-											</div>
+											<p>
+												12 weeks for a full engagement: 2 weeks discovery, 3
+												weeks architecture, 5 weeks implementation, 2 weeks
+												knowledge transfer and optimization. We pair-program
+												with your engineers throughout — when we leave, your
+												team owns and understands everything we built.
+											</p>
 										),
 									},
 									{
 										title:
-											"Do you provide ongoing support after implementation?",
+											"We don't have any customers yet on the site — why should we trust you?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													Yes, we offer multiple support models to ensure your
-													mystical infrastructure continues to evolve:
-												</p>
-												<ul className="space-y-3">
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>Managed Services:</strong> Full platform
-															management and 24/7 monitoring
-														</div>
-													</li>
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>Advisory Retainer:</strong> Monthly
-															strategy sessions and architecture reviews
-														</div>
-													</li>
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>On-Demand Support:</strong> Access to our
-															experts for troubleshooting and optimization
-														</div>
-													</li>
-												</ul>
-											</div>
+											<p>
+												Fair question. We're a new consultancy, and we believe
+												in earning trust through transparency rather than
+												fabricated case studies. Start with a free 30-minute
+												infrastructure assessment — we'll identify concrete
+												automation opportunities with ROI projections. If the
+												assessment is valuable, we'll talk about a pilot
+												engagement with clear success criteria and a pause
+												clause if we're not delivering value by week 4.
+											</p>
 										),
 									},
 									{
-										title: "What are your pricing models?",
+										title: "What does pricing look like?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													We offer flexible engagement models tailored to your
-													needs and budget:
-												</p>
-												<div className="space-y-4 mt-4">
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Project-Based
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Fixed scope, timeline, and budget for defined
-															deliverables
-														</p>
-													</div>
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Time & Materials
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Flexible hourly or daily rates for ongoing work
-														</p>
-													</div>
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Value-Based
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Pricing tied to measurable business outcomes and
-															cost savings
-														</p>
-													</div>
-												</div>
-											</div>
+											<p>
+												We offer project-based pricing with clear deliverables,
+												or time-and-materials for ongoing work. Every engagement
+												starts with a free assessment so we can scope
+												accurately. We're transparent about costs and include a
+												value-check at week 4 — if we're not on track, we pause
+												and reassess together.
+											</p>
 										),
 									},
 									{
-										title:
-											"We're already working with [Big 4 Consultancy]. Why switch to BlackMagickOps?",
+										title: "What technologies do you work with?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													No shade to the Big 4—they're great at 200-page
-													assessments and org chart reshuffles. But when it
-													comes to <strong>shipping code</strong> and{" "}
-													<strong>fixing production</strong>, here's the
-													difference:
-												</p>
-												<div className="grid md:grid-cols-2 gap-6 mt-6">
-													<div className="p-4 rounded-lg border-2 border-red-500/30 bg-red-500/5">
-														<h5 className="font-semibold text-red-400 mb-3">
-															Them (Typical Big 4 Engagement)
-														</h5>
-														<ul className="space-y-2 text-sm text-[--color-muted]">
-															<li>
-																📊 6-month "cloud readiness assessment" → No
-																code deployed
-															</li>
-															<li>
-																👔 Junior consultants rotating every 8 weeks
-																(you train them)
-															</li>
-															<li>
-																📄 300-slide deck delivered → Then they
-																disappear
-															</li>
-															<li>
-																💰 $500K spent → Still deploying manually on
-																Fridays at midnight
-															</li>
-														</ul>
-													</div>
-													<div className="p-4 rounded-lg border-2 border-[--color-brand]/50 bg-[--color-brand]/5">
-														<h5 className="font-semibold text-[--color-brand] mb-3">
-															Us (BlackMagickOps Way)
-														</h5>
-														<ul className="space-y-2 text-sm text-[--color-muted]">
-															<li>
-																🚀 Week 1: Working prototype in your production
-																environment
-															</li>
-															<li>
-																🧙‍♂️ Senior engineers (10+ years Kubernetes/IaC)
-																who pair-program with your team
-															</li>
-															<li>
-																⚙️ We stay embedded until your infrastructure
-																runs itself
-															</li>
-															<li>
-																📈 ROI tracked weekly—if we're not delivering
-																value by Week 4, we pause and reassess
-															</li>
-														</ul>
-													</div>
-												</div>
-												<p className="mt-6 text-[--color-brand] font-semibold">
-													Bottom line: We're the team you hire when the slides
-													are done and you actually need to ship.
-												</p>
-											</div>
+											<p>
+												Kubernetes (AKS/EKS/GKE), Backstage, ArgoCD, Crossplane,
+												Pulumi, Terraform, GitHub Actions, Prometheus, Grafana,
+												OpenTelemetry, OPA, KEDA, and more. We're cloud-agnostic
+												(AWS, Azure, GCP) and opinionated about open standards.
+												We don't push proprietary tools.
+											</p>
 										),
 									},
 								]}
@@ -2411,235 +2223,6 @@ function ProcessTimeline({
 							</div>
 							<p className="text-[--color-muted]">{step.description}</p>
 						</div>
-					</div>
-				</motion.div>
-			))}
-		</div>
-	);
-}
-
-// Enhanced Carousel Component
-function TestimonialCarousel({
-	testimonials,
-}: {
-	testimonials: Array<{
-		quote: string;
-		author: string;
-		role: string;
-		company: string;
-		avatar?: string;
-		context?: string;
-	}>;
-}) {
-	const [current, setCurrent] = useState(0);
-
-	useEffect(() => {
-		const timer = setInterval(() => {
-			setCurrent((prev) => (prev + 1) % testimonials.length);
-		}, 5000);
-		return () => clearInterval(timer);
-	}, [testimonials.length]);
-
-	return (
-		<div className="carousel-container relative">
-			<div
-				className="carousel-track"
-				style={{ transform: `translateX(-${current * 100}%)` }}
-			>
-				{testimonials.map((testimonial, index) => (
-					<div key={index} className="carousel-slide neomorphic">
-						<blockquote className="text-lg mb-6 italic">
-							"{testimonial.quote}"
-						</blockquote>
-						{testimonial.context && (
-							<div className="mb-6 p-4 rounded-lg bg-[--color-bg]/50 border border-[--color-brand]/20">
-								<div className="text-sm text-[--color-brand] font-semibold mb-1">
-									Measurable Impact
-								</div>
-								<div className="text-sm text-[--color-muted]">
-									{testimonial.context}
-								</div>
-							</div>
-						)}
-						<div className="flex items-center gap-4">
-							{testimonial.avatar && (
-								<div className="w-12 h-12 rounded-full bg-[--color-brand] flex items-center justify-center text-white font-semibold">
-									{testimonial.author.charAt(0)}
-								</div>
-							)}
-							<div>
-								<div className="font-semibold">{testimonial.author}</div>
-								<div className="text-sm text-[--color-muted]">
-									{testimonial.role} at {testimonial.company}
-								</div>
-							</div>
-						</div>
-					</div>
-				))}
-			</div>
-			<div className="carousel-controls">
-				{testimonials.map((_, index) => (
-					<button
-						key={index}
-						className={`carousel-dot ${current === index ? "active" : ""}`}
-						onClick={() => setCurrent(index)}
-						aria-label={`Go to testimonial ${index + 1}`}
-					/>
-				))}
-			</div>
-		</div>
-	);
-}
-
-// Sticky Sidebar Navigation
-function StickyNavigation({
-	sections,
-}: {
-	sections: Array<{ id: string; label: string }>;
-}) {
-	const [activeSection, setActiveSection] = useState("");
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						setActiveSection(entry.target.id);
-					}
-				});
-			},
-			{ threshold: 0.5 },
-		);
-
-		sections.forEach(({ id }) => {
-			const element = document.getElementById(id);
-			if (element) observer.observe(element);
-		});
-
-		return () => observer.disconnect();
-	}, [sections]);
-
-	return (
-		<nav className="sticky-sidebar">
-			<div className="relative">
-				<div className="nav-indicator" />
-				<ul className="space-y-2">
-					{sections.map(({ id, label }) => (
-						<li key={id}>
-							<a
-								href={`#${id}`}
-								className={`block px-4 py-2 rounded-lg transition-all ${
-									activeSection === id
-										? "bg-[--color-brand] text-white"
-										: "text-[--color-muted] hover:text-[--color-text] hover:bg-[--color-surface]"
-								}`}
-							>
-								{label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
-		</nav>
-	);
-}
-
-// Infinite Scroll Container
-function InfiniteScrollContainer<T>({
-	items,
-	renderItem,
-	loadMore,
-	hasMore,
-}: {
-	items: T[];
-	renderItem: (item: T, index: number) => React.ReactNode;
-	loadMore: () => void;
-	hasMore: boolean;
-}) {
-	const [loading, setLoading] = useState(false);
-	const observerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			async ([entry]) => {
-				if (entry.isIntersecting && hasMore && !loading) {
-					setLoading(true);
-					await loadMore();
-					setLoading(false);
-				}
-			},
-			{ threshold: 0.1 },
-		);
-
-		if (observerRef.current) {
-			observer.observe(observerRef.current);
-		}
-
-		return () => observer.disconnect();
-	}, [hasMore, loading, loadMore]);
-
-	return (
-		<div className="space-y-6">
-			{items.map((item, index) => renderItem(item, index))}
-			{hasMore && (
-				<div ref={observerRef} className="flex justify-center py-8">
-					{loading ? (
-						<div className="icon-rotate w-6 h-6 border-2 border-[--color-brand] border-t-transparent rounded-full" />
-					) : (
-						<div className="text-[--color-muted] text-sm">
-							Scroll to load more...
-						</div>
-					)}
-				</div>
-			)}
-		</div>
-	);
-}
-
-// Masonry Portfolio Layout
-function MasonryPortfolio({
-	projects,
-}: {
-	projects: Array<{
-		title: string;
-		description: string;
-		image?: string;
-		tags: string[];
-		featured?: boolean;
-	}>;
-}) {
-	return (
-		<div className="masonry-grid">
-			{projects.map((project, index) => (
-				<motion.div
-					key={index}
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ delay: index * 0.1 }}
-					className={`masonry-item card-module ${project.featured ? "glass-premium" : "neomorphic"}`}
-				>
-					{project.image && (
-						<div className="mb-4 rounded-lg overflow-hidden relative h-48">
-							<Image
-								src={project.image}
-								alt={project.title}
-								fill
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-								className="object-cover"
-							/>
-						</div>
-					)}
-					<h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-					<p className="text-[--color-muted] mb-4">{project.description}</p>
-					<div className="flex flex-wrap gap-2">
-						{project.tags.map((tag, tagIndex) => (
-							<span
-								key={tagIndex}
-								className="chip text-xs px-3 py-1 bg-[--color-brand]/20 text-[--color-brand] rounded-full"
-							>
-								{tag}
-							</span>
-						))}
 					</div>
 				</motion.div>
 			))}
