@@ -1220,11 +1220,12 @@ export default function Home() {
 				<SigilDivider />
 
 				{/* FAQ Section */}
-				<section id="faq" className="py-20">
+				<section id="faq" className="py-20" aria-labelledby="faq-heading">
 					<div className="section">
 						<SectionIntro
 							title="Frequently Asked Questions"
 							subtitle="Straight answers. No jargon."
+							headingId="faq-heading"
 						/>
 
 						<div className="mt-16 max-w-4xl mx-auto">
@@ -1558,6 +1559,13 @@ function MysticalContactForm() {
 		setShowSuccess(true);
 		setRateLimitError(null);
 		reset();
+
+		// Track conversion in Google Ads
+		if (typeof window !== "undefined" && typeof window.gtag === "function") {
+			window.gtag("event", "conversion", {
+				send_to: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID,
+			});
+		}
 
 		// Generate new CSRF token after successful submission
 		const newToken = CSRFProtection.generateToken();

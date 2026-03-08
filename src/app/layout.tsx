@@ -98,10 +98,7 @@ export const metadata: Metadata = {
 		},
 	},
 	verification: {
-		// Add when available:
-		// google: 'your-google-site-verification-code',
-		// yandex: 'your-yandex-verification-code',
-		// bing: 'your-bing-verification-code',
+		google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
 	},
 	category: "Technology",
 	classification: "Business",
@@ -242,6 +239,26 @@ export default function RootLayout({
 			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
 		>
 			<head>
+				{/* Google Tag Manager */}
+				{process.env.NEXT_PUBLIC_GTM_ID && (
+					<>
+						<script
+							async
+							src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+						/>
+						<script
+							dangerouslySetInnerHTML={{
+								__html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${process.env.NEXT_PUBLIC_GTM_ID}');
+            `,
+							}}
+						/>
+					</>
+				)}
+
 				{/* Umami Analytics */}
 				<script
 					defer
