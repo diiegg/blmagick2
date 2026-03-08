@@ -31,11 +31,16 @@ export function RitualFramework() {
 	];
 
 	return (
-		<section id="framework" className="py-20">
+		<section
+			id="framework"
+			className="py-20"
+			aria-labelledby="ritual-framework-heading"
+		>
 			<div className="section">
 				<SectionIntro
 					title="Our Ritual Framework"
 					subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
+					headingId="ritual-framework-heading"
 				/>
 
 				<div className="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -151,11 +156,12 @@ export function CaseSigils() {
 	];
 
 	return (
-		<section id="work" className="py-20">
+		<section id="work" className="py-20" aria-labelledby="work-heading">
 			<div className="section">
 				<SectionIntro
 					title="What We Deliver"
 					subtitle="Concrete outcomes with industry-standard benchmarks. No vanity metrics."
+					headingId="work-heading"
 				/>
 				<div className="mt-12 space-y-8">
 					{deliverables.map((d, i) => (
@@ -250,11 +256,16 @@ export function Alliances() {
 	];
 
 	return (
-		<section id="alliances" className="py-16">
+		<section
+			id="alliances"
+			className="py-16"
+			aria-labelledby="alliances-heading"
+		>
 			<div className="section">
 				<SectionIntro
 					title="Technology Stack"
 					subtitle="Open standards and production-proven tools. No vendor lock-in."
+					headingId="alliances-heading"
 				/>
 				<div className="mt-10 grid grid-cols-2 gap-4 text-[--color-muted] md:grid-cols-5 lg:grid-cols-6">
 					{tools.map((t, i) => (

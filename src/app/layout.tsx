@@ -97,12 +97,7 @@ export const metadata: Metadata = {
 			"max-snippet": -1,
 		},
 	},
-	verification: {
-		// Add when available:
-		// google: 'your-google-site-verification-code',
-		// yandex: 'your-yandex-verification-code',
-		// bing: 'your-bing-verification-code',
-	},
+	verification: {},
 	category: "Technology",
 	classification: "Business",
 	manifest: "/manifest.json",
@@ -242,6 +237,23 @@ export default function RootLayout({
 			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
 		>
 			<head>
+				{/* Google tag (gtag.js) - Analytics + Google Ads */}
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-D3S13V36TC"
+				/>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-D3S13V36TC');
+              gtag('config', 'AW-928575911');
+            `,
+					}}
+				/>
+
 				{/* Umami Analytics */}
 				<script
 					defer
