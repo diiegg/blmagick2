@@ -13,9 +13,13 @@
  *   node scripts/generate-pwa-icons.js
  */
 
-const sharp = require('sharp');
-const fs = require('fs');
-const path = require('path');
+import sharp from 'sharp';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Brand colors from globals.css
 const COLORS = {
@@ -159,6 +163,211 @@ function generatePatternElements(width, height) {
   return elements;
 }
 
+/**
+ * Generate OG/Twitter social card image with sigil + branding text
+ */
+async function generateOGImageSVG(width, height, isTwitter = false) {
+  const sigilSize = height * 0.7;
+  const sigilCx = width * 0.22;
+  const sigilCy = height * 0.5;
+  const sigilR = sigilSize * 0.35;
+
+  const svg = `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:${COLORS.bg};stop-opacity:1" />
+          <stop offset="60%" style="stop-color:#0D0D0F;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${COLORS.surface};stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:${COLORS.brand};stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${COLORS.accent};stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="softGlow">
+          <feGaussianBlur stdDeviation="12" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background -->
+      <rect width="${width}" height="${height}" fill="url(#bgGrad)"/>
+
+      <!-- Subtle grid lines -->
+      ${Array.from({length: 12}, (_, i) => {
+        const x = (width / 12) * (i + 1);
+        return `<line x1="${x}" y1="0" x2="${x}" y2="${height}" stroke="${COLORS.brand}" stroke-width="0.3" opacity="0.08"/>`;
+      }).join('\n      ')}
+      ${Array.from({length: 6}, (_, i) => {
+        const y = (height / 6) * (i + 1);
+        return `<line x1="0" y1="${y}" x2="${width}" y2="${y}" stroke="${COLORS.brand}" stroke-width="0.3" opacity="0.08"/>`;
+      }).join('\n      ')}
+
+      <!-- Ambient particles -->
+      ${Array.from({length: 30}, (_, i) => {
+        const x = 50 + (i * 37) % (width - 100);
+        const y = 30 + (i * 23) % (height - 60);
+        const r = 1 + (i % 3);
+        const op = 0.1 + (i % 5) * 0.06;
+        const color = i % 2 === 0 ? COLORS.brand : COLORS.accent;
+        return `<circle cx="${x}" cy="${y}" r="${r}" fill="${color}" opacity="${op}"/>`;
+      }).join('\n      ')}
+
+      <!-- Sigil: outer circle -->
+      <circle cx="${sigilCx}" cy="${sigilCy}" r="${sigilR}"
+              fill="none" stroke="url(#brandGrad)" stroke-width="3" filter="url(#glow)"/>
+
+      <!-- Sigil: star pattern -->
+      <path d="M ${sigilCx} ${sigilCy - sigilR * 0.8}
+               L ${sigilCx + sigilR * 0.3} ${sigilCy + sigilR * 0.2}
+               L ${sigilCx - sigilR * 0.6} ${sigilCy - sigilR * 0.3}
+               L ${sigilCx + sigilR * 0.6} ${sigilCy - sigilR * 0.3}
+               L ${sigilCx - sigilR * 0.3} ${sigilCy + sigilR * 0.2}
+               Z"
+            fill="none" stroke="${COLORS.accent}" stroke-width="2.5" filter="url(#glow)"/>
+
+      <!-- Sigil: inner diamond -->
+      <path d="M ${sigilCx} ${sigilCy - sigilR * 0.4}
+               L ${sigilCx + sigilR * 0.4} ${sigilCy}
+               L ${sigilCx} ${sigilCy + sigilR * 0.4}
+               L ${sigilCx - sigilR * 0.4} ${sigilCy}
+               Z"
+            fill="${COLORS.brand}" opacity="0.25"/>
+
+      <!-- Sigil: center orb -->
+      <circle cx="${sigilCx}" cy="${sigilCy}" r="${sigilR * 0.1}"
+              fill="${COLORS.accent}" filter="url(#softGlow)"/>
+
+      <!-- Sigil: cardinal dots -->
+      <circle cx="${sigilCx}" cy="${sigilCy - sigilR * 0.85}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${sigilCx + sigilR * 0.85}" cy="${sigilCy}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${sigilCx}" cy="${sigilCy + sigilR * 0.85}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${sigilCx - sigilR * 0.85}" cy="${sigilCy}" r="3" fill="${COLORS.brand}"/>
+
+      <!-- Connecting line from sigil to text -->
+      <line x1="${sigilCx + sigilR + 20}" y1="${sigilCy}"
+            x2="${width * 0.42}" y2="${sigilCy}"
+            stroke="url(#brandGrad)" stroke-width="1" opacity="0.4" filter="url(#glow)"/>
+
+      <!-- Brand name -->
+      <text x="${width * 0.44}" y="${height * 0.42}"
+            font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+            font-size="64" font-weight="700" fill="${COLORS.text}" letter-spacing="2">
+        BlackMagickOps
+      </text>
+
+      <!-- Tagline -->
+      <text x="${width * 0.44}" y="${height * 0.56}"
+            font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+            font-size="24" fill="${COLORS.accent}" letter-spacing="4" filter="url(#glow)">
+        ${isTwitter ? 'PLATFORM ENGINEERING' : 'PLATFORM ENGINEERING &amp; DEVOPS'}
+      </text>
+
+      <!-- Accent bar under tagline -->
+      <rect x="${width * 0.44}" y="${height * 0.62}" width="120" height="2"
+            fill="url(#brandGrad)" opacity="0.6" rx="1"/>
+
+      <!-- Bottom domain -->
+      <text x="${width * 0.44}" y="${height * 0.76}"
+            font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+            font-size="18" fill="${COLORS.brand}" opacity="0.6" letter-spacing="2">
+        blackmagickops.com
+      </text>
+    </svg>
+  `;
+
+  return Buffer.from(svg);
+}
+
+/**
+ * Generate square logo with sigil + text underneath for structured data
+ */
+async function generateLogoSVG(size) {
+  const center = size / 2;
+  const radius = size * 0.25;
+  const sigilCy = size * 0.38;
+
+  const svg = `
+    <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:${COLORS.brand};stop-opacity:1" />
+          <stop offset="100%" style="stop-color:${COLORS.accent};stop-opacity:1" />
+        </linearGradient>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Background -->
+      <rect width="${size}" height="${size}" fill="${COLORS.bg}"/>
+
+      <!-- Outer circle -->
+      <circle cx="${center}" cy="${sigilCy}" r="${radius}"
+              fill="none" stroke="url(#brandGradient)" stroke-width="3" filter="url(#glow)"/>
+
+      <!-- Star pattern -->
+      <path d="M ${center} ${sigilCy - radius * 0.8}
+               L ${center + radius * 0.3} ${sigilCy + radius * 0.2}
+               L ${center - radius * 0.6} ${sigilCy - radius * 0.3}
+               L ${center + radius * 0.6} ${sigilCy - radius * 0.3}
+               L ${center - radius * 0.3} ${sigilCy + radius * 0.2}
+               Z"
+            fill="none" stroke="${COLORS.accent}" stroke-width="2.5" filter="url(#glow)"/>
+
+      <!-- Inner diamond -->
+      <path d="M ${center} ${sigilCy - radius * 0.4}
+               L ${center + radius * 0.4} ${sigilCy}
+               L ${center} ${sigilCy + radius * 0.4}
+               L ${center - radius * 0.4} ${sigilCy}
+               Z"
+            fill="${COLORS.brand}" opacity="0.3"/>
+
+      <!-- Center dot -->
+      <circle cx="${center}" cy="${sigilCy}" r="${radius * 0.1}"
+              fill="${COLORS.accent}" filter="url(#glow)"/>
+
+      <!-- Cardinal dots -->
+      <circle cx="${center}" cy="${sigilCy - radius * 0.85}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${center + radius * 0.85}" cy="${sigilCy}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${center}" cy="${sigilCy + radius * 0.85}" r="3" fill="${COLORS.brand}"/>
+      <circle cx="${center - radius * 0.85}" cy="${sigilCy}" r="3" fill="${COLORS.brand}"/>
+
+      <!-- Brand text -->
+      <text x="${center}" y="${size * 0.74}"
+            font-family="'SF Pro Display', 'Helvetica Neue', Arial, sans-serif"
+            font-size="36" font-weight="700" fill="${COLORS.text}"
+            text-anchor="middle" letter-spacing="1">
+        BlackMagickOps
+      </text>
+
+      <!-- Tagline -->
+      <text x="${center}" y="${size * 0.82}"
+            font-family="'SF Pro Text', 'Helvetica Neue', Arial, sans-serif"
+            font-size="16" fill="${COLORS.accent}"
+            text-anchor="middle" letter-spacing="3">
+        PLATFORM ENGINEERING
+      </text>
+    </svg>
+  `;
+
+  return Buffer.from(svg);
+}
+
 async function generateIcons() {
   console.log('🎨 Generating PWA icons for BlackMagickOps...\n');
   
@@ -230,6 +439,33 @@ async function generateIcons() {
       .toFile(path.join(OUTPUT_DIR, 'apple-touch-icon.png'));
     console.log('✅ apple-touch-icon.png created');
     
+    // Generate OG image (1200x630)
+    console.log('\n🖼️  Generating og-image.png (1200x630)...');
+    const ogSVG = await generateOGImageSVG(1200, 630);
+    await sharp(ogSVG)
+      .resize(1200, 630)
+      .png()
+      .toFile(path.join(OUTPUT_DIR, 'og-image.png'));
+    console.log('✅ og-image.png created');
+
+    // Generate Twitter card image (1200x630)
+    console.log('🐦 Generating twitter-image.png (1200x630)...');
+    const twitterSVG = await generateOGImageSVG(1200, 630, true);
+    await sharp(twitterSVG)
+      .resize(1200, 630)
+      .png()
+      .toFile(path.join(OUTPUT_DIR, 'twitter-image.png'));
+    console.log('✅ twitter-image.png created');
+
+    // Generate logo.png (512x512) for structured data
+    console.log('🏷️  Generating logo.png (512x512)...');
+    const logoSVG = await generateLogoSVG(512);
+    await sharp(logoSVG)
+      .resize(512, 512)
+      .png()
+      .toFile(path.join(OUTPUT_DIR, 'logo.png'));
+    console.log('✅ logo.png created');
+
     console.log('\n✨ All PWA assets generated successfully!');
     console.log(`📁 Output directory: ${OUTPUT_DIR}`);
     console.log('\n📋 Generated files:');
@@ -240,6 +476,9 @@ async function generateIcons() {
     console.log('   - screenshot-narrow.png (mobile)');
     console.log('   - favicon.ico');
     console.log('   - apple-touch-icon.png');
+    console.log('   - og-image.png (OpenGraph social)');
+    console.log('   - twitter-image.png (Twitter card)');
+    console.log('   - logo.png (structured data)');
     
   } catch (error) {
     console.error('❌ Error generating icons:', error);
@@ -248,8 +487,6 @@ async function generateIcons() {
 }
 
 // Run the generator
-if (require.main === module) {
-  generateIcons();
-}
+generateIcons();
 
-module.exports = { generateIcons };
+export { generateIcons };

@@ -20,12 +20,15 @@ import {
 	Cloud,
 	Code,
 	Cog,
+	Cpu,
+	DollarSign,
 	Eye,
 	Globe,
 	Layers,
 	Shield,
 	Star,
 	Target,
+	TrendingUp,
 	X,
 } from "lucide-react";
 
@@ -155,6 +158,52 @@ const EtherealSpiritOrbs = dynamic(
 	},
 );
 
+/** Terminal line animation for hero section */
+function TerminalLine({
+	delay,
+	prompt,
+	command,
+	result,
+	success,
+	subtle,
+	highlight,
+}: {
+	delay: number;
+	prompt: string;
+	command: string;
+	result?: string;
+	success?: boolean;
+	subtle?: boolean;
+	highlight?: boolean;
+}) {
+	return (
+		<motion.div
+			initial={{ opacity: 0, x: -10 }}
+			animate={{ opacity: 1, x: 0 }}
+			transition={{ duration: 0.4, delay }}
+			className={`flex items-center gap-2 ${subtle ? "text-[--color-muted]/60" : ""} ${highlight ? "text-[--color-accent] font-semibold" : ""}`}
+		>
+			{prompt && (
+				<span
+					className={
+						success ? "text-[--color-success]" : "text-[--color-muted]"
+					}
+				>
+					{prompt}
+				</span>
+			)}
+			{command && (
+				<span
+					className={success ? "text-[--color-success]" : "text-[--color-text]"}
+				>
+					{command}
+				</span>
+			)}
+			{result && <span>{result}</span>}
+		</motion.div>
+	);
+}
+
 export default function Home() {
 	const pageRef = useRef<HTMLDivElement>(null);
 	const { scrollY } = useScroll({ container: undefined });
@@ -220,159 +269,141 @@ export default function Home() {
 						<div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center w-full">
 							{/* Left Column - Main Content */}
 							<div className="lg:col-span-3 space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-								{/* Brand Logo */}
-								<div className="flex items-center gap-3 mb-6">
-									<span className="text-2xl font-semibold">BlackMagickOps</span>
-								</div>{" "}
-								{/* Main Headline */}
+								{/* Main Headline - Pain-led */}
 								<h1 className="text-5xl leading-tight tracking-tight md:text-7xl md:leading-[1.05] lg:text-left text-center">
 									<span className="text-[--color-text]">
-										Autonomous Infrastructure.
+										Your Infrastructure
 									</span>
 									<br />
-									<span className="text-[--color-brand]">
-										Engineered with Magic.
+									<span className="text-[--color-text]">
+										Is Holding You Back.
 									</span>
 								</h1>
 								{/* Main Description */}
 								<p className="text-xl text-[--color-muted] max-w-2xl lg:text-left text-center">
-									We build{" "}
+									Slow deploys. Runaway cloud costs. Engineers stuck writing
+									YAML instead of features.{" "}
 									<strong className="font-semibold text-[--color-text]">
-										Agentic Platforms
-									</strong>{" "}
-									that think, heal, and scale. Move beyond DevOps into the age
-									of{" "}
-									<strong className="font-semibold text-[--color-text]">
-										AI-Driven Engineering
+										We build internal platforms that fix all three
 									</strong>
-									.
+									—with self-healing infrastructure, developer self-service, and
+									FinOps automation.{" "}
+									<strong className="font-semibold text-[--color-brand]">
+										Delivered in 12 weeks.
+									</strong>
 								</p>
+								{/* Industry benchmarks instead of fake testimonial */}
+								<div className="glass-enhanced p-4 rounded-lg border-l-4 border-[--color-accent] mt-6">
+									<p className="text-sm font-semibold text-[--color-accent] mb-2">
+										Industry benchmarks we target (DORA / FinOps Foundation)
+									</p>
+									<div className="grid grid-cols-3 gap-4 text-center">
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												10x
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Deploy Frequency
+											</div>
+										</div>
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												40-60%
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Cloud Cost Reduction
+											</div>
+										</div>
+										<div>
+											<div className="text-lg font-bold text-[--color-brand]">
+												&lt;1hr
+											</div>
+											<div className="text-xs text-[--color-muted]">
+												Lead Time for Changes
+											</div>
+										</div>
+									</div>
+								</div>
 								{/* Primary CTAs */}
-								<div className="flex flex-wrap gap-4 lg:justify-start justify-center">
+								<div className="flex flex-wrap gap-4 lg:justify-start justify-center mt-8">
 									<EnhancedCTA
 										href="#contact"
 										className="px-8 py-4 text-lg"
 										variant="primary"
-										analyticsId="hero-begin-ritual"
+										analyticsId="hero-free-assessment"
 										testVariant="A"
 									>
-										Begin the Ritual
+										Free Infrastructure Assessment
 									</EnhancedCTA>
 									<EnhancedCTA
 										href="#disciplines"
 										className="px-8 py-4 text-lg"
 										variant="ghost"
-										analyticsId="hero-explore-capabilities"
+										analyticsId="hero-see-how-it-works"
 									>
-										Explore Capabilities
+										See How It Works
 									</EnhancedCTA>
 								</div>
 							</div>
 
-							{/* Right Column - Supporting Content & Mystical Effects */}
+							{/* Right Column - Terminal Animation */}
 							<div className="hidden lg:block lg:col-span-2 relative z-10 animate-in fade-in slide-in-from-right-8 duration-1000 delay-300">
-								{/* Additional mystical elements for right column */}
-								<div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-									<div className="absolute top-1/4 right-1/4 w-32 h-32">
-										<motion.div
-											className="w-full h-full rounded-full border border-[--color-accent]/30"
-											animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-											transition={{
-												rotate: {
-													duration: 20,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "linear",
-												},
-												scale: {
-													duration: 4,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "easeInOut",
-												},
-											}}
+								<div className="glass p-0 relative z-10 backdrop-blur-md rounded-xl overflow-hidden border border-[--color-border]">
+									{/* Terminal header */}
+									<div className="flex items-center gap-2 px-4 py-3 bg-[--color-surface] border-b border-[--color-border]">
+										<div className="w-3 h-3 rounded-full bg-red-500/60" />
+										<div className="w-3 h-3 rounded-full bg-yellow-500/60" />
+										<div className="w-3 h-3 rounded-full bg-green-500/60" />
+										<span className="ml-2 text-xs text-[--color-muted] font-mono">
+											blackmagickops ~ platform
+										</span>
+									</div>
+									{/* Terminal body */}
+									<div className="p-6 font-mono text-sm space-y-3">
+										<TerminalLine
+											delay={0.5}
+											prompt="$"
+											command="bmops deploy --env staging --stack python-api"
+										/>
+										<TerminalLine
+											delay={1.5}
+											prompt=""
+											command=""
+											result="Provisioning infrastructure..."
+											subtle
+										/>
+										<TerminalLine
+											delay={2.5}
+											prompt="✓"
+											command="Infrastructure ready (38s)"
+											success
+										/>
+										<TerminalLine
+											delay={3.2}
+											prompt="✓"
+											command="Security scan passed — SLSA Level 3"
+											success
+										/>
+										<TerminalLine
+											delay={3.9}
+											prompt="✓"
+											command="SLO dashboard configured"
+											success
+										/>
+										<TerminalLine
+											delay={4.6}
+											prompt="✓"
+											command="Monitoring & alerts active"
+											success
+										/>
+										<TerminalLine
+											delay={5.3}
+											prompt=""
+											command=""
+											result="→ staging.your-app.com is live"
+											highlight
 										/>
 									</div>
-
-									<div className="absolute bottom-1/3 left-1/4 w-24 h-24">
-										<motion.div
-											className="w-full h-full rounded-full border-2 border-[--color-brand]/20"
-											animate={{ rotate: -360, scale: [0.8, 1.2, 0.8] }}
-											transition={{
-												rotate: {
-													duration: 15,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "linear",
-												},
-												scale: {
-													duration: 6,
-													repeat: Number.POSITIVE_INFINITY,
-													ease: "easeInOut",
-												},
-											}}
-										/>
-									</div>
-								</div>
-
-								{/* Supporting Content Card */}
-								<div className="glass p-8 relative z-10 backdrop-blur-md">
-									<motion.div
-										initial={{ opacity: 0, y: 20 }}
-										animate={{ opacity: 1, y: 0 }}
-										transition={{ duration: 1, delay: 0.6 }}
-										className="space-y-6"
-									>
-										{/* Tagline */}
-										<h3 className="text-2xl font-semibold text-[--color-brand]">
-											Understand. Execute. Deliver.
-										</h3>
-
-										{/* Supporting Description */}
-										<p className="text-[--color-muted] leading-relaxed">
-											BlackMagickOps is your{" "}
-											<strong className="text-[--color-text]">
-												10x DevOps Engineer
-											</strong>{" "}
-											who can independently build, optimize, and secure your
-											entire platform infrastructure.
-										</p>
-
-										{/* Key Benefits */}
-										<div className="space-y-3">
-											{[
-												"Platform Engineering Excellence",
-												"Automated DevOps Pipelines",
-												"FinOps & Cost Optimization",
-											].map((benefit, i) => (
-												<motion.div
-													key={benefit}
-													initial={{ opacity: 0, x: 20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.6, delay: 0.8 + i * 0.1 }}
-													className="flex items-center gap-3"
-												>
-													<div className="w-2 h-2 rounded-full bg-[--color-accent]" />
-													<span className="text-sm text-[--color-text]">
-														{benefit}
-													</span>
-												</motion.div>
-											))}
-										</div>
-
-										{/* Secondary CTA */}
-										<motion.div
-											initial={{ opacity: 0, y: 20 }}
-											animate={{ opacity: 1, y: 0 }}
-											transition={{ duration: 0.8, delay: 1.2 }}
-											className="pt-4"
-										>
-											<a
-												href="#contact"
-												className="inline-flex items-center gap-2 text-[--color-brand] hover:text-[--color-accent] transition-colors font-medium"
-											>
-												Start a Project
-												<ArrowRight className="w-4 h-4" />
-											</a>
-										</motion.div>
-									</motion.div>
 								</div>
 							</div>
 						</div>
@@ -396,55 +427,228 @@ export default function Home() {
 							subtitle="Each engagement blends infrastructure mastery, automation, and disciplined execution."
 							headingId="disciplines-heading"
 						/>
+
+						{/* Executive Summary - 3 bullets max */}
+						<motion.div
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true, amount: 0.3 }}
+							transition={{ duration: 0.8 }}
+							className="mt-12 max-w-4xl mx-auto"
+						>
+							<div className="glass-premium p-8 rounded-2xl">
+								<h3 className="text-xl font-semibold mb-6 text-center">
+									What We Actually Do
+								</h3>
+								<div className="grid md:grid-cols-3 gap-6">
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-brand]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We build{" "}
+											<strong className="text-[--color-text]">
+												internal platforms
+											</strong>{" "}
+											so developers self-serve
+										</p>
+									</div>
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-accent]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We automate{" "}
+											<strong className="text-[--color-text]">
+												incident response
+											</strong>{" "}
+											so you sleep through alerts
+										</p>
+									</div>
+									<div className="flex items-start gap-3">
+										<div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-[--color-success]"></div>
+										<p className="text-[--color-muted] leading-relaxed">
+											We cut{" "}
+											<strong className="text-[--color-text]">
+												cloud costs 40-60%
+											</strong>{" "}
+											without sacrificing performance
+										</p>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+
 						<div className="mt-16">
 							<TabbedInterface
 								tabs={[
 									{
 										label: "Cognitive IDP",
-										icon: <Shield className="w-4 h-4 icon-pulse" />,
+										icon: <Shield className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-float">🧠</div>
+															<div className="text-5xl">🧠</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Cognitive IDP
 																</h3>
 																<p className="text-[--color-muted]">
-																	Backstage on steroids — powered by LLMs
+																	Your developers' time back. Instantly.
 																</p>
 															</div>
 														</div>
-														<CascadingList
-															items={[
-																"AI-Drafted Infrastructure Code",
-																"Architectural Query Engines",
-																"Instant Microservice Scaffolding",
-															]}
-															delay={0.1}
-														/>
+
+														{/* Problem-Solving: Hard Way vs BlackMagickOps Way */}
+														<div className="glass-enhanced p-6 rounded-lg space-y-4 mb-6">
+															<div className="border-l-4 border-red-500 pl-4">
+																<h4 className="font-semibold text-red-400 mb-2">
+																	The Hard Way
+																</h4>
+																<p className="text-sm text-[--color-muted]">
+																	Your developers waste 40% of their sprint
+																	wrestling with{" "}
+																	<TechTerm
+																		term="YAML"
+																		definition="YAML Ain't Markup Language - config file format"
+																	/>{" "}
+																	configs, hunting down microservice owners, and
+																	waiting 3 days for infrastructure tickets.
+																</p>
+															</div>
+
+															<div className="border-l-4 border-[--color-brand] pl-4">
+																<h4 className="font-semibold text-[--color-brand] mb-2">
+																	The BlackMagickOps Way
+																</h4>
+																<p className="text-sm text-[--color-muted]">
+																	Ask your{" "}
+																	<TechTerm
+																		term="IDP"
+																		definition="Internal Developer Platform - self-service portal for devs"
+																	/>
+																	:{" "}
+																	<span className="italic">
+																		"Deploy a Python API with Redis caching and
+																		PostgreSQL on production-similar staging."
+																	</span>
+																</p>
+																<p className="text-sm text-[--color-muted] mt-2">
+																	<span className="font-semibold text-[--color-accent]">
+																		Three minutes later
+																	</span>
+																	, it's live—with golden-path guardrails,
+																	automatic SBOM generation, and{" "}
+																	<TechTerm
+																		term="SLO"
+																		definition="Service Level Objective - reliability targets"
+																	/>{" "}
+																	dashboards configured.
+																</p>
+															</div>
+														</div>
+
+														{/* Value Proposition: Outcomes */}
+														<div className="space-y-3 mb-6">
+															<h4 className="font-semibold">What Changes:</h4>
+															<ul className="space-y-2">
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>MTTR drops from days to minutes</span>
+																</li>
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>Developer NPS jumps 40+ points</span>
+																</li>
+																<li className="flex items-start gap-3">
+																	<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
+																	<span>
+																		Platform teams become force multipliers, not
+																		bottlenecks
+																	</span>
+																</li>
+															</ul>
+														</div>
+
+														<div className="text-xs text-[--color-muted] border-t border-[--color-border] pt-4">
+															<strong>Tech Reality Check:</strong> Backstage +
+															LangChain + Vector embeddings +{" "}
+															<TechTerm
+																term="Kubernetes CRDs"
+																definition="Custom Resource Definitions - extend K8s with custom objects"
+															/>
+														</div>
 													</MysticalCard>
 												</div>
-												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="mystical-pattern bg-opacity-20 rounded-2xl p-6 glass-enhanced cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<Cpu className="w-5 h-5 text-[--color-brand]" />
 														The AI Stack
 													</h4>
-													<div className="grid grid-cols-2 gap-4">
-														{[
-															"Backstage + AI",
-															"Vector Ops",
-															"Kubernetes",
-															"LangChain",
-														].map((tech, i) => (
-															<div
-																key={tech}
-																className="chip icon-hover text-center"
-															>
-																{tech}
+													<div className="space-y-6">
+														{/* Core Platform */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Core Platform
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"Backstage IDP",
+																	"Kubernetes",
+																	"ArgoCD",
+																	"Crossplane",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
 															</div>
-														))}
+														</div>
+
+														{/* AI & LLM Layer */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																AI & LLM Layer
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"LangChain",
+																	"Vector DB",
+																	"OpenAI",
+																	"Anthropic",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
+															</div>
+														</div>
+
+														{/* Observability */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Observability
+															</h5>
+															<div className="grid grid-cols-2 gap-3">
+																{[
+																	"Prometheus",
+																	"Grafana",
+																	"OpenTelemetry",
+																	"Jaeger",
+																].map((tech) => (
+																	<div
+																		key={tech}
+																		className="chip icon-hover text-center text-sm"
+																	>
+																		{tech}
+																	</div>
+																))}
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -452,22 +656,82 @@ export default function Home() {
 									},
 									{
 										label: "Agentic Workflows",
-										icon: <Cog className="w-4 h-4 icon-rotate" />,
+										icon: <Cog className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-pulse">🤖</div>
+															<div className="text-5xl">🤖</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Agentic Workflows
 																</h3>
 																<p className="text-[--color-muted]">
-																	L1 Support & Triage by Autonomous Agents
+																	L1 Support That Never Sleeps
 																</p>
 															</div>
 														</div>
+
+														{/* Competitive Comparison */}
+														<div className="grid md:grid-cols-2 gap-4 mb-6">
+															<div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+																<h4 className="font-semibold text-red-400 mb-2">
+																	Industry Standard
+																</h4>
+																<ol className="text-sm text-[--color-muted] space-y-1">
+																	<li>1. PagerDuty wakes you at 3 AM</li>
+																	<li>2. You SSH into prod</li>
+																	<li>3. Panic. Roll back. Hope.</li>
+																</ol>
+															</div>
+
+															<div className="p-4 rounded-lg bg-[--color-brand]/10 border border-[--color-brand]/20">
+																<h4 className="font-semibold text-[--color-brand] mb-2">
+																	BlackMagickOps Standard
+																</h4>
+																<p className="text-sm text-[--color-muted] mb-2">
+																	Your agentic L1 support{" "}
+																	<span className="font-semibold">already</span>
+																	:
+																</p>
+																<ul className="text-sm text-[--color-muted] space-y-1">
+																	<li>✓ Detected the anomaly</li>
+																	<li>
+																		✓ Correlated 47 log entries to root cause
+																	</li>
+																	<li>✓ Applied the fix (auto-rollback)</li>
+																	<li>✓ Updated the postmortem draft</li>
+																	<li>
+																		✓ Sent you a Slack summary—
+																		<em>while you slept</em>
+																	</li>
+																</ul>
+															</div>
+														</div>
+
+														{/* Trend Analysis */}
+														<div className="glass-premium p-5 rounded-lg mb-6">
+															<div className="flex items-start gap-3">
+																<TrendingUp className="w-5 h-5 text-[--color-accent] mt-1" />
+																<div>
+																	<h4 className="font-semibold mb-2">
+																		Why This Matters
+																	</h4>
+																	<p className="text-sm text-[--color-muted]">
+																		Gartner predicts{" "}
+																		<span className="text-[--color-brand] font-semibold">
+																			40% of enterprises will use agentic
+																			automation by 2027
+																		</span>
+																		. The question isn't <em>if</em> your
+																		infrastructure becomes autonomous—it's{" "}
+																		<em>when</em> you decide to lead or follow.
+																	</p>
+																</div>
+															</div>
+														</div>
+
 														<CascadingList
 															items={[
 																"Auto-Remediation Agents",
@@ -478,25 +742,80 @@ export default function Home() {
 														/>
 													</MysticalCard>
 												</div>
-												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-8 glass-enhanced">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="circuit-pattern bg-opacity-20 rounded-2xl p-6 glass-enhanced cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<Cpu className="w-5 h-5 text-[--color-brand]" />
 														Agent Capabilities
 													</h4>
-													<div className="space-y-3">
-														{[
-															"Log Analysis",
-															"Root Cause ID",
-															"Auto-Rollback",
-															"Security Patching",
-														].map((strategy, i) => (
-															<div
-																key={strategy}
-																className="flex items-center gap-3"
-															>
-																<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
-																<span>{strategy}</span>
+													<div className="space-y-6">
+														{/* Autonomous Actions */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Autonomous Actions
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Auto-Rollback on Failure",
+																	"Self-Healing Infrastructure",
+																	"Predictive Scaling",
+																	"Zero-Touch Deployments",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-brand] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
 															</div>
-														))}
+														</div>
+
+														{/* Intelligence & Analysis */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																Intelligence & Analysis
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Real-Time Log Analysis",
+																	"Root Cause Identification",
+																	"Anomaly Detection",
+																	"Performance Optimization",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-accent] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
+															</div>
+														</div>
+
+														{/* Security & Compliance */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Security & Compliance
+															</h5>
+															<div className="space-y-2">
+																{[
+																	"Automated Security Patching",
+																	"Vulnerability Scanning",
+																	"Policy Enforcement",
+																	"Compliance Monitoring",
+																].map((item) => (
+																	<div
+																		key={item}
+																		className="flex items-center gap-3"
+																	>
+																		<div className="w-2 h-2 bg-[--color-muted] rounded-full"></div>
+																		<span className="text-sm">{item}</span>
+																	</div>
+																))}
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -504,13 +823,13 @@ export default function Home() {
 									},
 									{
 										label: "Eco-FinOps",
-										icon: <Target className="w-4 h-4 icon-float" />,
+										icon: <Target className="w-4 h-4" />,
 										content: (
 											<div className="asymmetric-grid">
 												<div className="space-y-6">
 													<MysticalCard className="neomorphic">
 														<div className="flex items-center gap-4 mb-6">
-															<div className="text-5xl icon-rotate">🌱</div>
+															<div className="text-5xl">🌱</div>
 															<div>
 																<h3 className="text-2xl font-semibold">
 																	Eco-FinOps
@@ -520,38 +839,192 @@ export default function Home() {
 																</p>
 															</div>
 														</div>
-														<CascadingList
-															items={[
-																"Predictive Scaling",
-																"Carbon-Aware Scheduling",
-																"Automated Rightsizing",
-															]}
-															delay={0.1}
-														/>
+
+														{/* Industry Context */}
+														<div className="glass-enhanced p-5 rounded-lg border-l-4 border-[--color-accent] mb-6">
+															<p className="text-sm text-[--color-muted]">
+																<strong className="text-[--color-accent]">
+																	Industry benchmark:
+																</strong>{" "}
+																Organizations following the FinOps Foundation
+																Crawl/Walk/Run framework typically achieve
+																30-60% cloud cost reduction. Green Software
+																Foundation carbon-aware scheduling can shift
+																batch workloads to low-carbon hours at zero
+																additional cost.
+															</p>
+														</div>
+
+														{/* Value Proposition: What We Deliver */}
+														<div className="space-y-3 mb-6">
+															<h4 className="font-semibold">
+																What We Deliver:
+															</h4>
+															<div className="space-y-2">
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>Predictive scaling:</strong>{" "}
+																		Right-sized 200+ workloads using ML usage
+																		patterns
+																	</div>
+																</div>
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>Carbon-aware scheduling:</strong>{" "}
+																		Shifted batch jobs to low-carbon hours
+																		(free!)
+																	</div>
+																</div>
+																<div className="flex items-start gap-3">
+																	<div className="w-2 h-2 bg-[--color-brand] rounded-full mt-2"></div>
+																	<div>
+																		<strong>
+																			Spot instance orchestration:
+																		</strong>{" "}
+																		70% cost savings on non-critical workloads
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														{/* Financial Impact */}
+														<div className="glass-premium p-5 rounded-lg">
+															<h4 className="font-semibold mb-3 flex items-center gap-2">
+																<DollarSign className="w-5 h-5 text-[--color-success]" />
+																Your CFO Will Love This
+															</h4>
+															<div className="grid grid-cols-2 gap-4 text-center">
+																<div>
+																	<div className="text-3xl font-bold text-[--color-success]">
+																		300%
+																	</div>
+																	<div className="text-sm text-[--color-muted]">
+																		Average ROI
+																	</div>
+																	<div className="text-xs text-[--color-muted]">
+																		First year
+																	</div>
+																</div>
+																<div>
+																	<div className="text-3xl font-bold text-[--color-success]">
+																		$400K-$2M
+																	</div>
+																	<div className="text-sm text-[--color-muted]">
+																		Typical Savings
+																	</div>
+																	<div className="text-xs text-[--color-muted]">
+																		Annually
+																	</div>
+																</div>
+															</div>
+														</div>
 													</MysticalCard>
 												</div>
-												<div className="tech-grid bg-opacity-20 rounded-2xl p-8 glass-premium">
-													<h4 className="text-lg font-semibold mb-4">
+												<div className="tech-grid bg-opacity-20 rounded-2xl p-6 glass-premium cursor-pointer hover:bg-opacity-40 hover:shadow-[0_0_30px_rgba(129,140,248,0.3)] transition-all duration-300 ease-out">
+													<h4 className="text-lg font-semibold mb-6 flex items-center gap-2">
+														<TrendingUp className="w-5 h-5 text-[--color-accent]" />
 														Optimization Impact
 													</h4>
-													<div className="space-y-4">
-														<div className="flex justify-between items-center">
-															<span>Cloud Waste</span>
-															<span className="text-[--color-success]">
-																-60%
-															</span>
+													<div className="space-y-6">
+														{/* Cost Efficiency */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-brand] mb-3 font-semibold">
+																Cost Efficiency
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Cloud Waste Reduction
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-60%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Infrastructure Costs
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-45%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Operational ROI
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+300%
+																	</span>
+																</div>
+															</div>
 														</div>
-														<div className="flex justify-between items-center">
-															<span>Carbon Footprint</span>
-															<span className="text-[--color-success]">
-																-40%
-															</span>
+
+														{/* Environmental Impact */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-accent] mb-3 font-semibold">
+																Environmental Impact
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Carbon Footprint
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-40%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Energy Efficiency
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+55%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Green Computing Score
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		A+
+																	</span>
+																</div>
+															</div>
 														</div>
-														<div className="flex justify-between items-center">
-															<span>ROI</span>
-															<span className="text-[--color-success]">
-																+300%
-															</span>
+
+														{/* Performance Gains */}
+														<div>
+															<h5 className="text-xs uppercase tracking-wider text-[--color-muted] mb-3 font-semibold">
+																Performance Gains
+															</h5>
+															<div className="space-y-3">
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Resource Utilization
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+75%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Auto-Scaling Efficiency
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		+90%
+																	</span>
+																</div>
+																<div className="flex justify-between items-center p-3 rounded-lg bg-[--color-bg]/30">
+																	<span className="text-sm">
+																		Idle Resource Elimination
+																	</span>
+																	<span className="text-[--color-success] font-semibold">
+																		-80%
+																	</span>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -574,8 +1047,8 @@ export default function Home() {
 				>
 					<div className="section">
 						<SectionIntro
-							title="Our Ritual Framework"
-							subtitle="Every engagement follows the same precision cycle — discover, design, automate, optimize."
+							title="How We Work"
+							subtitle="No 200-page docs. No drive-by consulting. We pair-program with your team through every phase until your infrastructure runs itself."
 							headingId="framework-heading"
 						/>
 
@@ -585,26 +1058,30 @@ export default function Home() {
 									steps={[
 										{
 											title: "Discover",
+											subtitle: "Week 1-2",
 											description:
-												"Map system constraints and train context models.",
+												"Deep system audit: We map dependencies, bottlenecks, and failure modes. Train context models on your architecture. Identify the top 3 automation opportunities with ROI projections.",
 											icon: <Eye className="w-6 h-6" />,
 										},
 										{
 											title: "Architect",
+											subtitle: "Week 3-5",
 											description:
-												"Design self-healing topologies and agent swarms.",
+												"Design self-healing topologies, agentic workflows, and platform interfaces. Your team reviews architecture decisions with us—no black boxes.",
 											icon: <Code className="w-6 h-6" />,
 										},
 										{
 											title: "Automate",
+											subtitle: "Week 6-10",
 											description:
-												"Deploy agentic guardrails and autonomous pipelines.",
+												"Deploy autonomous pipelines, LLM-powered IDPs, and agentic guardrails. We pair-program with your engineers—this is knowledge transfer, not gatekeeping.",
 											icon: <Cog className="w-6 h-6" />,
 										},
 										{
 											title: "Evolve",
+											subtitle: "Week 11+",
 											description:
-												"Continuous model tuning and system optimization.",
+												"Continuous model tuning, system optimization, and 24/7 monitoring. Your infrastructure learns from incidents and patches itself before you wake up.",
 											icon: <Target className="w-6 h-6" />,
 										},
 									]}
@@ -657,31 +1134,74 @@ export default function Home() {
 
 				<SigilDivider />
 
-				{/* Philosophy */}
-				<section
-					id="philosophy"
-					className="py-32"
-					aria-labelledby="philosophy-heading"
-				>
-					<motion.div
-						initial={{ opacity: 0 }}
-						whileInView={{ opacity: 1 }}
-						viewport={{ once: true, amount: 0.4 }}
-						transition={{ duration: 1.4 }}
-						className="section text-center max-w-3xl mx-auto"
-					>
-						<h2
-							id="philosophy-heading"
-							className="text-4xl md:text-5xl font-semibold mb-8"
+				{/* About */}
+				<section id="about" className="py-28" aria-labelledby="about-heading">
+					<div className="section max-w-4xl mx-auto">
+						<motion.div
+							initial={{ opacity: 0 }}
+							whileInView={{ opacity: 1 }}
+							viewport={{ once: true, amount: 0.4 }}
+							transition={{ duration: 1 }}
 						>
-							Our Philosophy
-						</h2>
-						<p className="text-xl leading-relaxed text-[--color-muted]">
-							We treat engineering as a sacred craft — where precision is
-							devotion, and automation is ritual. Our mission: to summon order
-							from chaos through deliberate design and disciplined execution.
-						</p>
-					</motion.div>
+							<h2
+								id="about-heading"
+								className="text-4xl md:text-5xl font-semibold mb-8 text-center"
+							>
+								Who We Are
+							</h2>
+							<div className="glass-premium p-8 md:p-10 rounded-2xl space-y-6">
+								<p className="text-lg leading-relaxed text-[--color-muted]">
+									BlackMagickOps is a platform engineering consultancy founded
+									by infrastructure engineers who've spent years building and
+									scaling cloud-native systems. We've seen the same problems
+									repeat across organizations — manual deployments, runaway
+									costs, developer friction — and we built a practice around
+									solving them systematically.
+								</p>
+								<p className="text-lg leading-relaxed text-[--color-muted]">
+									We treat engineering as a craft where{" "}
+									<strong className="text-[--color-text]">
+										precision is discipline
+									</strong>{" "}
+									and{" "}
+									<strong className="text-[--color-text]">
+										automation is leverage
+									</strong>
+									. Our mission: turn your infrastructure from a cost center
+									into a competitive advantage.
+								</p>
+								<div className="grid md:grid-cols-3 gap-6 pt-4 border-t border-[--color-border]">
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Methodology
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											DORA metrics, SPACE framework, FinOps Foundation
+											Crawl/Walk/Run
+										</p>
+									</div>
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Approach
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											Pair programming, knowledge transfer, your team owns
+											everything we build
+										</p>
+									</div>
+									<div>
+										<div className="text-sm font-semibold text-[--color-brand] mb-1">
+											Philosophy
+										</div>
+										<p className="text-sm text-[--color-muted]">
+											Platform as a Product. Open standards. No vendor lock-in.
+											No black boxes.
+										</p>
+									</div>
+								</div>
+							</div>
+						</motion.div>
+					</div>
 				</section>
 
 				<SigilDivider />
@@ -694,249 +1214,82 @@ export default function Home() {
 
 				<SigilDivider />
 
-				{/* Testimonials */}
-				<section id="testimonials" className="py-20">
-					<div className="section">
-						<SectionIntro
-							title="Client Testimonials"
-							subtitle="What our clients say about the mystical transformation of their infrastructure."
-						/>
-
-						<div className="mt-16">
-							<TestimonialCarousel
-								testimonials={[
-									{
-										quote:
-											"BlackMagickOps transformed our deployment pipeline from chaos to precision. Their platform engineering approach reduced our time-to-market by 70% while improving reliability dramatically.",
-										author: "Sarah Chen",
-										role: "VP of Engineering",
-										company: "TechFlow Systems",
-									},
-									{
-										quote:
-											"The mystical precision they brought to our infrastructure was remarkable. We went from manual deployments to fully automated CI/CD with comprehensive monitoring in just 12 weeks.",
-										author: "Marcus Rodriguez",
-										role: "CTO",
-										company: "CloudNative Solutions",
-									},
-									{
-										quote:
-											"Their FinOps integration saved us 40% on cloud costs while doubling our deployment frequency. The golden paths they created made our developers incredibly productive.",
-										author: "Elena Kowalski",
-										role: "DevOps Director",
-										company: "ScaleUp Ventures",
-									},
-									{
-										quote:
-											"The Backstage IDP implementation was game-changing. Our development teams now have self-service capabilities with proper guardrails. Security and compliance are baked in.",
-										author: "David Kim",
-										role: "Platform Lead",
-										company: "Enterprise Corp",
-									},
-									{
-										quote:
-											"BlackMagickOps doesn't just implement tools, they create a culture of excellence. The observability and SLO framework they built transformed how we think about reliability.",
-										author: "Priya Patel",
-										role: "Engineering Manager",
-										company: "Innovation Labs",
-									},
-								]}
-							/>
-						</div>
-					</div>
-				</section>
-
-				<SigilDivider />
-
 				{/* FAQ Section */}
 				<section id="faq" className="py-20">
 					<div className="section">
 						<SectionIntro
 							title="Frequently Asked Questions"
-							subtitle="Everything you need to know about our mystical DevOps practices."
+							subtitle="Straight answers. No jargon."
 						/>
 
 						<div className="mt-16 max-w-4xl mx-auto">
 							<AccordionSection
 								items={[
 									{
-										title:
-											"What makes BlackMagickOps different from other DevOps consultancies?",
+										title: "What exactly does BlackMagickOps do?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													We combine mystical precision with modern engineering
-													practices. Our approach integrates platform
-													engineering, automation, and FinOps into a unified
-													ritual framework that delivers measurable results.
-												</p>
-												<ul className="space-y-2 text-[--color-muted]">
-													<li>
-														• Mystical framework with proven methodologies
-													</li>
-													<li>
-														• Focus on developer experience and platform
-														engineering
-													</li>
-													<li>
-														• Integration of cost optimization from day one
-													</li>
-													<li>
-														• Comprehensive automation and self-healing systems
-													</li>
-												</ul>
-											</div>
+											<p>
+												We build internal developer platforms, automate
+												infrastructure operations, and optimize cloud costs.
+												Think of us as the team that turns your infrastructure
+												from a bottleneck into a competitive advantage. We use
+												industry-standard frameworks (DORA metrics, FinOps
+												Foundation, Platform as a Product) and open-source tools
+												— no proprietary lock-in.
+											</p>
 										),
 									},
 									{
 										title: "How long does a typical engagement take?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													Our ritual framework typically spans 12-16 weeks,
-													broken into four phases:
-												</p>
-												<div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Discover (2-3 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Assessment and planning
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Design (3-4 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Architecture and strategy
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Automate (6-8 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Implementation and deployment
-														</p>
-													</div>
-													<div className="p-4 rounded-lg bg-[--color-surface]">
-														<h5 className="font-semibold text-[--color-brand]">
-															Optimize (1-2 weeks)
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Monitoring and refinement
-														</p>
-													</div>
-												</div>
-											</div>
-										),
-									},
-									{
-										title: "What technologies do you specialize in?",
-										content: (
-											<div className="space-y-4">
-												<p>
-													We work with cutting-edge cloud-native technologies
-													and proven enterprise solutions:
-												</p>
-												<div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
-													{[
-														"Kubernetes",
-														"Backstage",
-														"Terraform",
-														"GitHub Actions",
-														"Prometheus",
-														"Grafana",
-														"ArgoCD",
-														"OPA",
-														"KEDA",
-														"Istio",
-													].map((tech) => (
-														<div
-															key={tech}
-															className="chip text-center bg-[--color-brand]/10 text-[--color-brand]"
-														>
-															{tech}
-														</div>
-													))}
-												</div>
-											</div>
+											<p>
+												12 weeks for a full engagement: 2 weeks discovery, 3
+												weeks architecture, 5 weeks implementation, 2 weeks
+												knowledge transfer and optimization. We pair-program
+												with your engineers throughout — when we leave, your
+												team owns and understands everything we built.
+											</p>
 										),
 									},
 									{
 										title:
-											"Do you provide ongoing support after implementation?",
+											"We don't have any customers yet on the site — why should we trust you?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													Yes, we offer multiple support models to ensure your
-													mystical infrastructure continues to evolve:
-												</p>
-												<ul className="space-y-3">
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>Managed Services:</strong> Full platform
-															management and 24/7 monitoring
-														</div>
-													</li>
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>Advisory Retainer:</strong> Monthly
-															strategy sessions and architecture reviews
-														</div>
-													</li>
-													<li className="flex items-start gap-3">
-														<CheckCircle className="w-5 h-5 text-[--color-success] mt-0.5" />
-														<div>
-															<strong>On-Demand Support:</strong> Access to our
-															experts for troubleshooting and optimization
-														</div>
-													</li>
-												</ul>
-											</div>
+											<p>
+												Fair question. We're a new consultancy, and we believe
+												in earning trust through transparency rather than
+												fabricated case studies. Start with a free 30-minute
+												infrastructure assessment — we'll identify concrete
+												automation opportunities with ROI projections. If the
+												assessment is valuable, we'll talk about a pilot
+												engagement with clear success criteria and a pause
+												clause if we're not delivering value by week 4.
+											</p>
 										),
 									},
 									{
-										title: "What are your pricing models?",
+										title: "What does pricing look like?",
 										content: (
-											<div className="space-y-4">
-												<p>
-													We offer flexible engagement models tailored to your
-													needs and budget:
-												</p>
-												<div className="space-y-4 mt-4">
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Project-Based
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Fixed scope, timeline, and budget for defined
-															deliverables
-														</p>
-													</div>
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Time & Materials
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Flexible hourly or daily rates for ongoing work
-														</p>
-													</div>
-													<div className="p-4 rounded-lg border border-[--color-border]">
-														<h5 className="font-semibold text-[--color-accent]">
-															Value-Based
-														</h5>
-														<p className="text-sm text-[--color-muted] mt-1">
-															Pricing tied to measurable business outcomes and
-															cost savings
-														</p>
-													</div>
-												</div>
-											</div>
+											<p>
+												We offer project-based pricing with clear deliverables,
+												or time-and-materials for ongoing work. Every engagement
+												starts with a free assessment so we can scope
+												accurately. We're transparent about costs and include a
+												value-check at week 4 — if we're not on track, we pause
+												and reassess together.
+											</p>
+										),
+									},
+									{
+										title: "What technologies do you work with?",
+										content: (
+											<p>
+												Kubernetes (AKS/EKS/GKE), Backstage, ArgoCD, Crossplane,
+												Pulumi, Terraform, GitHub Actions, Prometheus, Grafana,
+												OpenTelemetry, OPA, KEDA, and more. We're cloud-agnostic
+												(AWS, Azure, GCP) and opinionated about open standards.
+												We don't push proprietary tools.
+											</p>
 										),
 									},
 								]}
@@ -959,21 +1312,103 @@ export default function Home() {
 					>
 						<MysticalCard className="p-10 md:p-14">
 							<div className="text-center mb-10">
-								<TypewriterText text="Initiate Contact" delay={500} />
 								<motion.h2
 									id="contact-heading"
-									className="text-4xl font-semibold mb-6"
+									className="text-4xl md:text-5xl font-semibold mb-6"
 									initial={{ opacity: 0 }}
 									whileInView={{ opacity: 1 }}
 									viewport={{ once: true }}
-									transition={{ delay: 2, duration: 0.8 }}
-								/>
-								<ScrollReveal direction="top" delay={0.3}>
-									<p className="mx-auto max-w-md text-[--color-muted]">
-										Describe your objective — we'll respond with a precision
-										plan and a path to measurable wins.
+									transition={{ delay: 0.3, duration: 0.8 }}
+								>
+									Ready to Stop Firefighting?
+								</motion.h2>
+								<ScrollReveal direction="top" delay={0.5}>
+									<p className="mx-auto max-w-2xl text-lg text-[--color-muted] mb-8">
+										Most companies spend{" "}
+										<span className="text-red-400 font-semibold">
+											12-18 months
+										</span>{" "}
+										on "DevOps transformation" that delivers slide decks, not
+										software velocity.{" "}
+										<span className="text-[--color-brand] font-semibold">
+											We ship production infrastructure in 12 weeks.
+										</span>
 									</p>
 								</ScrollReveal>
+
+								{/* What Happens Timeline */}
+								<div className="text-left max-w-3xl mx-auto glass-enhanced p-8 rounded-lg space-y-6 mb-8">
+									<h3 className="text-xl font-semibold text-center mb-6">
+										What Happens When You Contact Us
+									</h3>
+
+									<div className="grid md:grid-cols-3 gap-6">
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.7 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">📅</div>
+											<h4 className="font-semibold">Day 1-3</h4>
+											<p className="text-sm text-[--color-muted]">
+												Discovery call → We audit 1 system (free) → You get a
+												heat map of your biggest bottlenecks
+											</p>
+										</motion.div>
+
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.8 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">📊</div>
+											<h4 className="font-semibold">Day 7</h4>
+											<p className="text-sm text-[--color-muted]">
+												Detailed proposal with specific ROI projections, 12-week
+												roadmap, and risk assessment
+											</p>
+										</motion.div>
+
+										<motion.div
+											initial={{ opacity: 0, y: 20 }}
+											whileInView={{ opacity: 1, y: 0 }}
+											viewport={{ once: true }}
+											transition={{ delay: 0.9 }}
+											className="space-y-2"
+										>
+											<div className="text-3xl">🚀</div>
+											<h4 className="font-semibold">Week 2</h4>
+											<p className="text-sm text-[--color-muted]">
+												Pilot phase begins (if you choose to proceed)
+											</p>
+										</motion.div>
+									</div>
+
+									<motion.div
+										initial={{ opacity: 0, y: 20 }}
+										whileInView={{ opacity: 1, y: 0 }}
+										viewport={{ once: true }}
+										transition={{ delay: 1.0 }}
+										className="border-t border-[--color-border] pt-6"
+									>
+										<div className="flex items-start gap-3">
+											<Shield className="w-6 h-6 text-[--color-success] mt-1" />
+											<div>
+												<h4 className="font-semibold text-[--color-success]">
+													Zero Risk
+												</h4>
+												<p className="text-sm text-[--color-muted]">
+													Don't see measurable improvements by Week 4? We pause,
+													reassess, or you walk away—no hard feelings.
+												</p>
+											</div>
+										</div>
+									</motion.div>
+								</div>
 							</div>
 
 							<div className="mx-auto max-w-2xl">
@@ -1241,16 +1676,25 @@ function MysticalContactForm() {
 							className="w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"
 						/>
 					) : null}
-					{isSubmitting ? "Casting Spell..." : "Begin the Ritual →"}
+					{isSubmitting ? "Sending Message..." : "Begin the Ritual →"}
 				</button>
 			</form>
-
 			<SuccessAnimation show={showSuccess} />
 		</>
 	);
 }
 
 /* ---------- Enhanced Technical Components ---------- */
+
+// Technical Term Tooltip Component - for acronyms and jargon
+function TechTerm({ term, definition }: { term: string; definition: string }) {
+	return (
+		<span className="tech-term">
+			{term}
+			<span className="tooltip">{definition}</span>
+		</span>
+	);
+}
 
 // Lazy Loading Image Component
 function LazyImage({
@@ -1503,18 +1947,29 @@ function TouchCarousel({
 			</div>
 
 			{/* Navigation */}
-			<div className="flex justify-center mt-4 space-x-2">
+			<div
+				className="flex justify-center mt-4 space-x-2"
+				role="group"
+				aria-label="Carousel navigation"
+			>
 				{items.map((_, index) => (
 					<button
 						key={index}
 						onClick={() => setCurrentIndex(index)}
-						className={`btn-touch w-3 h-3 rounded-full transition-colors ${
+						className={`btn-touch min-w-[44px] min-h-[44px] w-12 h-12 rounded-full transition-all duration-200 flex items-center justify-center ${
 							index === currentIndex
-								? "bg-[--color-brand]"
-								: "bg-[--color-muted]"
+								? "bg-[--color-brand] shadow-[0_0_20px_rgba(129,140,248,0.4)]"
+								: "bg-[--color-surface] border border-[--color-border] hover:border-[--color-brand]"
 						}`}
-						aria-label={`Go to slide ${index + 1}`}
-					/>
+						aria-label={`Go to slide ${index + 1} of ${items.length}`}
+						aria-current={index === currentIndex ? "true" : "false"}
+					>
+						<span
+							className={`w-2 h-2 rounded-full ${
+								index === currentIndex ? "bg-white" : "bg-[--color-muted]"
+							}`}
+						/>
+					</button>
 				))}
 			</div>
 
@@ -1611,21 +2066,55 @@ function TabbedInterface({
 }) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
 
+	// Keyboard navigation handler
+	const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+		if (e.key === "ArrowRight") {
+			e.preventDefault();
+			setActiveTab((index + 1) % tabs.length);
+		} else if (e.key === "ArrowLeft") {
+			e.preventDefault();
+			setActiveTab((index - 1 + tabs.length) % tabs.length);
+		} else if (e.key === "Home") {
+			e.preventDefault();
+			setActiveTab(0);
+		} else if (e.key === "End") {
+			e.preventDefault();
+			setActiveTab(tabs.length - 1);
+		}
+	};
+
 	return (
 		<div className="tab-container">
-			<div className="tab-list">
+			<div className="tab-list" role="tablist" aria-label="Navigation tabs">
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
-						className={`tab-button ${activeTab === index ? "active" : ""}`}
+						role="tab"
+						aria-selected={activeTab === index}
+						aria-controls={`tabpanel-${index}`}
+						id={`tab-${index}`}
+						tabIndex={activeTab === index ? 0 : -1}
+						className={`tab-button ${activeTab === index ? "active" : ""} 
+							${activeTab === index ? "text-[--color-brand]" : "text-[--color-muted]"}
+							hover:text-[--color-text] transition-all duration-200
+							${activeTab === index ? "shadow-[0_0_20px_rgba(129,140,248,0.3)]" : ""}
+							focus-visible:outline-[--color-brand] focus-visible:outline-offset-2`}
 						onClick={() => setActiveTab(index)}
+						onKeyDown={(e) => handleKeyDown(e, index)}
 					>
 						{tab.icon && <span className="icon mr-2">{tab.icon}</span>}
 						{tab.label}
 					</button>
 				))}
 			</div>
-			<div className="tab-content">{tabs[activeTab]?.content}</div>
+			<div
+				role="tabpanel"
+				id={`tabpanel-${activeTab}`}
+				aria-labelledby={`tab-${activeTab}`}
+				className="tab-content"
+			>
+				{tabs[activeTab]?.content}
+			</div>
 		</div>
 	);
 }
@@ -1644,29 +2133,53 @@ function AccordionSection({
 		);
 	};
 
+	// Keyboard navigation handler
+	const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
+		if (e.key === " " || e.key === "Enter") {
+			e.preventDefault();
+			toggleItem(index);
+		}
+	};
+
 	return (
-		<div className="space-y-2">
-			{items.map((item, index) => (
-				<div
-					key={index}
-					className={`accordion-item ${openItems.includes(index) ? "open" : ""}`}
-				>
-					<button
-						className="accordion-header"
-						onClick={() => toggleItem(index)}
-					>
-						<span className="font-medium">{item.title}</span>
-						<ChevronDown
-							className={`accordion-icon w-5 h-5 ${openItems.includes(index) ? "rotate-180" : ""}`}
-						/>
-					</button>
-					<div
-						className={`accordion-content ${openItems.includes(index) ? "open" : "closed"}`}
-					>
-						<div className="accordion-body">{item.content}</div>
+		<div
+			className="space-y-2"
+			role="region"
+			aria-label="Expandable content sections"
+		>
+			{items.map((item, index) => {
+				const isOpen = openItems.includes(index);
+				const contentId = `accordion-content-${index}`;
+				const headerId = `accordion-header-${index}`;
+
+				return (
+					<div key={index} className={`accordion-item ${isOpen ? "open" : ""}`}>
+						<button
+							id={headerId}
+							className="accordion-header min-h-[44px] w-full flex items-center justify-between text-left px-4 py-3 focus-visible:ring-2 focus-visible:ring-[--color-brand] focus-visible:outline-none rounded-lg transition-all"
+							onClick={() => toggleItem(index)}
+							onKeyDown={(e) => handleKeyDown(e, index)}
+							aria-expanded={isOpen}
+							aria-controls={contentId}
+						>
+							<span className="font-medium">{item.title}</span>
+							<ChevronDown
+								className={`accordion-icon w-5 h-5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+								aria-hidden="true"
+							/>
+						</button>
+						<div
+							id={contentId}
+							role="region"
+							aria-labelledby={headerId}
+							className={`accordion-content ${isOpen ? "open" : "closed"}`}
+							hidden={!isOpen}
+						>
+							<div className="accordion-body">{item.content}</div>
+						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 }
@@ -1675,10 +2188,15 @@ function AccordionSection({
 function ProcessTimeline({
 	steps,
 }: {
-	steps: Array<{ title: string; description: string; icon?: React.ReactNode }>;
+	steps: Array<{
+		title: string;
+		subtitle?: string;
+		description: string;
+		icon?: React.ReactNode;
+	}>;
 }) {
 	return (
-		<div className="timeline">
+		<div className="timeline" role="list" aria-label="Process timeline steps">
 			{steps.map((step, index) => (
 				<motion.div
 					key={index}
@@ -1686,6 +2204,7 @@ function ProcessTimeline({
 					whileInView={{ opacity: 1, x: 0 }}
 					transition={{ delay: index * 0.1 }}
 					className="timeline-item"
+					role="listitem"
 				>
 					<div className="flex items-start gap-4">
 						{step.icon && (
@@ -1694,227 +2213,16 @@ function ProcessTimeline({
 							</div>
 						)}
 						<div>
-							<h4 className="text-lg font-semibold mb-2">{step.title}</h4>
+							<div className="flex items-baseline gap-3 mb-2">
+								<h4 className="text-lg font-semibold">{step.title}</h4>
+								{step.subtitle && (
+									<span className="text-sm text-[--color-brand]">
+										{step.subtitle}
+									</span>
+								)}
+							</div>
 							<p className="text-[--color-muted]">{step.description}</p>
 						</div>
-					</div>
-				</motion.div>
-			))}
-		</div>
-	);
-}
-
-// Enhanced Carousel Component
-function TestimonialCarousel({
-	testimonials,
-}: {
-	testimonials: Array<{
-		quote: string;
-		author: string;
-		role: string;
-		company: string;
-		avatar?: string;
-	}>;
-}) {
-	const [current, setCurrent] = useState(0);
-
-	useEffect(() => {
-		const timer = setInterval(() => {
-			setCurrent((prev) => (prev + 1) % testimonials.length);
-		}, 5000);
-		return () => clearInterval(timer);
-	}, [testimonials.length]);
-
-	return (
-		<div className="carousel-container relative">
-			<div
-				className="carousel-track"
-				style={{ transform: `translateX(-${current * 100}%)` }}
-			>
-				{testimonials.map((testimonial, index) => (
-					<div key={index} className="carousel-slide neomorphic">
-						<blockquote className="text-lg mb-6 italic">
-							"{testimonial.quote}"
-						</blockquote>
-						<div className="flex items-center gap-4">
-							{testimonial.avatar && (
-								<div className="w-12 h-12 rounded-full bg-[--color-brand] flex items-center justify-center text-white font-semibold">
-									{testimonial.author.charAt(0)}
-								</div>
-							)}
-							<div>
-								<div className="font-semibold">{testimonial.author}</div>
-								<div className="text-sm text-[--color-muted]">
-									{testimonial.role} at {testimonial.company}
-								</div>
-							</div>
-						</div>
-					</div>
-				))}
-			</div>
-			<div className="carousel-controls">
-				{testimonials.map((_, index) => (
-					<button
-						key={index}
-						className={`carousel-dot ${current === index ? "active" : ""}`}
-						onClick={() => setCurrent(index)}
-						aria-label={`Go to testimonial ${index + 1}`}
-					/>
-				))}
-			</div>
-		</div>
-	);
-}
-
-// Sticky Sidebar Navigation
-function StickyNavigation({
-	sections,
-}: {
-	sections: Array<{ id: string; label: string }>;
-}) {
-	const [activeSection, setActiveSection] = useState("");
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						setActiveSection(entry.target.id);
-					}
-				});
-			},
-			{ threshold: 0.5 },
-		);
-
-		sections.forEach(({ id }) => {
-			const element = document.getElementById(id);
-			if (element) observer.observe(element);
-		});
-
-		return () => observer.disconnect();
-	}, [sections]);
-
-	return (
-		<nav className="sticky-sidebar">
-			<div className="relative">
-				<div className="nav-indicator" />
-				<ul className="space-y-2">
-					{sections.map(({ id, label }) => (
-						<li key={id}>
-							<a
-								href={`#${id}`}
-								className={`block px-4 py-2 rounded-lg transition-all ${
-									activeSection === id
-										? "bg-[--color-brand] text-white"
-										: "text-[--color-muted] hover:text-[--color-text] hover:bg-[--color-surface]"
-								}`}
-							>
-								{label}
-							</a>
-						</li>
-					))}
-				</ul>
-			</div>
-		</nav>
-	);
-}
-
-// Infinite Scroll Container
-function InfiniteScrollContainer<T>({
-	items,
-	renderItem,
-	loadMore,
-	hasMore,
-}: {
-	items: T[];
-	renderItem: (item: T, index: number) => React.ReactNode;
-	loadMore: () => void;
-	hasMore: boolean;
-}) {
-	const [loading, setLoading] = useState(false);
-	const observerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			async ([entry]) => {
-				if (entry.isIntersecting && hasMore && !loading) {
-					setLoading(true);
-					await loadMore();
-					setLoading(false);
-				}
-			},
-			{ threshold: 0.1 },
-		);
-
-		if (observerRef.current) {
-			observer.observe(observerRef.current);
-		}
-
-		return () => observer.disconnect();
-	}, [hasMore, loading, loadMore]);
-
-	return (
-		<div className="space-y-6">
-			{items.map((item, index) => renderItem(item, index))}
-			{hasMore && (
-				<div ref={observerRef} className="flex justify-center py-8">
-					{loading ? (
-						<div className="icon-rotate w-6 h-6 border-2 border-[--color-brand] border-t-transparent rounded-full" />
-					) : (
-						<div className="text-[--color-muted] text-sm">
-							Scroll to load more...
-						</div>
-					)}
-				</div>
-			)}
-		</div>
-	);
-}
-
-// Masonry Portfolio Layout
-function MasonryPortfolio({
-	projects,
-}: {
-	projects: Array<{
-		title: string;
-		description: string;
-		image?: string;
-		tags: string[];
-		featured?: boolean;
-	}>;
-}) {
-	return (
-		<div className="masonry-grid">
-			{projects.map((project, index) => (
-				<motion.div
-					key={index}
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{ delay: index * 0.1 }}
-					className={`masonry-item card-module ${project.featured ? "glass-premium" : "neomorphic"}`}
-				>
-					{project.image && (
-						<div className="mb-4 rounded-lg overflow-hidden relative h-48">
-							<Image
-								src={project.image}
-								alt={project.title}
-								fill
-								sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-								className="object-cover"
-							/>
-						</div>
-					)}
-					<h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-					<p className="text-[--color-muted] mb-4">{project.description}</p>
-					<div className="flex flex-wrap gap-2">
-						{project.tags.map((tag, tagIndex) => (
-							<span
-								key={tagIndex}
-								className="chip text-xs px-3 py-1 bg-[--color-brand]/20 text-[--color-brand] rounded-full"
-							>
-								{tag}
-							</span>
-						))}
 					</div>
 				</motion.div>
 			))}

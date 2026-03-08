@@ -19,8 +19,8 @@ describe("Header", () => {
 
 		expect(desktopNav).toHaveTextContent("Disciplines");
 		expect(desktopNav).toHaveTextContent("Framework");
-		expect(desktopNav).toHaveTextContent("Philosophy");
-		expect(desktopNav).toHaveTextContent("Work");
+		expect(desktopNav).toHaveTextContent("About");
+		expect(desktopNav).toHaveTextContent("Results");
 	});
 
 	it('renders "Start a Project" CTA button', () => {
