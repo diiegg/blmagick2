@@ -15,10 +15,10 @@ describe("AnimatedMetrics", () => {
 		it("renders all 4 metrics", () => {
 			render(<AnimatedMetrics />);
 
-			expect(screen.getByText("Platform Uptime")).toBeInTheDocument();
-			expect(screen.getByText("Deployment Speed ↑")).toBeInTheDocument();
-			expect(screen.getByText("Squads Empowered")).toBeInTheDocument();
-			expect(screen.getByText("Cost Optimized")).toBeInTheDocument();
+			expect(screen.getByText("Week Engagements")).toBeInTheDocument();
+			expect(screen.getByText("Cost Reduction Target")).toBeInTheDocument();
+			expect(screen.getByText("Deploy Frequency Goal")).toBeInTheDocument();
+			expect(screen.getByText("SLO Attainment Target")).toBeInTheDocument();
 		});
 
 		it("renders metrics in a grid layout", () => {
@@ -103,7 +103,7 @@ describe("AnimatedMetrics", () => {
 
 			// Animation should start when in viewport
 			// (mocked in vitest.setup.ts to always return true)
-			const section = screen.getByText("Platform Uptime").closest("section");
+			const section = screen.getByText("Week Engagements").closest("section");
 			expect(section).toBeInTheDocument();
 		});
 
@@ -165,10 +165,10 @@ describe("AnimatedMetrics", () => {
 		it("displays readable metric labels", () => {
 			render(<AnimatedMetrics />);
 
-			expect(screen.getByText("Platform Uptime")).toBeVisible();
-			expect(screen.getByText("Deployment Speed ↑")).toBeVisible();
-			expect(screen.getByText("Squads Empowered")).toBeVisible();
-			expect(screen.getByText("Cost Optimized")).toBeVisible();
+			expect(screen.getByText("Week Engagements")).toBeVisible();
+			expect(screen.getByText("Cost Reduction Target")).toBeVisible();
+			expect(screen.getByText("Deploy Frequency Goal")).toBeVisible();
+			expect(screen.getByText("SLO Attainment Target")).toBeVisible();
 		});
 	});
 

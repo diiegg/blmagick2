@@ -93,7 +93,7 @@ export function Header() {
 							aria-label="Mobile navigation"
 						>
 							<div className="section flex flex-col gap-4 py-6 text-[--color-muted]">
-								<a href="#work" onClick={() => setMobileMenuOpen(false)}>
+								<a href="#disciplines" onClick={() => setMobileMenuOpen(false)}>
 									Disciplines
 								</a>
 								<a href="#framework" onClick={() => setMobileMenuOpen(false)}>
