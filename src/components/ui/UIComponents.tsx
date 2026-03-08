@@ -152,7 +152,11 @@ export function MysticalInput({
 					aria-label={ariaLabel || placeholder}
 					aria-invalid={error ? "true" : "false"}
 					aria-describedby={
-						error ? `${id}-error` : success ? `${id}-success` : undefined
+						id && error
+							? `${id}-error`
+							: id && success
+								? `${id}-success`
+								: undefined
 					}
 					className={`w-full px-4 py-3 bg-[--color-surface] border ${borderColor} rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none transition-all duration-300 min-h-[44px]`}
 				/>
@@ -248,7 +252,11 @@ export function MysticalTextarea({
 					aria-label={ariaLabel || placeholder}
 					aria-invalid={error ? "true" : "false"}
 					aria-describedby={
-						error ? `${id}-error` : success ? `${id}-success` : undefined
+						id && error
+							? `${id}-error`
+							: id && success
+								? `${id}-success`
+								: undefined
 					}
 					className={`w-full px-4 py-3 bg-[--color-surface] border ${borderColor} rounded-lg text-[--color-text] placeholder-[--color-muted] focus:outline-none transition-all duration-300 resize-none min-h-[120px]`}
 				/>

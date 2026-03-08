@@ -22,8 +22,8 @@ module.exports = {
 		},
 		{
 			name: 'blackmagickops-prod',
-			script: 'pnpm',
-			args: 'start',
+			script: 'npx',
+			args: 'serve out -l 3000 -s',
 			cwd: './',
 			interpreter: 'none',
 			instances: 1,

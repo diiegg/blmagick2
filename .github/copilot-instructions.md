@@ -6,6 +6,7 @@
 **Never merge directly to `dev` or `main`. Always use this workflow:**
 
 1. **Feature/Fix Development**:
+
    ```bash
    git checkout -b feature/your-feature-name  # or fix/issue-name
    # Make changes, commit work
@@ -13,11 +14,13 @@
    ```
 
 2. **Create PR to Dev**:
+
    ```bash
    gh pr create --title "feat: Your feature" --body "Description" --base dev
    ```
 
 3. **After PR merge to Dev, create Production Release**:
+
    ```bash
    git checkout dev && git pull origin dev
    gh pr create --title "Release: Description" --base main --head dev
@@ -41,6 +44,7 @@
 - **Frozen Lockfile**: Always use `pnpm install --frozen-lockfile` in CI
 
 ### Testing & Quality Gates
+
 ```bash
 pnpm test:run          # Unit tests (required before PRs)
 pnpm test:coverage     # Coverage reports to Codecov

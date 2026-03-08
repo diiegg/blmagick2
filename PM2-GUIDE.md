@@ -40,7 +40,7 @@ pnpm pm2:prod
 
 ## Configuration
 
-The `ecosystem.config.js` file defines two process modes:
+The `ecosystem.config.cjs` file defines two process modes:
 
 ### Development Mode (`blackmagickops-dev`)
 - Runs on port **3001**
@@ -58,20 +58,20 @@ The `ecosystem.config.js` file defines two process modes:
 
 ```bash
 # Stop all processes
-pm2 stop all
+pnpm exec pm2 stop all
 
 # Delete all processes from PM2
 pnpm pm2:delete
 
 # Monitor processes in terminal
-pm2 monit
+pnpm exec pm2 monit
 
 # View detailed process info
-pm2 describe blackmagickops-dev
+pnpm exec pm2 describe blackmagickops-dev
 
 # Save process list (startup on reboot)
-pm2 save
-pm2 startup
+pnpm exec pm2 save
+pnpm exec pm2 startup
 ```
 
 ## Startup on Boot (Optional)
@@ -80,10 +80,10 @@ To make the dev server start automatically when your Mac boots:
 
 ```bash
 # Save current PM2 process list
-pm2 save
+pnpm exec pm2 save
 
 # Generate startup script
-pm2 startup
+pnpm exec pm2 startup
 
 # Follow the command PM2 outputs
 ```
