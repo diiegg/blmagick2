@@ -295,7 +295,7 @@ export default function Home() {
 								{/* Industry benchmarks instead of fake testimonial */}
 								<div className="glass-enhanced p-4 rounded-lg border-l-4 border-[--color-accent] mt-6">
 									<p className="text-sm font-semibold text-[--color-accent] mb-2">
-										Industry benchmarks we target (DORA / FinOps Foundation)
+										Typical targets based on DORA / FinOps Foundation benchmarks
 									</p>
 									<div className="grid grid-cols-3 gap-4 text-center">
 										<div>
@@ -381,8 +381,13 @@ export default function Home() {
 										<TerminalLine
 											delay={3.2}
 											prompt="✓"
-											command="Security scan passed — SLSA Level 3"
+											command="Security scan passed"
 											success
+										/>
+										<TerminalLine
+											delay={3.6}
+											prompt="i"
+											command="Build provenance: SLSA Level 3"
 										/>
 										<TerminalLine
 											delay={3.9}
@@ -1346,11 +1351,13 @@ export default function Home() {
 										<motion.div
 											initial={{ opacity: 0, y: 20 }}
 											whileInView={{ opacity: 1, y: 0 }}
-											viewport={{ once: true }}
-											transition={{ delay: 0.7 }}
+											viewport={{ once: true, amount: 0.3 }}
+											transition={{ delay: 0.1 }}
 											className="space-y-2"
 										>
-											<div className="text-3xl">📅</div>
+											<div className="text-3xl" aria-hidden="true">
+												📅
+											</div>
 											<h4 className="font-semibold">Day 1-3</h4>
 											<p className="text-sm text-[--color-muted]">
 												Discovery call → We audit 1 system (free) → You get a
@@ -1361,11 +1368,13 @@ export default function Home() {
 										<motion.div
 											initial={{ opacity: 0, y: 20 }}
 											whileInView={{ opacity: 1, y: 0 }}
-											viewport={{ once: true }}
-											transition={{ delay: 0.8 }}
+											viewport={{ once: true, amount: 0.3 }}
+											transition={{ delay: 0.2 }}
 											className="space-y-2"
 										>
-											<div className="text-3xl">📊</div>
+											<div className="text-3xl" aria-hidden="true">
+												📊
+											</div>
 											<h4 className="font-semibold">Day 7</h4>
 											<p className="text-sm text-[--color-muted]">
 												Detailed proposal with specific ROI projections, 12-week
@@ -1376,11 +1385,13 @@ export default function Home() {
 										<motion.div
 											initial={{ opacity: 0, y: 20 }}
 											whileInView={{ opacity: 1, y: 0 }}
-											viewport={{ once: true }}
-											transition={{ delay: 0.9 }}
+											viewport={{ once: true, amount: 0.3 }}
+											transition={{ delay: 0.3 }}
 											className="space-y-2"
 										>
-											<div className="text-3xl">🚀</div>
+											<div className="text-3xl" aria-hidden="true">
+												🚀
+											</div>
 											<h4 className="font-semibold">Week 2</h4>
 											<p className="text-sm text-[--color-muted]">
 												Pilot phase begins (if you choose to proceed)
@@ -1391,8 +1402,8 @@ export default function Home() {
 									<motion.div
 										initial={{ opacity: 0, y: 20 }}
 										whileInView={{ opacity: 1, y: 0 }}
-										viewport={{ once: true }}
-										transition={{ delay: 1.0 }}
+										viewport={{ once: true, amount: 0.3 }}
+										transition={{ delay: 0.4 }}
 										className="border-t border-[--color-border] pt-6"
 									>
 										<div className="flex items-start gap-3">
@@ -1688,10 +1699,18 @@ function MysticalContactForm() {
 
 // Technical Term Tooltip Component - for acronyms and jargon
 function TechTerm({ term, definition }: { term: string; definition: string }) {
+	const termId = `tooltip-${term.toLowerCase().replace(/\s+/g, "-")}`;
 	return (
-		<span className="tech-term">
+		<span
+			className="tech-term"
+			tabIndex={0}
+			role="button"
+			aria-describedby={termId}
+		>
 			{term}
-			<span className="tooltip">{definition}</span>
+			<span id={termId} role="tooltip" className="tooltip">
+				{definition}
+			</span>
 		</span>
 	);
 }
@@ -2065,22 +2084,23 @@ function TabbedInterface({
 	defaultTab?: number;
 }) {
 	const [activeTab, setActiveTab] = useState(defaultTab);
+	const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
 	// Keyboard navigation handler
 	const handleKeyDown = (e: React.KeyboardEvent, index: number) => {
-		if (e.key === "ArrowRight") {
-			e.preventDefault();
-			setActiveTab((index + 1) % tabs.length);
-		} else if (e.key === "ArrowLeft") {
-			e.preventDefault();
-			setActiveTab((index - 1 + tabs.length) % tabs.length);
-		} else if (e.key === "Home") {
-			e.preventDefault();
-			setActiveTab(0);
-		} else if (e.key === "End") {
-			e.preventDefault();
-			setActiveTab(tabs.length - 1);
-		}
+		let nextIndex: number | null = null;
+
+		if (e.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+		else if (e.key === "ArrowLeft")
+			nextIndex = (index - 1 + tabs.length) % tabs.length;
+		else if (e.key === "Home") nextIndex = 0;
+		else if (e.key === "End") nextIndex = tabs.length - 1;
+
+		if (nextIndex === null) return;
+
+		e.preventDefault();
+		setActiveTab(nextIndex);
+		tabRefs.current[nextIndex]?.focus();
 	};
 
 	return (
@@ -2089,12 +2109,15 @@ function TabbedInterface({
 				{tabs.map((tab, index) => (
 					<button
 						key={index}
+						ref={(el) => {
+							tabRefs.current[index] = el;
+						}}
 						role="tab"
 						aria-selected={activeTab === index}
 						aria-controls={`tabpanel-${index}`}
 						id={`tab-${index}`}
 						tabIndex={activeTab === index ? 0 : -1}
-						className={`tab-button ${activeTab === index ? "active" : ""} 
+						className={`tab-button ${activeTab === index ? "active" : ""}
 							${activeTab === index ? "text-[--color-brand]" : "text-[--color-muted]"}
 							hover:text-[--color-text] transition-all duration-200
 							${activeTab === index ? "shadow-[0_0_20px_rgba(129,140,248,0.3)]" : ""}

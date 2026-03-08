@@ -163,7 +163,7 @@ export function CaseSigils() {
 							key={d.title}
 							initial={{ opacity: 0, y: 30 }}
 							whileInView={{ opacity: 1, y: 0 }}
-							viewport={{ once: true, amount: 0.2 }}
+							viewport={{ once: true, amount: 0.3 }}
 							transition={{ duration: 0.8, delay: 0.1 + i * 0.1 }}
 							className="group relative overflow-hidden glass-enhanced p-8 md:p-10 text-left"
 						>

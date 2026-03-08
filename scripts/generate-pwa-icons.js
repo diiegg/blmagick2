@@ -486,7 +486,10 @@ async function generateIcons() {
   }
 }
 
-// Run the generator
-generateIcons();
+// Only run when executed directly, not when imported
+if (import.meta.url === `file://${process.argv[1]}` ||
+    process.argv[1]?.endsWith('generate-pwa-icons.js')) {
+  generateIcons();
+}
 
 export { generateIcons };

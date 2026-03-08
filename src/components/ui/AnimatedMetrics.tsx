@@ -71,12 +71,13 @@ function CountUpMetric({
 	useEffect(() => {
 		if (!isInView) return;
 
-		let startTime: number;
+		let startTime: number | undefined;
+		let frameId: number | null = null;
 		const duration = 2000;
 		const startValue = 0;
 
 		const animate = (currentTime: number) => {
-			if (!startTime) startTime = currentTime;
+			if (startTime === undefined) startTime = currentTime;
 			const elapsed = currentTime - startTime;
 			const progress = Math.min(elapsed / duration, 1);
 
@@ -87,13 +88,17 @@ function CountUpMetric({
 			setCount(currentValue);
 
 			if (progress < 1) {
-				requestAnimationFrame(animate);
+				frameId = requestAnimationFrame(animate);
 			} else {
 				setCount(end);
 			}
 		};
 
-		requestAnimationFrame(animate);
+		frameId = requestAnimationFrame(animate);
+
+		return () => {
+			if (frameId !== null) cancelAnimationFrame(frameId);
+		};
 	}, [isInView, end]);
 
 	const displayValue = end % 1 === 0 ? Math.floor(count) : count.toFixed(1);
