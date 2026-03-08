@@ -62,3 +62,6 @@ logs/
 .pm2/
 pm2-*.log
 dev-server.pid
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
