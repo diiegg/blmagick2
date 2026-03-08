@@ -1563,7 +1563,9 @@ function MysticalContactForm() {
 		// Track conversion in Google Ads
 		if (typeof window !== "undefined" && typeof window.gtag === "function") {
 			window.gtag("event", "conversion", {
-				send_to: process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID,
+				send_to: "AW-928575911/cewVCOaZ--0ZEKfj47oD",
+				value: 1.0,
+				currency: "MXN",
 			});
 		}
 

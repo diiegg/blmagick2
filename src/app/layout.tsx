@@ -97,9 +97,7 @@ export const metadata: Metadata = {
 			"max-snippet": -1,
 		},
 	},
-	verification: {
-		google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
-	},
+	verification: {},
 	category: "Technology",
 	classification: "Business",
 	manifest: "/manifest.json",
@@ -239,25 +237,22 @@ export default function RootLayout({
 			className={`dark ${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
 		>
 			<head>
-				{/* Google Tag Manager */}
-				{process.env.NEXT_PUBLIC_GTM_ID && (
-					<>
-						<script
-							async
-							src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
-						/>
-						<script
-							dangerouslySetInnerHTML={{
-								__html: `
+				{/* Google tag (gtag.js) - Analytics + Google Ads */}
+				<script
+					async
+					src="https://www.googletagmanager.com/gtag/js?id=G-D3S13V36TC"
+				/>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GTM_ID}');
+              gtag('config', 'G-D3S13V36TC');
+              gtag('config', 'AW-928575911');
             `,
-							}}
-						/>
-					</>
-				)}
+					}}
+				/>
 
 				{/* Umami Analytics */}
 				<script
